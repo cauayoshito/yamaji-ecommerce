@@ -1,0 +1,193 @@
+/* Tailwind layers */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* -------------------- */
+/* Root + Resets        */
+/* -------------------- */
+:root {
+  color-scheme: dark;
+  --accent: #00ffa3;
+  --accent-deep: #5b2dff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  @apply bg-bg text-fg antialiased;
+}
+
+/* Usa as famílias configuradas no tailwind.config (font-sans/display) */
+h1,
+h2,
+h3,
+.title {
+  @apply font-display;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+h1,
+h2 {
+  text-wrap: balance;
+}
+
+h1,
+h2,
+h3,
+p,
+span,
+a,
+button {
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+}
+
+/* Seleção de texto com cor da marca */
+::selection {
+  background: rgba(0, 255, 163, 0.25); /* accent */
+  color: #ffffff;
+}
+
+/* Estados de foco acessíveis (para links/botões) */
+:where(a, button, [role="button"], input, select, textarea):focus-visible {
+  @apply outline-none ring-2 ring-accent/60;
+}
+
+/* Compensa header fixo ao navegar por âncoras */
+section[id],
+[data-anchor] {
+  scroll-margin-top: 6rem; /* ~24 do Tailwind (scroll-mt-24) */
+}
+
+/* -------------------- */
+/* Helpers / Utilities  */
+/* -------------------- */
+.container {
+  @apply max-w-container mx-auto px-6;
+}
+.section {
+  @apply py-16 md:py-24;
+}
+
+.h1 {
+  @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.0] font-semibold tracking-tight break-words;
+  word-break: normal;
+  overflow-wrap: anywhere;
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+}
+.h2 {
+  @apply text-3xl md:text-5xl font-semibold tracking-tight;
+}
+.h3 {
+  @apply text-xl md:text-2xl font-semibold;
+}
+
+.lead {
+  @apply mt-4 text-lg md:text-xl text-muted max-w-2xl;
+}
+
+/* Chips e Badges */
+.chip {
+  @apply inline-flex items-center rounded-full border border-white/10 px-3 py-1 text-sm text-muted;
+}
+.badge {
+  @apply inline-flex items-center px-2 py-0.5 rounded bg-accent/10 text-accent text-xs font-medium;
+}
+
+/* Links padrão */
+.link {
+  @apply underline decoration-white/30 underline-offset-4 hover:decoration-accent;
+}
+
+/* -------------------- */
+/* Botões (variantes)   */
+/* -------------------- */
+.btn {
+  @apply inline-flex items-center gap-2 rounded-2xl border border-white/15 px-5 py-2.5 text-sm font-semibold transition
+         hover:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed;
+}
+
+.btn-primary {
+  @apply border-0 text-black shadow-[0_10px_30px_rgba(0,255,163,0.25)]
+         bg-gradient-to-r from-accent to-accent2
+         hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,255,163,0.45)];
+}
+
+.btn-secondary {
+  @apply border-white/20 bg-white/5 text-fg hover:bg-white/10 hover:border-white/30;
+}
+
+.btn-ghost {
+  @apply border-transparent bg-transparent text-fg hover:bg-white/5;
+}
+
+/* -------------------- */
+/* Cards / Surfaces     */
+/* -------------------- */
+.card {
+  @apply rounded-2xl border border-white/10 bg-card p-6;
+}
+
+.card-hover {
+  @apply transition hover:border-accent/70 hover:shadow-[0_0_24px_rgba(0,255,163,0.18)] hover:bg-white/[0.06];
+}
+
+/* efeito “vidro” sutil para blocos destacados */
+.glass {
+  @apply bg-white/[0.06] backdrop-blur-md border border-white/10;
+}
+
+.glass-strong {
+  @apply bg-white/[0.09] backdrop-blur-xl border border-white/15 shadow-[0_0_40px_rgba(91,45,255,0.15)];
+}
+
+.divider {
+  @apply h-px w-full bg-gradient-to-r from-white/5 via-white/30 to-white/5;
+}
+
+/* -------------------- */
+/* Tabelas (opcional)   */
+/* -------------------- */
+.table {
+  @apply w-full border-separate border-spacing-0 rounded-2xl border border-white/10 bg-card;
+}
+.table thead th {
+  @apply p-4 text-left text-sm font-medium text-fg;
+}
+.table tbody tr {
+  @apply border-t border-white/10;
+}
+.table td {
+  @apply p-4 text-sm text-fg;
+}
+.table-zebra tbody tr:nth-child(even) {
+  @apply bg-white/[0.03];
+}
+
+/* -------------------- */
+/* Imagens e mídia      */
+/* -------------------- */
+img,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* -------------------- */
+/* Footer e pequenos    */
+/* -------------------- */
+.small-muted {
+  @apply text-xs text-muted;
+}
