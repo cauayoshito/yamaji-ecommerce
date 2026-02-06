@@ -12,7 +12,7 @@ import Footer from "@/components/site/Footer";
 import WhatsAppButton from "@/components/e-commerce/WhatsAppButton";
 import { BarChart3, LayoutPanelTop, UserRound, Bell } from "lucide-react";
 
-const WHATSAPP_LINK = "https://wa.me/557199258349";
+const WHATSAPP_LINK = "https://wa.me/5571992258349";
 const HERO_IMAGE = "/images/ecommerce.jpeg";
 
 export default function CommercePage() {
