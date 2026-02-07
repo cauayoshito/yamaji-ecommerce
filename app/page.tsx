@@ -1,4 +1,4 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import BackgroundGlow from "@/components/ui/BackgroundGlow";
 import Badge from "@/components/ui/Badge";
@@ -441,7 +441,7 @@ export default function Page() {
                 <div className="flex flex-wrap gap-4">
                   <PrimaryButton href="/aplicar" label="Aplicar para Projeto" />
                   <SecondaryButton
-                    href="https://wa.me/557199258349"
+                    href="https://wa.me/5571992258349"
                     label="WhatsApp"
                   />
                 </div>
