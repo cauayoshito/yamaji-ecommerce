@@ -4,7 +4,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
   const REF = "ref=footer";
   const WHATS = {
-    phone: "5571992358249",
+    phone: "5571992258349",
     text: "Oi%2C%20vi%20o%20site%20da%20Yamaji%20e%20quero%20entender%20como%20voc%C3%AAs%20podem%20me%20ajudar%20a%20vender%20todos%20os%20dias.",
     utm: "utm_source=site&utm_medium=cta&utm_campaign=footer",
   };
@@ -132,10 +132,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/5571992358249"
+                  href="https://wa.me/5571992258349"
                   className="hover:text-white"
                 >
-                  +55 71 99235-8249
+                  +55 71 99225-8349
                 </a>{" "}
                 | Salvador — BA
               </li>
