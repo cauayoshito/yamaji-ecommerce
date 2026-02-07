@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { MessageCircle } from "lucide-react";
 
 const WHATS = {
-  phone: "5571992358249",
+  phone: "5571992258349",
   text: "Oi%2C%20quero%20meu%20diagn%C3%B3stico%20gratuito.%20Voc%C3%AAs%20avaliam%20site%2C%20an%C3%BAncios%20e%20WhatsApp%2FIA%20e%20me%20passam%20um%20plano%20em%2015%20minutos%3F",
   utm: "utm_source=site&utm_medium=cta&utm_campaign=cta_section",
 };
