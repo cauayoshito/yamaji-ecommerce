@@ -16,6 +16,52 @@ const WHATSAPP_LINK = "https://wa.me/5571992258349";
 const HERO_IMAGE = "/images/ecommerce.jpeg";
 
 export default function CommercePage() {
+  const plans = [
+    {
+      title: "Essencial",
+      subtitle: "Entrada para começar a vender online.",
+      bullets: [
+        "Loja online com vitrine organizada.",
+        "Checkout simples e rápido.",
+        "Catálogo essencial com seus produtos principais.",
+        "Suporte para ativar a operação.",
+        "Base pronta para evoluir depois.",
+      ],
+      ctaLabel: "Quero começar",
+      message:
+        "Quero o plano Essencial do Yamaji E-commerce. Podemos conversar?",
+    },
+    {
+      title: "Profissional",
+      subtitle: "Controle total para vender com previsibilidade.",
+      bullets: [
+        "Painel de gestão com pedidos e clientes.",
+        "Integrações para acelerar as vendas.",
+        "Experiência premium para o comprador.",
+        "Relatórios essenciais do negócio.",
+        "Estrutura pronta para campanhas.",
+      ],
+      ctaLabel: "Quero vender com controle",
+      message:
+        "Quero o plano Profissional do Yamaji E-commerce. Podemos conversar?",
+      highlight: true,
+    },
+    {
+      title: "Máquina de Vendas",
+      subtitle: "Escala e automação para crescer com consistência.",
+      bullets: [
+        "Fluxos automatizados para compras recorrentes.",
+        "Dashboard completo de performance.",
+        "Experiência omnichannel integrada.",
+        "Suporte estratégico para crescimento.",
+        "Infraestrutura preparada para volume.",
+      ],
+      ctaLabel: "Quero escalar meu negócio",
+      message:
+        "Quero o plano Máquina de Vendas do Yamaji E-commerce. Podemos conversar?",
+    },
+  ];
+
   return (
     <>
       <a
@@ -302,6 +348,79 @@ export default function CommercePage() {
 
             {/* Se você já tiver o preview do dashboard, coloca aqui.
                Se não tiver, deixa esse bloco vazio por enquanto. */}
+          </Container>
+        </section>
+
+        <div className="px-6">
+          <div className="divider" />
+        </div>
+
+        {/* PLANOS */}
+        <section
+          id="planos"
+          data-section="e-commerce-planos"
+          className="section bg-[#0A0A0B]"
+        >
+          <BackgroundGlow />
+          <Container className="relative z-10 space-y-10 md:space-y-14">
+            <SectionHeader
+              eyebrow="Planos"
+              title="Escolha como sua loja começa a vender online"
+              description="Estruturas pensadas para diferentes momentos do seu negócio."
+            />
+
+            <div className="grid gap-6 lg:grid-cols-3">
+              {plans.map((plan, index) => (
+                <Reveal key={plan.title} delay={index * 80}>
+                  <GlassCard
+                    className={[
+                      "relative flex h-full flex-col",
+                      plan.highlight
+                        ? "border-accent/50 bg-white/10 shadow-[0_0_45px_rgba(0,255,170,0.18)] lg:-translate-y-2 lg:scale-[1.02]"
+                        : "border-white/10",
+                    ].join(" ")}
+                  >
+                    {plan.highlight ? (
+                      <div className="absolute -top-4 left-6">
+                        <Badge className="border-accent/40 bg-accent/10 text-accent">
+                          Mais escolhido
+                        </Badge>
+                      </div>
+                    ) : null}
+
+                    <div className="space-y-2">
+                      <h3 className="text-xl font-semibold">{plan.title}</h3>
+                      <p className="text-sm text-muted">{plan.subtitle}</p>
+                    </div>
+
+                    <ul className="mt-6 space-y-3 text-sm text-muted">
+                      {plan.bullets.map((item) => (
+                        <li key={item} className="flex gap-2">
+                          <span className="text-accent">•</span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="mt-6">
+                      <WhatsAppButton
+                        href={`${WHATSAPP_LINK}?text=${encodeURIComponent(
+                          plan.message
+                        )}`}
+                        label={plan.ctaLabel}
+                        trackLabel={`Planos - ${plan.title}`}
+                        className="w-full"
+                      />
+                    </div>
+                  </GlassCard>
+                </Reveal>
+              ))}
+            </div>
+
+            <p className="text-center text-sm text-muted">
+              Sem preço fixo aqui. Você me chama no WhatsApp e eu te passo a
+              melhor opção pro seu momento.
+            </p>
           </Container>
         </section>
 
