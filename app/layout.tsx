@@ -1,8 +1,13 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import Script from "next/script";
+<<<<<<< HEAD
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
+=======
+import { Inter, Montserrat } from "next/font/google";
+import "@/app/globals.css";
+>>>>>>> 858ba39 (update: aplicar page + novos serviços)
 
 const inter = Inter({
   subsets: ["latin"],

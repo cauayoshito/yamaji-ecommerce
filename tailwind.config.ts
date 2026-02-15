@@ -1,5 +1,8 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from "tailwindcss";
+import typography from "@tailwindcss/typography";
+import forms from "@tailwindcss/forms";
+
+const config: Config = {
   darkMode: ["class"],
   content: [
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,30 +11,29 @@ module.exports = {
   ],
   theme: {
     extend: {
-      // Cores da identidade Yamaji
       colors: {
-        bg: "#0A0A0B", // fundo dark
-        fg: "#F3F5F7", // texto principal
-        muted: "#A7ADB5", // texto secundário
-        accent: "#00FFA3", // neon green (principal)
-        accent2: "#5B2DFF", // roxo profundo metálico
-        card: "#121216", // fundo de cards/blocos
+        bg: "#0A0A0B",
+        fg: "#F3F5F7",
+        muted: "#A7ADB5",
+        accent: "#00FFA3",
+        accent2: "#5B2DFF",
+        primary: "#13ecb6",
+        card: "#121216",
         surface: "#0F1014",
       },
+<<<<<<< HEAD:tailwind.config.js
 
       // Tipografia única global
+=======
+>>>>>>> 858ba39 (update: aplicar page + novos serviços):tailwind.config.ts
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         display: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
-
-      // Larguras e container
       maxWidth: {
         container: "1200px",
         content: "1080px",
       },
-
-      // Radius e sombras
       borderRadius: {
         xl: "1rem",
         "2xl": "1.5rem",
@@ -40,8 +42,10 @@ module.exports = {
         glow: "0 0 20px rgba(0, 255, 163, 0.25)",
         glowSoft: "0 0 40px rgba(91, 45, 255, 0.18)",
       },
-
-      // Animações usadas no Hero (glows)
+      backgroundImage: {
+        "grid-pattern":
+          "linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px)",
+      },
       keyframes: {
         yamajiPulse: {
           "0%,100%": {
@@ -77,5 +81,7 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("@tailwindcss/forms")],
+  plugins: [typography, forms],
 };
+
+export default config;

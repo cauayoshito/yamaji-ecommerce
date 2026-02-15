@@ -85,7 +85,11 @@ const SYSTEMS: SystemItem[] = [
     status: "stable",
     architecture: "MICROSERVICES",
     version: "v2.2.1-build",
+<<<<<<< HEAD
     demoRoute: "/sistemas/crm-clinicas",
+=======
+    demoRoute: "/crm-clinicas",
+>>>>>>> 858ba39 (update: aplicar page + novos serviços)
     icon: Stethoscope,
   },
   {
@@ -111,7 +115,11 @@ const SYSTEMS: SystemItem[] = [
     status: "beta",
     architecture: "MODULAR",
     version: "v1.0.0-build",
+<<<<<<< HEAD
     demoRoute: "/sistemas/educacional",
+=======
+    demoRoute: "/educacional",
+>>>>>>> 858ba39 (update: aplicar page + novos serviços)
     icon: GraduationCap,
   },
 ];
