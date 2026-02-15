@@ -1,17 +1,18 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import Script from "next/script";
-<<<<<<< HEAD
-import { Inter } from "next/font/google";
-import "@/styles/globals.css";
-=======
 import { Inter, Montserrat } from "next/font/google";
 import "@/app/globals.css";
->>>>>>> 858ba39 (update: aplicar page + novos serviços)
 
 const inter = Inter({
   subsets: ["latin"],
-  variable: "--font-sans",
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  variable: "--font-montserrat",
   display: "swap",
 });
 
@@ -92,7 +93,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="pt-BR" className={`${inter.variable} dark`}>
+    <html
+      lang="pt-BR"
+      className={`${inter.variable} ${montserrat.variable}`}
+    >
       <head>
         <meta charSet="utf-8" />
         {/* Preconnects para performance */}
@@ -135,7 +139,7 @@ export default function RootLayout({
         />
       </head>
 
-      <body className="font-sans bg-bg text-fg antialiased">
+      <body className="bg-bg text-fg antialiased overflow-x-hidden">
         {children}
 
         {/* --------- Analytics --------- */}
