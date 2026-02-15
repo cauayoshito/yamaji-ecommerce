@@ -19,3 +19,40 @@
 .bg-grid {
   background-size: 40px 40px;
 }
+
+.glass-panel {
+  @apply border border-white/10 bg-[#12161f]/70 backdrop-blur-xl;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: 0.75rem;
+  background: #12161f;
+}
+
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 0.8rem;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 163, 0.45),
+    rgba(59, 130, 246, 0.25),
+    transparent
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.bg-grid-fade {
+  mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
+}
+
+.float-slow {
+  animation: yamajiFloat 6s ease-in-out infinite;
+}

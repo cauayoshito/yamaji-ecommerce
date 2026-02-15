@@ -111,7 +111,7 @@ const SYSTEMS: SystemItem[] = [
     status: "beta",
     architecture: "MODULAR",
     version: "v1.0.0-build",
-    demoRoute: "/educacional",
+    demoRoute: "/sistemas/plataforma-educacional",
     icon: GraduationCap,
   },
 ];

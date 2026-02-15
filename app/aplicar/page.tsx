@@ -1,50 +1,50 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import Link from "next/link";
-import ApplyForm from "@/components/ApplyForm";
 import Container from "@/components/ui/Container";
 import NavBar from "@/components/site/NavBar";
 import Footer from "@/components/site/Footer";
+import ApplyProjectOptionsPanel from "@/components/apply/ApplyProjectOptionsPanel";
 
 export const metadata: Metadata = {
   title: "Aplicar para Projeto | Yamaji Studio",
   description:
-    "Conte sobre seu projeto e receba um retorno rápido da equipe Yamaji. Aplicação direta com resposta em até 24h úteis.",
+    "Conte sobre seu projeto e receba um retorno rapido da equipe Yamaji. Aplicacao direta com resposta em ate 24h uteis.",
 };
 
 const services = [
   {
     title: "Sites & Landing Pages",
-    desc: "Páginas rápidas, premium e focadas em conversão (SEO + performance).",
-    tag: "Conversão",
+    desc: "Paginas rapidas, premium e focadas em conversao (SEO + performance).",
+    tag: "Conversao",
   },
   {
     title: "Sistemas & Plataformas",
-    desc: "CRM, painéis, portais, área do cliente e produtos SaaS sob medida.",
+    desc: "CRM, paineis, portais, area do cliente e produtos SaaS sob medida.",
     tag: "Produto",
   },
   {
     title: "E-commerce",
-    desc: "Loja pronta para vender com checkout, catálogo, cupons e integrações.",
+    desc: "Loja pronta para vender com checkout, catalogo, cupons e integracoes.",
     tag: "Vendas",
   },
   {
-    title: "Tráfego Pago (Ads)",
+    title: "Trafego Pago (Ads)",
     desc: "Campanhas com criativos, estrutura e tracking para escalar com clareza.",
-    tag: "Aquisição",
+    tag: "Aquisicao",
   },
   {
-    title: "IA & Automação",
+    title: "IA & Automacao",
     desc: "Automatize WhatsApp, leads, atendimento e processos com IA e fluxos.",
-    tag: "Eficiência",
+    tag: "Eficiencia",
   },
   {
-    title: "SEO & Conteúdo",
-    desc: "Estratégia para aparecer no Google e transformar busca em demanda.",
-    tag: "Orgânico",
+    title: "SEO & Conteudo",
+    desc: "Estrategia para aparecer no Google e transformar busca em demanda.",
+    tag: "Organico",
   },
   {
-    title: "Integrações & Dados",
-    desc: "APIs, analytics, eventos, dashboards e relatórios com métricas reais.",
+    title: "Integracoes & Dados",
+    desc: "APIs, analytics, eventos, dashboards e relatorios com metricas reais.",
     tag: "Tracking",
   },
 ];
@@ -55,7 +55,6 @@ export default function AplicarPage() {
       <NavBar />
       <main className="bg-bg text-fg">
         <section className="relative overflow-hidden bg-[#0A0A0B] pb-16 pt-28 md:pb-20 md:pt-32">
-          {/* glow */}
           <div className="absolute inset-0 bg-gradient-to-b from-accent/12 via-transparent to-transparent" />
           <div className="pointer-events-none absolute -top-24 left-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-accent/10 blur-[90px]" />
 
@@ -75,33 +74,28 @@ export default function AplicarPage() {
                 </p>
 
                 <h1 className="mt-4 text-3xl font-semibold md:text-5xl">
-                  Projetos com alto impacto, execução premium e previsibilidade.
+                  Projetos com alto impacto, execucao premium e previsibilidade.
                 </h1>
 
                 <p className="mt-4 max-w-xl text-sm text-muted md:text-base">
-                  Preencha o formulário e receba um retorno rápido com o próximo
-                  passo. A Yamaji seleciona poucos projetos por mês para manter
+                  Preencha o formulario e receba um retorno rapido com o proximo
+                  passo. A Yamaji seleciona poucos projetos por mes para manter
                   qualidade, prazo e resultado.
                 </p>
               </div>
 
-              {/* bullets / promises */}
               <div className="grid gap-3 text-sm text-muted">
                 <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                  Diagnóstico inicial em até{" "}
-                  <span className="text-fg">24h úteis</span>.
+                  Diagnostico inicial em ate <span className="text-fg">24h uteis</span>.
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                  <span className="text-fg">Estratégia + design + dev</span> no
-                  mesmo squad.
+                  <span className="text-fg">Estrategia + design + dev</span> no mesmo squad.
                 </div>
                 <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-                  Entrega com foco em{" "}
-                  <span className="text-fg">conversão, SEO e performance</span>.
+                  Entrega com foco em <span className="text-fg">conversao, SEO e performance</span>.
                 </div>
               </div>
 
-              {/* services grid */}
               <div className="pt-2">
                 <p className="mb-3 text-xs uppercase tracking-[0.3em] text-muted">
                   O que entregamos
@@ -125,23 +119,15 @@ export default function AplicarPage() {
                 </div>
 
                 <p className="mt-4 text-xs text-muted">
-                  Dica: se você já tem um site, manda o link. Se não tem,
-                  descreve o objetivo (captar leads, vender online, automatizar
-                  atendimento, etc.).
+                  Dica: se voce ja tem um site, mande o link. Se nao tem,
+                  descreva o objetivo (captar leads, vender online, automatizar
+                  atendimento etc).
                 </p>
               </div>
             </div>
 
-            {/* form */}
             <div className="lg:sticky lg:top-28">
-              <ApplyForm />
-              <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 p-4 text-xs text-muted">
-                <p className="font-semibold text-fg">Resposta rápida</p>
-                <p className="mt-1">
-                  Se fizer sentido, você recebe um direcionamento com escopo
-                  sugerido e próximo passo.
-                </p>
-              </div>
+              <ApplyProjectOptionsPanel services={services} />
             </div>
           </Container>
         </section>

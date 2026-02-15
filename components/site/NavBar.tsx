@@ -1,154 +1,173 @@
-"use client";
+﻿"use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
-import PrimaryButton from "@/components/ui/PrimaryButton";
 import { cn } from "@/lib/utils";
 import { APPLY_ROUTE } from "@/lib/routes";
 
 const navLinks = [
-  { label: "Soluções", href: "/#solucoes" },
-  { label: "Sistemas", href: "/sistemas" }, // (está aqui ✅)
-  { label: "Processo", href: "/#processo" },
-  { label: "Cases", href: "/cases" },
-  { label: "Sobre", href: "/sobre" },
+  { label: "Serviços", href: "/#servicos" },
+  { label: "Metodologia", href: "/#metodologia" },
+  { label: "Resultados", href: "/#resultados" },
+  { label: "Sistemas", href: "/sistemas" },
 ];
 
 export default function NavBar() {
   const [open, setOpen] = useState(false);
-  const panelRef = useRef<HTMLDivElement | null>(null);
 
-  // Fecha no ESC
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
       if (e.key === "Escape") setOpen(false);
     }
-    if (open) window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
-  }, [open]);
+  }, []);
 
-  // Fecha ao clicar fora do dropdown
   useEffect(() => {
-    function onMouseDown(e: MouseEvent) {
-      if (!open) return;
-      const target = e.target as Node;
-      if (panelRef.current && !panelRef.current.contains(target)) {
-        setOpen(false);
-      }
-    }
-    document.addEventListener("mousedown", onMouseDown);
-    return () => document.removeEventListener("mousedown", onMouseDown);
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/5 bg-bg/70 backdrop-blur-xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#0B0D11]/90 backdrop-blur-xl shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
       <Container className="flex items-center justify-between py-4">
         <Link
           href="/"
-          className="flex items-center gap-2 text-lg font-semibold"
+          className="flex items-center gap-2 text-lg font-semibold focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-accent/60"
         >
           <span className="h-2 w-2 rounded-full bg-accent shadow-glow" />
           Yamaji Studio
         </Link>
 
-        {/* Desktop */}
-        <nav className="hidden items-center gap-8 text-sm text-muted md:flex">
+        <nav className="hidden items-center gap-8 text-sm text-white/70 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="transition hover:text-fg"
+              className="rounded-md transition hover:text-white focus-visible:ring-2 focus-visible:ring-accent/60"
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
+        <div className="hidden items-center md:flex">
           <Link
             href={APPLY_ROUTE}
-            className="text-sm text-muted transition hover:text-fg"
+            className="inline-flex items-center rounded-xl border border-accent/20 bg-accent/10 px-4 py-2 text-sm font-semibold text-accent transition hover:bg-accent hover:text-bg focus-visible:ring-2 focus-visible:ring-accent/60"
           >
-            Contato
+            Agende sua conversa
           </Link>
-          <PrimaryButton href={APPLY_ROUTE} label="Agende uma consultoria" />
         </div>
 
-        {/* Mobile button */}
         <button
           type="button"
-          className="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-sm text-fg md:hidden"
-          onClick={() => setOpen((v) => !v)}
-          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          className="relative flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 text-sm text-fg transition hover:bg-white/10 md:hidden"
+          onClick={() => setOpen(true)}
+          aria-label={open ? "Menu aberto" : "Abrir menu"}
           aria-expanded={open}
+          aria-controls="mobile-nav"
         >
-          <span className="sr-only">{open ? "Fechar menu" : "Abrir menu"}</span>
-          <div className="flex flex-col gap-1.5">
-            <span className="h-px w-5 bg-white/70" />
-            <span className="h-px w-5 bg-white/70" />
-            <span className="h-px w-5 bg-white/70" />
-          </div>
+          <span
+            className={cn(
+              "absolute h-px w-5 bg-white transition-transform duration-200",
+              open ? "rotate-45" : "-translate-y-1.5"
+            )}
+          />
+          <span
+            className={cn(
+              "absolute h-px w-5 bg-white transition-opacity duration-200",
+              open ? "opacity-0" : "opacity-100"
+            )}
+          />
+          <span
+            className={cn(
+              "absolute h-px w-5 bg-white transition-transform duration-200",
+              open ? "-rotate-45" : "translate-y-1.5"
+            )}
+          />
         </button>
       </Container>
 
-      {/* Overlay leve (não é menu fullscreen, só captura clique fora) */}
+      {/* Overlay (clicável) */}
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-black/30 backdrop-blur-[2px] transition md:hidden",
-          open ? "opacity-100" : "pointer-events-none opacity-0"
+          "fixed inset-0 z-40 bg-black/70 backdrop-blur-[1px] transition-opacity md:hidden",
+          open
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
         )}
         onClick={() => setOpen(false)}
         aria-hidden="true"
       />
 
-      {/* Dropdown mobile abaixo do header */}
-      <div
+      {/* Drawer */}
+      <aside
+        id="mobile-nav"
         className={cn(
-          "md:hidden",
-          open ? "pointer-events-auto" : "pointer-events-none"
+          "fixed inset-y-0 right-0 z-50 w-[88%] max-w-xs border-l border-white/10 bg-[#0D1118]/95 backdrop-blur-xl shadow-2xl transition-transform duration-300 md:hidden",
+          open ? "translate-x-0" : "translate-x-full"
         )}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="mobile-nav-title"
       >
-        <div
-          ref={panelRef}
-          className={cn(
-            "absolute left-0 right-0 z-50 border-b border-white/10 bg-bg/80 backdrop-blur-xl transition duration-200",
-            open ? "translate-y-0 opacity-100" : "-translate-y-2 opacity-0"
-          )}
-        >
-          <Container className="py-4">
-            <div className="max-h-[70vh] overflow-y-auto rounded-2xl border border-white/10 bg-white/5 p-4">
-              <div className="space-y-2 text-base font-semibold">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-xl px-3 py-3 text-fg transition hover:bg-white/5"
-                  >
-                    {link.label}
-                  </Link>
-                ))}
+        {/* Header interno do drawer */}
+        <div className="flex items-center justify-between border-b border-white/10 px-5 py-4">
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-accent shadow-glow" />
+            <h2
+              id="mobile-nav-title"
+              className="text-sm font-semibold text-white"
+            >
+              Yamaji Studio
+            </h2>
+          </div>
 
-                <Link
-                  href={APPLY_ROUTE}
-                  onClick={() => setOpen(false)}
-                  className="block rounded-xl px-3 py-3 text-fg transition hover:bg-white/5"
-                >
-                  Contato
-                </Link>
-              </div>
-
-              <div className="mt-4">
-                <PrimaryButton
-                  href={APPLY_ROUTE}
-                  label="Agende uma consultoria"
-                />
-              </div>
-            </div>
-          </Container>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white/80 transition hover:bg-white/10 hover:text-white focus-visible:ring-2 focus-visible:ring-accent/60"
+            aria-label="Fechar menu"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M18 6L6 18M6 6l12 12"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+              />
+            </svg>
+          </button>
         </div>
-      </div>
+
+        {/* Links */}
+        <div className="p-5">
+          <nav className="space-y-2 text-base font-semibold">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                className="block rounded-xl px-3 py-3 text-white/90 transition hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-accent/60"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <Link
+            href={APPLY_ROUTE}
+            onClick={() => setOpen(false)}
+            className="mt-6 inline-flex w-full items-center justify-center rounded-xl border border-accent/20 bg-accent/10 px-4 py-3 text-sm font-semibold text-accent transition hover:bg-accent hover:text-bg focus-visible:ring-2 focus-visible:ring-accent/60"
+          >
+            Agende sua conversa
+          </Link>
+        </div>
+      </aside>
     </header>
   );
 }

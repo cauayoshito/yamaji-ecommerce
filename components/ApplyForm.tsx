@@ -1,11 +1,10 @@
-"use client";
+﻿"use client";
 
 import type { FormEvent } from "react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import GlassCard from "@/components/ui/GlassCard";
 import { trackEvent } from "@/lib/analytics";
-
-const WHATSAPP_NUMBER = "5571992258349"; // Altere aqui se o número mudar.
+import { cn } from "@/lib/utils";
 
 const projectTypes = [
   "Landing Page",
@@ -18,6 +17,14 @@ const projectTypes = [
 
 const deadlines = ["Urgente (7 dias)", "15 dias", "30 dias", "Flexível"];
 
+export type ApplyProjectOptions = {
+  selectedServices: string[];
+  goal: string;
+  urgency: string;
+  budget: string;
+  contactPreference: "WhatsApp" | "Email" | "";
+};
+
 type FormState = {
   name: string;
   whatsapp: string;
@@ -25,6 +32,10 @@ type FormState = {
   deadline: string;
   context: string;
   hasReference: boolean;
+};
+
+type ApplyFormProps = {
+  projectOptions?: ApplyProjectOptions;
 };
 
 type FormErrors = Partial<Record<keyof FormState, string>>;
@@ -38,15 +49,27 @@ const initialState: FormState = {
   hasReference: false,
 };
 
-export default function ApplyForm() {
+export default function ApplyForm({ projectOptions }: ApplyFormProps) {
   const [form, setForm] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<FormErrors>({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitState, setSubmitState] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [submitMessage, setSubmitMessage] = useState("");
 
   const whatsappDigits = useMemo(
     () => form.whatsapp.replace(/\D/g, ""),
     [form.whatsapp]
   );
+
+  useEffect(() => {
+    if (!projectOptions) return;
+
+    const firstService = projectOptions.selectedServices[0];
+    setForm((prev) => ({
+      ...prev,
+      projectType: prev.projectType || firstService || prev.projectType,
+      deadline: prev.deadline || projectOptions.urgency || prev.deadline,
+    }));
+  }, [projectOptions]);
 
   const updateField = <K extends keyof FormState>(key: K, value: FormState[K]) =>
     setForm((prev) => ({ ...prev, [key]: value }));
@@ -58,38 +81,56 @@ export default function ApplyForm() {
       nextErrors.whatsapp = "Digite um WhatsApp válido com DDD.";
     if (!form.projectType) nextErrors.projectType = "Selecione o tipo.";
     if (!form.deadline) nextErrors.deadline = "Selecione o prazo.";
-    if (form.context.trim().length < 20)
-      nextErrors.context = "Descreva com pelo menos 20 caracteres.";
+    if (!form.context.trim())
+      nextErrors.context = "Descreva o contexto do projeto.";
 
     setErrors(nextErrors);
     return Object.keys(nextErrors).length === 0;
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSubmitMessage("");
+
     if (!validate()) return;
 
-    setIsSubmitting(true);
+    setSubmitState("loading");
 
-    const messageLines = [
-      `Olá, sou ${form.name}. Quero aplicar para um projeto na Yamaji.`,
-      `Tipo: ${form.projectType}`,
-      `Prazo: ${form.deadline}`,
-      `WhatsApp: ${form.whatsapp}`,
-      `Contexto: ${form.context}`,
-      `Referência: ${form.hasReference ? "Sim" : "Não"}`,
-    ];
-
-    const message = encodeURIComponent(messageLines.join("\n"));
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
+    const payload = {
+      ...form,
+      projectOptions,
+      contextLength: form.context.length,
+      createdAt: new Date().toISOString(),
+      source: "aplicar-page",
+    };
 
     try {
-      trackEvent("apply_submit", { category: "lead", label: "aplicar" });
-    } catch {
-      // ignore analytics failures
-    }
+      const res = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
 
-    window.location.href = url;
+      if (!res.ok) {
+        throw new Error("Não foi possível enviar agora.");
+      }
+
+      try {
+        trackEvent("apply_submit", { category: "lead", label: "aplicar" });
+      } catch {
+        // ignore analytics failures
+      }
+
+      setSubmitState("success");
+      setSubmitMessage("Aplicação enviada com sucesso. Retornaremos em até 24h úteis.");
+    } catch (error) {
+      setSubmitState("error");
+      setSubmitMessage(
+        error instanceof Error
+          ? error.message
+          : "Erro inesperado ao enviar aplicação."
+      );
+    }
   };
 
   return (
@@ -230,11 +271,16 @@ export default function ApplyForm() {
             aria-describedby={errors.context ? "apply-context-error" : undefined}
             required
           />
-          {errors.context && (
-            <p id="apply-context-error" className="mt-2 text-xs text-accent">
-              {errors.context}
-            </p>
-          )}
+          <div className="mt-2 flex items-center justify-between">
+            {errors.context ? (
+              <p id="apply-context-error" className="text-xs text-accent">
+                {errors.context}
+              </p>
+            ) : (
+              <span className="text-xs text-muted">Sem limite de caracteres</span>
+            )}
+            <span className="text-xs text-muted">{form.context.length} caracteres</span>
+          </div>
         </div>
 
         <label className="flex items-center gap-3 text-sm text-muted">
@@ -250,10 +296,24 @@ export default function ApplyForm() {
         <button
           type="submit"
           className="btn btn-primary w-full justify-center"
-          disabled={isSubmitting}
+          disabled={submitState === "loading"}
         >
-          Enviar aplicação e falar no WhatsApp
+          {submitState === "loading"
+            ? "Enviando aplicação..."
+            : "Enviar aplicação"}
         </button>
+
+        {submitMessage ? (
+          <p
+            className={cn(
+              "text-xs",
+              submitState === "success" ? "text-emerald-300" : "text-rose-300"
+            )}
+          >
+            {submitMessage}
+          </p>
+        ) : null}
+
         <p className="text-xs text-muted">
           Respondemos em até 24h úteis. Vagas limitadas por agenda.
         </p>
