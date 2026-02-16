@@ -11,6 +11,7 @@ const navLinks = [
   { label: "Metodologia", href: "/#metodologia" },
   { label: "Resultados", href: "/#resultados" },
   { label: "Sistemas", href: "/sistemas" },
+  { label: "Sobre", href: "/sobre" },
 ];
 
 export default function NavBar() {
