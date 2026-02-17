@@ -1,32 +1,33 @@
 "use client";
 
-import { useEffect } from "react";
 import Script from "next/script";
-import { usePathname, useSearchParams } from "next/navigation";
-import { trackPageView } from "@/lib/metaPixel";
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 
+declare global {
+  interface Window {
+    fbq?: (...args: any[]) => void;
+    _fbq?: any;
+  }
+}
 
-type MetaPixelProps = {
-  pixelId: string;
-};
-
-export default function MetaPixel({ pixelId }: MetaPixelProps) {
+export default function MetaPixel({ pixelId }: { pixelId?: string }) {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const search = searchParams.toString();
 
   useEffect(() => {
-    trackPageView();
-  }, [pathname, search]);
+    if (!pixelId) return;
+    if (typeof window.fbq === "function") {
+      window.fbq("track", "PageView");
+    }
+  }, [pathname, pixelId]);
 
-  if (!pixelId) {
-    return null;
-  }
+  if (!pixelId) return null;
 
   return (
     <>
       <Script id="fb-pixel" strategy="afterInteractive">
-        {`!function(f,b,e,v,n,t,s)
+        {`
+          !function(f,b,e,v,n,t,s)
           {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
           n.callMethod.apply(n,arguments):n.queue.push(arguments)};
           if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
@@ -34,10 +35,11 @@ export default function MetaPixel({ pixelId }: MetaPixelProps) {
           t.src=v;s=b.getElementsByTagName(e)[0];
           s.parentNode.insertBefore(t,s)}(window, document,'script',
           'https://connect.facebook.net/en_US/fbevents.js');
-          fbq('init', '${pixelId}');`}
+          fbq('init', '${pixelId}');
+          fbq('track', 'PageView');
+        `}
       </Script>
       <noscript>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           height="1"
           width="1"
