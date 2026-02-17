@@ -12,7 +12,7 @@ const VARIANT: "emotional" | "pro" = "emotional";
 
 // edite seu número/msg padrão uma única vez:
 const WHATS = {
-  phone: "5571992358249",
+  phone: "5571992258349",
   text: "Oi%2C%20quero%20come%C3%A7ar%20a%20vender%2024h%20com%20site%2C%20an%C3%BAncios%20e%20IA.%20Pode%20me%20ajudar%3F",
   utm: "utm_source=site&utm_medium=cta&utm_campaign=hero",
 };

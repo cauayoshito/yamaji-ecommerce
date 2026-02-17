@@ -2,7 +2,7 @@ import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { MessageSquare, TrendingUp, Clock } from "lucide-react";
 
 const WHATS = {
-  phone: "5571992358249",
+  phone: "5571992258349",
   text: "Oi%2C%20vi%20o%20case%20de%20e-commerce%20%2B27%25%20em%2030%20dias%20e%20quero%20implementar%20no%20meu%20neg%C3%B3cio.",
   utm: "utm_source=site&utm_medium=cta&utm_campaign=casestudy",
 };

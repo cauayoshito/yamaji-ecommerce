@@ -25,7 +25,7 @@ const tracks: { key: Track; label: string; icon: any }[] = [
 
 // WhatsApp (edite uma vez)
 const WHATS = {
-  phone: "5571992358249",
+  phone: "5571992258349",
   utm: "utm_source=site&utm_medium=cta&utm_campaign=beforeafter",
 };
 const wa = (msg: string) =>

@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MessageCircle } from "lucide-react";
 
 const WHATS = {
-  phone: "5571992358249",
+  phone: "5571992258349",
   text: "Oi%2C%20quero%20passar%20pelo%20processo%20da%20Yamaji%20pra%20melhorar%20meu%20neg%C3%B3cio.%20Pode%20me%20explicar%3F",
   utm: "utm_source=site&utm_medium=cta&utm_campaign=process",
 };

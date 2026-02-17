@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Inter, Montserrat } from "next/font/google";
 import "@/app/globals.css";
+import MetaPixel from "@/components/analytics/MetaPixel";
+import WhatsAppLeadTracker from "@/components/analytics/WhatsAppLeadTracker";
+import { siteConfig } from "@/config/site";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,30 +19,7 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-const SITE = {
-  name: "Yamaji Studio",
-  domain: "yamajistudio.com.br",
-  url: "https://yamajistudio.com.br",
-  description:
-    "Sistemas, automações e experiências digitais premium para negócios que querem operar como empresa tech.",
-  logo: "/logo.png",
-  tel: "+55 71 99235-8249",
-  email: "yamaji.studio@gmail.com",
-  sameAs: [
-    "https://www.instagram.com/yamaji.studio",
-    "https://www.linkedin.com/company/yamaji-studio",
-  ],
-  address: {
-    street: "Rua Macário de Castro, 92",
-    city: "Salvador",
-    region: "BA",
-    postal: "41940-700",
-    country: "BR",
-  },
-  plausibleDomain: "yamajistudio.com.br",
-  ga4: "G-TODO12345",
-  metaPixel: "TODO_PIXEL_ID",
-};
+const SITE = siteConfig;
 
 export const metadata: Metadata = {
   title: {
@@ -168,35 +148,8 @@ export default function RootLayout({
           </>
         )}
 
-        {/* Meta Pixel */}
-        {SITE.metaPixel !== "TODO_PIXEL_ID" && (
-          <>
-            <Script id="fb-pixel" strategy="afterInteractive">
-              {`
-                !function(f,b,e,v,n,t,s)
-                {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                n.queue=[];t=b.createElement(e);t.async=!0;
-                t.src=v;s=b.getElementsByTagName(e)[0];
-                s.parentNode.insertBefore(t,s)}(window, document,'script',
-                'https://connect.facebook.net/en_US/fbevents.js');
-                fbq('init', '${SITE.metaPixel}');
-                fbq('track', 'PageView');
-              `}
-            </Script>
-            <noscript>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                height="1"
-                width="1"
-                style={{ display: "none" }}
-                src={`https://www.facebook.com/tr?id=${SITE.metaPixel}&ev=PageView&noscript=1`}
-                alt=""
-              />
-            </noscript>
-          </>
-        )}
+        <MetaPixel pixelId={SITE.metaPixel} />
+        <WhatsAppLeadTracker />
 
         {/* --------- Tracking avançado (delegador + scroll + seções + outbound) --------- */}
         <Script id="site-tracking" strategy="afterInteractive">

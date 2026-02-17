@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { MessageSquare } from "lucide-react";
 
 const WHATS = {
-  phone: "5571992358249",
+  phone: "5571992258349",
   text: "Oi%2C%20vi%20os%20depoimentos%20e%20quero%20ter%20esse%20resultado%20no%20meu%20neg%C3%B3cio.%20Pode%20me%20ajudar%3F",
   utm: "utm_source=site&utm_medium=cta&utm_campaign=testimonials",
 };

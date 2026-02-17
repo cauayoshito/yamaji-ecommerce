@@ -36,7 +36,7 @@ export default function MobileStickyCTA() {
           </div>
 
           <a
-            href="https://wa.me/5571992358249"
+            href="https://wa.me/5571992258349"
             className="rounded-lg bg-teal-400/95 hover:bg-teal-400 text-[#0B0F14] px-3 py-2 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
           >
             Falar no WhatsApp

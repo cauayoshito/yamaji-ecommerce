@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { trackLead } from "@/lib/metaPixel";
 
 type WhatsAppButtonProps = {
   href: string;
@@ -24,7 +25,7 @@ export default function WhatsAppButton({
 
     if (window.plausible) window.plausible("ClickWhatsApp", { props: payload });
     if (window.gtag) window.gtag("event", "ClickWhatsApp", payload);
-    if (window.fbq) window.fbq("trackCustom", "ClickWhatsApp", payload);
+    trackLead();
     if ((window as any).dataLayer) {
       (window as any).dataLayer.push({
         event: "ClickWhatsApp",
