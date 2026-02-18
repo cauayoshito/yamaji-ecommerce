@@ -28,7 +28,7 @@ function Card({
 
 export default function ProblemHookSolutionCompact() {
   const WHATS = {
-    phone: "5571992358249",
+    phone: "5571992258349",
     text: "Oi%2C%20quero%20entender%20como%20fazer%20meu%20neg%C3%B3cio%20vender%20todos%20os%20dias%20com%20site%2C%20an%C3%BAncios%20e%20IA.",
     utm: "utm_source=site&utm_medium=cta&utm_campaign=phs",
   };

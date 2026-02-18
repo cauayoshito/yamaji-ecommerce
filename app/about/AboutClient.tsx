@@ -197,7 +197,7 @@ export default function AboutClient() {
                 jeito que seu negócio merece.
               </p>
               <a
-                href="https://wa.me/5571987194367?text=Ol%C3%A1!%20Quero%20um%20projeto%20com%20a%20Yamaji%20Studio."
+                href="https://wa.me/5571992258349?text=Ol%C3%A1!%20Quero%20um%20projeto%20com%20a%20Yamaji%20Studio."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center px-5 py-3 rounded-md bg-[var(--accent)] text-black font-medium hover:opacity-90 transition"

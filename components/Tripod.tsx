@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 
 const REF = "ref=tripod";
 const WHATS = {
-  phone: "5571992358249",
+  phone: "5571992258349",
   text: "Oi%2C%20quero%20montar%20um%20plano%20com%20Site%2C%20An%C3%BAncios%20e%20IA%20pra%20vender%20todos%20os%20dias.",
   utm: "utm_source=site&utm_medium=cta&utm_campaign=tripod",
 };

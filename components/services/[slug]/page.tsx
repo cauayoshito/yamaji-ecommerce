@@ -106,7 +106,7 @@ export default function ServiceDetail({ params }: { params: Params }) {
           {/* CTA */}
           <section className="mt-16 text-center">
             <a
-              href="https://wa.me/5571987194367?text=Ol%C3%A1!%20Quero%20falar%20sobre%20um%20projeto%20com%20a%20Yamaji%20Studio."
+              href="https://wa.me/5571992258349?text=Ol%C3%A1!%20Quero%20falar%20sobre%20um%20projeto%20com%20a%20Yamaji%20Studio."
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 font-medium text-black hover:opacity-90 transition"

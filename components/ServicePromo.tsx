@@ -3,7 +3,7 @@ import { Layers, Rocket, Bot, Star } from "lucide-react";
 
 const REF = "ref=home-servicepromo";
 const WHATS = {
-  phone: "5571992358249",
+  phone: "5571992258349",
   text: "Oi%2C%20n%C3%A3o%20sei%20por%20onde%20come%C3%A7ar%2C%20mas%20quero%20vender%20todos%20os%20dias.%20Pode%20me%20ajudar%3F",
   utm: "utm_source=site&utm_medium=cta&utm_campaign=servicepromo",
 };

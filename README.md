@@ -17,3 +17,15 @@ npm run dev
 - Ajuste a cor `accent` em `tailwind.config.js`
 - Substitua textos dos cases por conteúdo real
 - Otimize as imagens e use `next/image` quando possível
+
+
+## Variáveis de ambiente
+Crie um arquivo `.env.local` baseado no `.env.example`:
+```bash
+cp .env.example .env.local
+```
+
+Configure o Meta Pixel:
+```env
+NEXT_PUBLIC_META_PIXEL_ID=SEU_PIXEL_ID
+```

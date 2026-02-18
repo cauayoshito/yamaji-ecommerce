@@ -2,7 +2,7 @@ import { Check, X, MessageSquare } from "lucide-react";
 
 const REF = "ref=comparison";
 const WHATS = {
-  phone: "5571992358249",
+  phone: "5571992258349",
   text: "Oi%2C%20vi%20o%20comparativo%20e%20quero%20isso%20no%20meu%20neg%C3%B3cio.%20Pode%20me%20ajudar%3F",
   utm: "utm_source=site&utm_medium=cta&utm_campaign=comparison",
 };
