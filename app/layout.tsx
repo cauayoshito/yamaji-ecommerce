@@ -1,7 +1,7 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter, Montserrat } from "next/font/google";
+import { Inter, Montserrat, Fraunces, JetBrains_Mono } from "next/font/google";
 import "@/app/globals.css";
 
 const inter = Inter({
@@ -14,6 +14,21 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
   display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
+  display: "swap",
+  style: ["normal", "italic"],
+  weight: ["300", "400"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jb-mono",
+  display: "swap",
+  weight: ["400", "500"],
 });
 
 const SITE = {
@@ -95,7 +110,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${inter.variable} ${montserrat.variable}`}
+      className={`${inter.variable} ${montserrat.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
     >
       <head>
         <meta charSet="utf-8" />

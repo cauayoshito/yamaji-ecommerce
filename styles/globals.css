@@ -8,8 +8,9 @@
 /* -------------------- */
 :root {
   color-scheme: dark;
-  --accent: #00ffa3;
-  --accent-deep: #5b2dff;
+  --accent: #5eead4;
+  --accent-dim: #2dd4bf;
+  --accent-deep: #818cf8;
 }
 
 html {
@@ -19,14 +20,19 @@ html {
 html,
 body {
   @apply bg-bg text-fg antialiased;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Usa as famílias configuradas no tailwind.config (font-sans/display) */
 h1,
 h2,
 h3,
 .title {
   @apply font-display;
+  font-feature-settings: "ss01", "ss03", "cv11";
+  letter-spacing: -0.02em;
 }
 
 p {
@@ -50,21 +56,18 @@ button {
   -ms-hyphens: none;
 }
 
-/* Seleção de texto com cor da marca */
 ::selection {
-  background: rgba(0, 255, 163, 0.25); /* accent */
+  background: rgba(94, 234, 212, 0.22);
   color: #ffffff;
 }
 
-/* Estados de foco acessíveis (para links/botões) */
 :where(a, button, [role="button"], input, select, textarea):focus-visible {
   @apply outline-none ring-2 ring-accent/60;
 }
 
-/* Compensa header fixo ao navegar por âncoras */
 section[id],
 [data-anchor] {
-  scroll-margin-top: 6rem; /* ~24 do Tailwind (scroll-mt-24) */
+  scroll-margin-top: 6rem;
 }
 
 /* -------------------- */
@@ -74,108 +77,113 @@ section[id],
   @apply max-w-container mx-auto px-6;
 }
 .section {
-  @apply py-16 md:py-24;
+  @apply py-24 md:py-36;
 }
 
 .h1 {
-  @apply text-4xl md:text-6xl font-extrabold tracking-tight;
-  word-break: normal;
-  overflow-wrap: anywhere;
-  hyphens: none;
-  -webkit-hyphens: none;
-  -ms-hyphens: none;
+  @apply text-4xl md:text-6xl font-semibold tracking-tight;
+  letter-spacing: -0.03em;
 }
 .h2 {
-  @apply text-3xl md:text-4xl font-bold tracking-tight;
+  @apply text-3xl md:text-5xl font-semibold tracking-tight;
+  letter-spacing: -0.025em;
 }
 .h3 {
-  @apply text-xl md:text-2xl font-semibold;
+  @apply text-xl md:text-2xl font-semibold tracking-tight;
 }
 
 .lead {
-  @apply text-base md:text-lg text-muted leading-relaxed;
+  @apply text-base md:text-lg text-white/60 leading-relaxed;
 }
 
 .eyebrow {
-  @apply text-[10px] font-bold uppercase tracking-[0.2em] text-accent/80;
+  @apply text-[11px] font-medium uppercase tracking-[0.22em] text-accent;
 }
 
 /* Chips e Badges */
 .chip {
-  @apply inline-flex items-center rounded-full border border-white/10 px-3 py-1 text-sm text-muted;
+  @apply inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-[12px] text-white/70;
 }
 .badge {
-  @apply inline-flex items-center px-2 py-0.5 rounded bg-accent/10 text-accent text-xs font-medium;
+  @apply inline-flex items-center px-2 py-0.5 rounded-md bg-accent/10 text-accent text-[11px] font-medium;
 }
 
-/* Links padrão */
 .link {
-  @apply underline decoration-white/30 underline-offset-4 hover:decoration-accent;
+  @apply underline decoration-white/20 underline-offset-4 hover:decoration-accent;
 }
 
 /* -------------------- */
 /* Botões (variantes)   */
 /* -------------------- */
 .btn {
-  @apply inline-flex items-center gap-2 rounded-2xl border border-white/15 px-5 py-2.5 text-sm font-semibold transition
-         hover:bg-white/5 disabled:opacity-50 disabled:cursor-not-allowed;
+  @apply inline-flex items-center gap-2 rounded-lg border border-white/[0.12] px-5 py-3 text-[13px] font-semibold transition duration-200
+         hover:-translate-y-px hover:bg-white/[0.04] disabled:opacity-50 disabled:cursor-not-allowed;
 }
 
 .btn-primary {
-  @apply border-0 text-black shadow-[0_10px_30px_rgba(0,255,163,0.25)]
-         bg-gradient-to-r from-accent to-accent2
-         hover:scale-[1.02] hover:shadow-[0_0_40px_rgba(0,255,163,0.45)];
+  @apply border-0 bg-accent text-black;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 8px 24px -12px rgba(94, 234, 212, 0.45);
+}
+.btn-primary:hover {
+  background-color: #7bf0dc;
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
-  @apply border-white/20 bg-white/5 text-fg hover:bg-white/10 hover:border-white/30;
+  @apply border-white/[0.12] bg-white/[0.03] text-fg hover:border-white/25 hover:bg-white/[0.06];
 }
 
 .btn-ghost {
-  @apply border-transparent bg-transparent text-fg hover:bg-white/5;
+  @apply border-transparent bg-transparent text-fg hover:bg-white/[0.04];
 }
 
 /* -------------------- */
 /* Cards / Surfaces     */
 /* -------------------- */
 .card {
-  @apply rounded-2xl border border-white/10 bg-card p-6;
+  @apply rounded-2xl border border-white/[0.08] bg-white/[0.02] p-7 transition duration-300;
 }
 
 .card-hover {
-  @apply transition hover:border-accent/70 hover:shadow-[0_0_24px_rgba(0,255,163,0.18)] hover:bg-white/[0.06];
+  @apply hover:-translate-y-0.5 hover:border-white/[0.18] hover:bg-white/[0.04];
 }
 
-/* efeito “vidro” sutil para blocos destacados */
 .glass {
-  @apply bg-white/[0.06] backdrop-blur-md border border-white/10;
+  @apply bg-white/[0.04] backdrop-blur-md border border-white/[0.10];
 }
 
 .glass-strong {
-  @apply bg-white/[0.09] backdrop-blur-xl border border-white/15 shadow-[0_0_40px_rgba(91,45,255,0.15)];
+  @apply bg-white/[0.06] backdrop-blur-xl border border-white/[0.12];
 }
 
 .divider {
-  @apply h-px w-full bg-gradient-to-r from-white/5 via-white/30 to-white/5;
+  @apply h-px w-full;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    transparent 100%
+  );
 }
 
 /* -------------------- */
 /* Tabelas (opcional)   */
 /* -------------------- */
 .table {
-  @apply w-full border-separate border-spacing-0 rounded-2xl border border-white/10 bg-card;
+  @apply w-full border-separate border-spacing-0 rounded-2xl border border-white/[0.08] bg-card;
 }
 .table thead th {
-  @apply p-4 text-left text-sm font-medium text-fg;
+  @apply p-4 text-left text-[13px] font-medium text-white/70;
 }
 .table tbody tr {
-  @apply border-t border-white/10;
+  @apply border-t border-white/[0.06];
 }
 .table td {
-  @apply p-4 text-sm text-fg;
+  @apply p-4 text-[14px] text-fg;
 }
 .table-zebra tbody tr:nth-child(even) {
-  @apply bg-white/[0.03];
+  @apply bg-white/[0.02];
 }
 
 /* -------------------- */
@@ -189,9 +197,6 @@ video {
   height: auto;
 }
 
-/* -------------------- */
-/* Footer e pequenos    */
-/* -------------------- */
 .small-muted {
-  @apply text-xs text-muted;
+  @apply text-[12px] text-white/45;
 }
