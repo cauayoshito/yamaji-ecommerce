@@ -281,7 +281,7 @@ export default function EcommercePage() {
                 <p className="hero-pitch">
                   Sem plataforma genérica. Sem suporte robótico.{" "}
                   <strong>Visual profissional, hospedagem inclusa</strong> e
-                  foco em vendas reais — do jeito que o seu negócio merece.
+                  foco em vendas reais, do jeito que o seu negócio merece.
                 </p>
 
                 <div className="hero-cta">
@@ -325,7 +325,7 @@ export default function EcommercePage() {
                   <p className="txt">
                     <strong>Feita por desenvolvedores</strong>
                     <br />
-                    Não é template — é loja do seu jeito
+                    Não é template. É loja do seu jeito
                   </p>
                 </div>
               </div>
@@ -444,7 +444,7 @@ export default function EcommercePage() {
             <div className="auth-grid">
               <div className="auth-copy">
                 <p className="pull">
-                  Wix, Shopify, NuvemShop — são ferramentas. Mas ferramenta não
+                  Wix, Shopify, NuvemShop são ferramentas. Mas ferramenta não
                   vende. <em>Estratégia e execução</em> vendem.
                 </p>
                 <p>

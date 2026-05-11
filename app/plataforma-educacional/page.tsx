@@ -73,7 +73,7 @@ export default function PlataformaEducacionalPage() {
           <div className="shell">
             <div className="hero-grid">
               <div>
-                <div className="hero-eye"><span className="pill-dot" aria-hidden="true" />Plataforma Educacional — Yamaji Studio</div>
+                <div className="hero-eye"><span className="pill-dot" aria-hidden="true" />Plataforma Educacional · Yamaji Studio</div>
                 <h1>Sua escola com <em>estrutura real</em> <span className="acc">para crescer sem caos.</span></h1>
                 <p className="hero-pitch">Sistema educacional para organizar trilhas, gerenciar alunos e operar matrículas com recorrência. <strong>Centralize aulas, progresso e comunicação</strong> em uma estrutura proprietária.</p>
                 <div className="hero-cta">
@@ -134,7 +134,7 @@ export default function PlataformaEducacionalPage() {
             </div>
             <div className="auth-grid">
               <div className="auth-copy">
-                <p className="pull">Ferramenta boa não é aquela que funciona no início — é a que acompanha o crescimento. <em>A Yamaji entrega estrutura que escala.</em></p>
+                <p className="pull">Ferramenta boa não é aquela que funciona no início. É a que acompanha o crescimento. <em>A Yamaji entrega estrutura que escala.</em></p>
                 <p>Uma plataforma proprietária centraliza conteúdo, dá visibilidade do progresso e automatiza a operação para a coordenação focar no que importa: o aluno.</p>
               </div>
               <div className="pain-grid">

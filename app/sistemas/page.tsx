@@ -1,577 +1,833 @@
-"use client";
-
-import {
-  useEffect,
-  useMemo,
-  useState,
-  type ComponentType,
-  type ReactNode,
-} from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import NavBar from "@/components/site/NavBar";
-import Footer from "@/components/site/Footer";
-import Container from "@/components/ui/Container";
-import GlassCard from "@/components/ui/GlassCard";
-import Badge from "@/components/ui/Badge";
-import Reveal from "@/components/ui/Reveal";
-import SectionHeader from "@/components/ui/SectionHeader";
-import WhatsAppButton from "@/components/e-commerce/WhatsAppButton";
-import {
-  ArrowRight,
-  Check,
-  Code,
-  Database,
-  GraduationCap,
-  Layers,
-  LineChart,
-  Minus,
-  ShieldCheck,
-  ShoppingCart,
-  Stethoscope,
-  Terminal,
-  Users,
-} from "lucide-react";
 
-type SystemCategory = "Comercial" | "Gestão" | "Conhecimento";
-type SystemStatus = "stable" | "beta";
-
-type SystemItem = {
-  id: string;
-  title: string;
-  subtitle: string;
-  description: string;
-  category: SystemCategory;
-  status: SystemStatus;
-  architecture: "MODULAR" | "API READY" | "MICROSERVICES";
-  version: string;
-  demoRoute: string;
-  icon: ComponentType<{ className?: string }>;
+export const metadata: Metadata = {
+  title: "Sistemas para Negócios · Qual é o certo para você? | Yamaji Studio",
+  description:
+    "E-commerce, CRM para Clínicas, Plataforma Educacional ou Automação com IA. Encontre o sistema certo para o seu negócio.",
+  alternates: { canonical: "/sistemas" },
 };
 
-const SYSTEMS: SystemItem[] = [
+const whatsMsg = encodeURIComponent(
+  "Olá! Quero entender qual sistema da Yamaji faz mais sentido para o meu negócio."
+);
+const WHATSAPP = `https://wa.me/5571992258349?text=${whatsMsg}`;
+
+const chartData = [30, 45, 55, 65, 78, 90, 100];
+
+const tipos = [
   {
-    id: "ecommerce",
+    tag: "Vender online",
     title: "E-commerce",
-    subtitle: "Operações Comerciais",
-    description:
-      "Infraestrutura digital para centralizar vendas, gestão de estoque multinível e checkout de alta conversão.",
-    category: "Comercial",
-    status: "stable",
-    architecture: "MODULAR",
-    version: "v2.6.0-build",
-    demoRoute: "/e-commerce",
-    icon: ShoppingCart,
+    text: "Para quem vende produtos físicos ou digitais e precisa de loja, carrinho, pagamento e gestão de estoque num só lugar.",
+    href: "/e-commerce",
+    destaques: [
+      "Loja completa",
+      "Checkout rápido",
+      "Gestão de estoque",
+      "Relatórios de venda",
+    ],
   },
   {
-    id: "captacao",
-    title: "Sistema de Captação",
-    subtitle: "Operações Comerciais",
-    description:
-      "Pipeline estruturado para aquisição qualificada com rotinas de automação e trilhas de acompanhamento.",
-    category: "Comercial",
-    status: "beta",
-    architecture: "API READY",
-    version: "v1.3.0-build",
-    demoRoute: "/sistemas/captacao",
-    icon: Database,
+    tag: "Clínicas e consultórios",
+    title: "CRM para Clínicas",
+    text: "Para médicos, dentistas e terapeutas que querem agenda online, prontuário digital e confirmações automáticas pelo WhatsApp.",
+    href: "/crm-clinicas",
+    destaques: [
+      "Agenda online",
+      "Prontuário digital",
+      "Confirmação automática",
+      "Compliance LGPD",
+    ],
   },
   {
-    id: "crm-clinicas",
-    title: "CRM Clínicas",
-    subtitle: "Organização & Gestão",
-    description:
-      "Gestão clínica com visão de agenda, recorrência e relacionamento com padronização operacional.",
-    category: "Gestão",
-    status: "stable",
-    architecture: "MICROSERVICES",
-    version: "v2.2.1-build",
-    demoRoute: "/crm-clinicas",
-    icon: Stethoscope,
-  },
-  {
-    id: "base-eleitoral",
-    title: "Base Eleitoral",
-    subtitle: "Organização & Gestão",
-    description:
-      "Motor de dados para captação, segmentação territorial e gestão de lideranças em escala.",
-    category: "Gestão",
-    status: "stable",
-    architecture: "API READY",
-    version: "v2.5.0-build",
-    demoRoute: "/base-eleitoral",
-    icon: LineChart,
-  },
-  {
-    id: "educacional",
+    tag: "Cursos e treinamentos",
     title: "Plataforma Educacional",
-    subtitle: "Plataformas de Conhecimento",
-    description:
-      "Ambiente virtual para gestão de conteúdos, trilhas e evolução de aprendizado com métricas.",
-    category: "Conhecimento",
-    status: "beta",
-    architecture: "MODULAR",
-    version: "v1.0.0-build",
-    demoRoute: "/sistemas/plataforma-educacional",
-    icon: GraduationCap,
+    text: "Para quem vende cursos, mentorias ou capacita equipes e precisa de área de membros, trilhas e emissão de certificados.",
+    href: "/plataforma-educacional",
+    destaques: [
+      "Área de membros",
+      "Trilhas de aprendizado",
+      "Certificados",
+      "Vídeo e materiais",
+    ],
+  },
+  {
+    tag: "Automação e IA",
+    title: "Automação com IA",
+    text: "Para negócios que recebem muitas mensagens e querem atender, qualificar e vender no WhatsApp e Instagram sem aumentar equipe.",
+    href: "/automacao-ia",
+    destaques: [
+      "Bot no WhatsApp",
+      "Qualificação automática",
+      "Integração com CRM",
+      "Atendimento 24h",
+    ],
   },
 ];
 
-const SUBNAV = [
-  { id: "hero", label: "Visão geral" },
-  { id: "catalogo", label: "Sistemas prontos" },
-  { id: "comparar", label: "O que entrega" },
-  { id: "processo", label: "Como implementamos" },
-] as const;
+const guia = [
+  {
+    n: "01",
+    title: "Qual é o maior gargalo hoje?",
+    text: "Vendas, atendimento, organização interna ou entrega de conteúdo? Esse é o ponto de partida.",
+  },
+  {
+    n: "02",
+    title: "Qual processo consome mais tempo?",
+    text: "Agendamentos, respostas repetitivas, emissão de certificados, atualização de estoque?",
+  },
+  {
+    n: "03",
+    title: "O que faz o cliente desistir?",
+    text: "Site lento, sem agendamento online, demora no atendimento, falta de acesso ao conteúdo comprado.",
+  },
+  {
+    n: "04",
+    title: "O que precisa existir para dobrar o volume?",
+    text: "Se você crescer 2×, o que quebra primeiro? Essa resposta define qual sistema vem antes.",
+  },
+];
 
-function SubnavLink({
-  href,
-  active,
-  children,
-}: {
-  href: string;
-  active: boolean;
-  children: ReactNode;
-}) {
+const steps = [
+  {
+    n: "01",
+    title: "Diagnóstico",
+    text: "Entendemos o negócio, os processos atuais e o que precisa mudar primeiro.",
+    out: "Caminho definido",
+  },
+  {
+    n: "02",
+    title: "Proposta",
+    text: "Apresentamos qual sistema resolve melhor, com escopo, prazo e investimento.",
+    out: "Proposta clara",
+  },
+  {
+    n: "03",
+    title: "Implantação",
+    text: "Configuramos, testamos e treinamos a equipe para operar com autonomia.",
+    out: "Sistema no ar",
+  },
+  {
+    n: "04",
+    title: "Suporte contínuo",
+    text: "Acompanhamos os primeiros 30 dias e mantemos planos de evolução disponíveis.",
+    out: "Crescimento sustentado",
+  },
+];
+
+const faqs = [
+  {
+    q: "Preciso contratar tudo de uma vez?",
+    a: "Não. Você começa pelo que resolve o maior problema hoje e expande quando quiser. Os sistemas são modulares e crescem com o negócio.",
+  },
+  {
+    q: "Vocês entregam o sistema pronto ou ensinam a usar plataformas?",
+    a: "Entregamos tudo configurado e pronto para usar. Não somos revendedores de ferramenta: desenvolvemos e implantamos o sistema no seu negócio.",
+  },
+  {
+    q: "E se meu negócio não se encaixar em nenhuma categoria?",
+    a: "Fazemos um diagnóstico gratuito e desenhamos a solução certa. Vários clientes têm combinações de dois sistemas rodando juntos.",
+  },
+  {
+    q: "Quanto tempo leva para estar no ar?",
+    a: "Em média entre 2 e 6 semanas, dependendo do sistema. Trabalhamos com datas e entregas definidas desde o início.",
+  },
+  {
+    q: "Tem suporte depois que o sistema for ao ar?",
+    a: "Sim. Todo projeto inclui período de acompanhamento e planos mensais de suporte e evolução contínua.",
+  },
+];
+
+function ArrowSvg() {
   return (
-    <a
-      href={href}
-      className={
-        active
-          ? "relative px-3 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#13ecb6]"
-          : "px-3 py-3 text-xs font-bold uppercase tracking-[0.18em] text-white/45 transition-colors hover:text-[#13ecb6]"
-      }
+    <svg
+      width="13"
+      height="13"
+      viewBox="0 0 13 13"
+      fill="none"
+      aria-hidden="true"
     >
-      {children}
-    </a>
+      <path
+        d="M2 6.5h9M6.5 2l4.5 4.5L6.5 11"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
   );
 }
 
-function SystemCard({ item }: { item: SystemItem }) {
-  const Icon = item.icon;
-  const isStable = item.status === "stable";
-
+function PlusSvg() {
   return (
-    <GlassCard className="group h-full border-white/10 bg-[#121214]/80 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-[#13ecb6]/40">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <h4 className="text-2xl font-bold text-white">{item.title}</h4>
-          <p className="mt-1 text-xs uppercase tracking-[0.14em] text-white/45">
-            {item.subtitle}
-          </p>
-          <div className="mt-4 flex flex-wrap gap-2">
-            <span className="rounded border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[10px] text-white/70">
-              STATUS: {isStable ? "STABLE" : "BETA"}
-            </span>
-            <span className="rounded border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[10px] text-white/70">
-              ARQUITETURA: {item.architecture}
-            </span>
-          </div>
-        </div>
-        <Icon className="h-9 w-9 text-[#13ecb6]/70" />
-      </div>
-
-      <p className="mt-6 text-sm leading-relaxed text-white/60">
-        {item.description}
-      </p>
-
-      <div className="mt-7 flex items-center justify-between border-t border-white/10 pt-5">
-        <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/35">
-          {item.version}
-        </span>
-        <div className="flex items-center gap-2">
-          <Link
-            href={item.demoRoute}
-            className="inline-flex items-center gap-1 rounded-md bg-[#13ecb6] px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-[#0A0A0B] transition hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#13ecb6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0B]"
-          >
-            Ver demo
-          </Link>
-          <a
-            href="#comparar"
-            className="inline-flex items-center gap-1 rounded-md border border-white/20 px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.12em] text-white transition hover:border-[#13ecb6]/35 hover:text-[#13ecb6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#13ecb6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0B]"
-          >
-            Ver detalhes <ArrowRight className="h-3.5 w-3.5" />
-          </a>
-        </div>
-      </div>
-    </GlassCard>
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden="true"
+    >
+      <path
+        d="M8 3v10M3 8h10"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
   );
 }
 
-export default function SistemasPage() {
-  const [activeSection, setActiveSection] = useState("hero");
-
-  useEffect(() => {
-    const targets = SUBNAV.map((item) =>
-      document.getElementById(item.id)
-    ).filter(Boolean) as HTMLElement[];
-    if (targets.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const topVisible = entries
-          .filter((entry) => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (topVisible?.target?.id) {
-          setActiveSection(topVisible.target.id);
-        }
-      },
-      {
-        rootMargin: "-30% 0px -55% 0px",
-        threshold: [0.2, 0.4, 0.7],
-      }
-    );
-
-    targets.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
-
-  const grouped = useMemo(() => {
-    return {
-      Comercial: SYSTEMS.filter((s) => s.category === "Comercial"),
-      Gestão: SYSTEMS.filter((s) => s.category === "Gestão"),
-      Conhecimento: SYSTEMS.filter((s) => s.category === "Conhecimento"),
-    };
-  }, []);
-
+export default function Sistemas() {
   return (
     <>
+      <a
+        href="#conteudo"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[70] focus:rounded-md focus:bg-black focus:px-4 focus:py-2 focus:text-white"
+      >
+        Ir para o conteúdo
+      </a>
+
       <NavBar />
 
-      <div className="sticky top-[72px] z-40 border-b border-white/10 bg-[#0A0A0B]/85 backdrop-blur-xl">
-        <Container className="flex items-center justify-between gap-6">
-          <div className="flex items-center gap-2 overflow-x-auto">
-            {SUBNAV.map((item) => (
-              <SubnavLink
-                key={item.id}
-                href={`#${item.id}`}
-                active={activeSection === item.id}
-              >
-                {item.label}
-              </SubnavLink>
-            ))}
-          </div>
-          <Link
-            href="/aplicar"
-            className="hidden whitespace-nowrap rounded-md bg-white px-4 py-2 text-[11px] font-bold uppercase tracking-[0.14em] text-[#0A0A0B] transition hover:bg-[#13ecb6] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#13ecb6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0B] md:inline-flex"
-          >
-            Agendar diagnóstico
-          </Link>
-        </Container>
-      </div>
+      {/* WhatsApp FAB mobile */}
+      <a
+        href={WHATSAPP}
+        target="_blank"
+        rel="noreferrer noopener"
+        aria-label="Falar no WhatsApp"
+        className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-[0_4px_24px_-4px_rgba(37,211,102,0.5)] transition duration-200 hover:scale-105 lg:hidden"
+      >
+        <svg viewBox="0 0 24 24" className="h-7 w-7 fill-white" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+        </svg>
+      </a>
 
-      <main className="overflow-x-hidden bg-[#0A0A0B] text-white selection:bg-[#13ecb6]/30">
-        <header id="hero" className="relative overflow-hidden pb-28 pt-44">
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px]" />
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(19,236,182,0.12)_0%,transparent_62%)]" />
+      <main
+        id="conteudo"
+        className="home-v5 overflow-x-hidden pt-16 md:pt-[68px]"
+      >
+        {/* ============================================================
+            HERO
+            ============================================================ */}
+        <section className="hero" data-section="sistemas-hero">
+          <div className="shell">
+            <div className="hero-grid">
+              {/* Copy */}
+              <div>
+                <div className="hero-eye">
+                  <span className="pill-dot" aria-hidden="true" />
+                  Sistemas · Yamaji Studio
+                </div>
 
-          <Container className="relative z-10">
-            <div className="grid items-start gap-14 lg:grid-cols-12">
-              <div className="lg:col-span-7">
-                <Badge className="mb-8 border-white/10 bg-white/5 text-white/75">
-                  Sistemas Proprietários 2026
-                </Badge>
-                <h1 className="h1 leading-[1.02]">
-                  Arquiteturas Digitais para Operações que{" "}
-                  <span className="bg-gradient-to-r from-white via-white to-[#13ecb6] bg-clip-text text-transparent">
-                    Precisam Escalar.
-                  </span>
+                <h1>
+                  Qual sistema faz sentido{" "}
+                  <span className="acc">para o seu negócio?</span>
                 </h1>
-                <p className="lead mt-8 max-w-3xl text-white/60">
-                  Escolha a infraestrutura ideal para organizar, controlar e
-                  expandir sua operação. Sistemas de alta performance
-                  construídos sob demanda para verticais estratégicas.
+
+                <p className="hero-pitch">
+                  Não existe sistema universal.{" "}
+                  <strong>
+                    Cada tipo de operação tem necessidades diferentes.
+                  </strong>{" "}
+                  Veja abaixo qual se encaixa no seu caso.
                 </p>
 
-                <div className="mt-12 flex flex-col gap-4 sm:flex-row">
-                  <a
-                    href="#catalogo"
-                    className="inline-flex items-center justify-center gap-2 rounded-md bg-[#13ecb6] px-8 py-4 text-xs font-black uppercase tracking-[0.18em] text-[#0A0A0B] transition hover:-translate-y-0.5 hover:bg-emerald-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#13ecb6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0B]"
-                  >
-                    <Terminal className="h-4 w-4" />
-                    Ver sistemas em operação
-                  </a>
+                <div className="hero-cta">
                   <Link
-                    href="/aplicar"
-                    className="inline-flex items-center justify-center gap-2 rounded-md border border-white/15 px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#13ecb6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0B]"
+                    href="#sistemas"
+                    data-cta="primary"
+                    data-label="sistemas-hero-ver"
+                    className="btn btn-wa"
                   >
-                    <Code className="h-4 w-4" />
-                    Agendar diagnóstico
+                    Ver os sistemas
+                    <svg
+                      className="arr"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 7h10M7 2l5 5-5 5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </Link>
+                  <a
+                    href={WHATSAPP}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="btn btn-ghost"
+                  >
+                    Falar com especialista
+                  </a>
                 </div>
 
-                <div className="mt-14 grid grid-cols-3 gap-8 border-t border-white/10 pt-10">
-                  {[
-                    { label: "Uptime SLA", value: "99.9%" },
-                    { label: "Architecture", value: "Modular" },
-                    { label: "Integrations", value: "API-First" },
-                  ].map((kpi) => (
-                    <div key={kpi.label}>
-                      <div className="text-2xl font-bold">{kpi.value}</div>
-                      <div className="mt-1 text-[10px] uppercase tracking-[0.18em] text-white/40">
-                        {kpi.label}
-                      </div>
-                    </div>
-                  ))}
+                <div className="hero-trust">
+                  <div className="avatars" aria-hidden="true">
+                    <span className="av j">Y</span>
+                    <span className="av">EC</span>
+                    <span className="av">AI</span>
+                  </div>
+                  <p className="txt">
+                    <strong>4 tipos de sistema no catálogo</strong>
+                    <br />
+                    Do diagnóstico ao ar em até 6 semanas.
+                  </p>
                 </div>
               </div>
 
-              <div className="lg:col-span-5">
-                <GlassCard className="border-white/10 bg-[#121214]/80 p-1 shadow-2xl">
-                  <div className="border border-white/10 bg-[#0f1012]/90 p-6">
-                    <div className="mb-8 flex items-center justify-between">
-                      <div className="flex gap-1.5">
-                        <span className="h-2 w-2 rounded-full bg-red-500/50" />
-                        <span className="h-2 w-2 rounded-full bg-amber-500/50" />
-                        <span className="h-2 w-2 rounded-full bg-[#13ecb6]/50" />
-                      </div>
-                      <span className="font-mono text-[10px] uppercase tracking-[0.14em] text-white/35">
-                        SYS_STATUS: ACTIVE
-                      </span>
-                    </div>
-
-                    <div className="rounded-lg border border-white/10 bg-black/40 p-4">
-                      <div className="mb-4 flex items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-white/45">
-                        <Terminal className="h-3.5 w-3.5 text-[#13ecb6]" />
-                        Runtime Preview
-                      </div>
-                      <div className="space-y-2 font-mono text-xs text-white/70">
-                        <div className="text-[#13ecb6]">
-                          $ yamaji deploy --env production
-                        </div>
-                        <div>{">"} initializing architecture modules...</div>
-                        <div>{">"} running health checks... OK</div>
-                        <div>{">"} syncing API services... OK</div>
-                        <div>{">"} system online at 99.9% uptime</div>
-                      </div>
-                    </div>
-
-                    <div className="mt-4 grid grid-cols-2 gap-3">
-                      <div className="rounded border border-white/10 bg-white/5 p-3">
-                        <div className="mb-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-white/40">
-                          <Layers className="h-3.5 w-3.5 text-[#13ecb6]" />
-                          Modules
-                        </div>
-                        <div className="h-1 w-full bg-white/10" />
-                        <div className="mt-2 h-1 w-2/3 bg-[#13ecb6]/50" />
-                      </div>
-                      <div className="rounded border border-white/10 bg-white/5 p-3">
-                        <div className="mb-2 flex items-center gap-2 text-[10px] uppercase tracking-[0.14em] text-white/40">
-                          <ShieldCheck className="h-3.5 w-3.5 text-[#13ecb6]" />
-                          Security
-                        </div>
-                        <div className="h-1 w-3/4 bg-white/10" />
-                        <div className="mt-2 h-1 w-1/2 bg-white/20" />
-                      </div>
-                    </div>
+              {/* Painéis visuais */}
+              <div className="hero-show" aria-hidden="true">
+                <div className="show big">
+                  <div className="head">
+                    <span>Sistemas implantados</span>
+                    <span className="live">Ativo</span>
                   </div>
-                </GlassCard>
-              </div>
-            </div>
-          </Container>
-        </header>
-
-        <section id="catalogo" className="py-28">
-          <Container className="space-y-16">
-            <SectionHeader
-              eyebrow="Sistemas Yamaji"
-              title="Sistemas prontos para seu nicho"
-              description="Clique, veja a demo e entenda como ficaria no seu negócio."
-            />
-
-            {(["Comercial", "Gestão", "Conhecimento"] as const).map((group) => {
-              const items = grouped[group];
-              if (!items.length) return null;
-
-              return (
-                <div key={group} className="space-y-8">
-                  <div className="flex items-center gap-4">
-                    <div className="h-px flex-1 bg-white/10" />
-                    <h3 className="text-[11px] font-black uppercase tracking-[0.26em] text-white/45">
-                      {group === "Comercial" && "Operações Comerciais"}
-                      {group === "Gestão" && "Organização & Gestão"}
-                      {group === "Conhecimento" &&
-                        "Plataformas de Conhecimento"}
-                    </h3>
-                    <div className="h-px flex-1 bg-white/10" />
-                  </div>
-
-                  <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-                    {items.map((item) => (
-                      <SystemCard key={item.id} item={item} />
+                  <div className="num">40+</div>
+                  <div className="chart">
+                    {chartData.map((h, i) => (
+                      <div
+                        key={i}
+                        className={`bar${i === chartData.length - 1 ? " j" : ""}`}
+                        style={{ height: `${h}%` }}
+                      />
                     ))}
                   </div>
+                  <div className="chart-x">
+                    <span>2023</span>
+                    <span>2024</span>
+                    <span>2025</span>
+                    <span>Hoje</span>
+                  </div>
+                  <p className="desc">Negócios ativos com sistemas Yamaji</p>
                 </div>
-              );
-            })}
-          </Container>
+
+                <div className="show accent">
+                  <div className="head">
+                    <span>Setores cobertos</span>
+                    <span className="live">Catálogo</span>
+                  </div>
+                  <div className="num">
+                    4<em>tipos</em>
+                  </div>
+                  <p className="desc">E-commerce, Clínicas, Educação, IA</p>
+                </div>
+
+                <div className="show team">
+                  <div className="head">
+                    <span>O que entregamos</span>
+                  </div>
+                  <div className="roles">
+                    <span>E-commerce</span>
+                    <span>Clínicas</span>
+                    <span>Educação</span>
+                    <span>Automação</span>
+                    <span>API</span>
+                    <span>Suporte</span>
+                  </div>
+                  <p className="desc" style={{ marginTop: "auto" }}>
+                    Sistema configurado, documentado e entregue
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Stats bar */}
+            <div className="hero-creds">
+              <span className="lbl">Nosso catálogo</span>
+              <div className="stats">
+                <div className="stat">
+                  <span className="v">4</span>
+                  <span className="l">Sistemas</span>
+                </div>
+                <div className="stat">
+                  <span className="v">40+</span>
+                  <span className="l">Negócios ativos</span>
+                </div>
+                <div className="stat">
+                  <span className="v">
+                    6<em>sem</em>
+                  </span>
+                  <span className="l">Até o ar</span>
+                </div>
+                <div className="stat">
+                  <span className="v">
+                    100<em>%</em>
+                  </span>
+                  <span className="l">Suporte humano</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
+        {/* ============================================================
+            COMO ESCOLHER — sec--light
+            ============================================================ */}
         <section
-          id="comparar"
-          className="border-y border-white/10 bg-[#0A0A0B] py-28"
+          id="como-escolher"
+          className="sec sec--light"
+          data-section="sistemas-como-escolher"
         >
-          <Container className="max-w-5xl">
-            <div className="mb-14 text-center">
-              <h2 className="text-3xl font-bold">Comparativo de Capacidades</h2>
-              <p className="mt-3 text-xs uppercase tracking-[0.22em] text-white/40">
-                Entrega por nível
+          <div className="shell">
+            <div className="sec-head">
+              <div className="marker">
+                <span className="num">01</span>
+                <span className="name">Como escolher</span>
+              </div>
+              <h2 className="h-section">
+                O sistema certo depende do que{" "}
+                <em>você precisa resolver.</em>
+              </h2>
+              <p className="anno">
+                Antes de escolher tecnologia, defina o problema. Cada sistema
+                abaixo foi desenhado para um contexto específico.
               </p>
             </div>
 
-            <GlassCard className="overflow-x-auto border-white/10 bg-[#121214]/75 p-0">
-              <table className="w-full min-w-[700px] text-left text-sm">
-                <thead>
-                  <tr className="border-b border-white/10">
-                    <th className="px-6 py-5 text-[11px] font-black uppercase tracking-[0.18em] text-white/45">
-                      Capacidade
-                    </th>
-                    <th className="px-6 py-5 text-[11px] font-black uppercase tracking-[0.18em] text-white/45">
-                      Essencial
-                    </th>
-                    <th className="px-6 py-5 text-[11px] font-black uppercase tracking-[0.18em] text-[#13ecb6]">
-                      Profissional
-                    </th>
-                    <th className="px-6 py-5 text-[11px] font-black uppercase tracking-[0.18em] text-white/45">
-                      Plataforma
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="font-mono text-[12px]">
-                  {[
-                    ["Checkout/pagamentos", "ok", "ok", "ok"],
-                    ["Dashboard", "ok", "ok", "ok"],
-                    ["Automação", "minus", "ok", "ok"],
-                    ["Integrações", "minus", "ok", "ok"],
-                    ["Segurança", "ok", "ok", "ok"],
-                    ["Suporte", "minus", "ok", "ok"],
-                  ].map((row) => (
-                    <tr
-                      key={row[0]}
-                      className="border-b border-white/10 last:border-b-0"
+            <div className="auth-grid">
+              <div className="auth-copy">
+                <p className="pull">
+                  Tecnologia que não resolve um problema <em>real</em> é custo,
+                  não investimento.
+                </p>
+                <p>
+                  Por isso a gente começa com um diagnóstico: entender o
+                  negócio antes de propor qualquer sistema. Depois você decide
+                  com clareza, não com chute.
+                </p>
+                <p>
+                  <strong>
+                    4 perguntas que ajudam a encontrar o caminho certo:
+                  </strong>
+                </p>
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="btn-link"
+                  data-label="sistemas-como-whatsapp"
+                >
+                  Quero fazer o diagnóstico gratuito
+                  <ArrowSvg />
+                </a>
+              </div>
+
+              <div className="pain-grid">
+                {guia.map((g) => (
+                  <article key={g.n} className="pain-card">
+                    <span
+                      className="pc-icon"
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "13px",
+                        fontWeight: 700,
+                        color: "var(--acc)",
+                      }}
+                      aria-hidden="true"
                     >
-                      <td className="px-6 py-5 text-white/65">{row[0]}</td>
-                      <td className="px-6 py-5">
-                        {row[1] === "ok" ? (
-                          <Check className="h-4 w-4 text-[#13ecb6]" />
-                        ) : (
-                          <Minus className="h-4 w-4 text-white/35" />
-                        )}
-                      </td>
-                      <td className="px-6 py-5">
-                        {row[2] === "ok" ? (
-                          <Check className="h-4 w-4 text-[#13ecb6]" />
-                        ) : (
-                          <Minus className="h-4 w-4 text-white/35" />
-                        )}
-                      </td>
-                      <td className="px-6 py-5">
-                        {row[3] === "ok" ? (
-                          <Check className="h-4 w-4 text-[#13ecb6]" />
-                        ) : (
-                          <Minus className="h-4 w-4 text-white/35" />
-                        )}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </GlassCard>
-          </Container>
-        </section>
-
-        <section id="processo" className="py-32">
-          <Container>
-            <div className="grid gap-14 lg:grid-cols-3">
-              <div className="space-y-5">
-                <div className="h-1 w-12 bg-[#13ecb6]" />
-                <h3 className="text-3xl font-bold">Como implementamos</h3>
-                <p className="text-sm leading-relaxed text-white/45">
-                  Nossa abordagem prioriza estabilidade, clareza arquitetural e
-                  evolução contínua para cenários enterprise.
-                </p>
-              </div>
-
-              <div className="lg:col-span-2">
-                <div className="grid gap-10 md:grid-cols-3">
-                  {[
-                    {
-                      title: "01. Diagnóstico",
-                      text: "Mapeamos contexto, gargalos e metas para definir a melhor arquitetura para sua operação.",
-                      icon: Layers,
-                    },
-                    {
-                      title: "02. Protótipo",
-                      text: "Construímos o protótipo validável para alinhar fluxo, experiência e prioridades de entrega.",
-                      icon: Code,
-                    },
-                    {
-                      title: "03. Implementação + Evolução",
-                      text: "Entramos em produção com base sólida e evoluímos continuamente com dados da operação real.",
-                      icon: Users,
-                    },
-                  ].map((step) => {
-                    const Icon = step.icon;
-                    return (
-                      <div key={step.title} className="space-y-3">
-                        <div className="inline-flex h-9 w-9 items-center justify-center rounded border border-[#13ecb6]/30 bg-[#13ecb6]/10 text-[#13ecb6]">
-                          <Icon className="h-4 w-4" />
-                        </div>
-                        <div className="text-[11px] font-black uppercase tracking-[0.22em] text-[#13ecb6]">
-                          {step.title}
-                        </div>
-                        <p className="text-xs leading-relaxed text-white/55">
-                          {step.text}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
+                      {g.n}
+                    </span>
+                    <h4>{g.title}</h4>
+                    <p>{g.text}</p>
+                  </article>
+                ))}
               </div>
             </div>
-          </Container>
+          </div>
         </section>
 
-        <section className="px-6 pb-24">
-          <Container>
-            <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-[#121214] p-10 md:p-16">
-              <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:40px_40px] opacity-25 transition-opacity group-hover:opacity-35" />
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(19,236,182,0.16),transparent_58%)]" />
+        {/* ============================================================
+            SISTEMAS — sec--graphite
+            ============================================================ */}
+        <section
+          id="sistemas"
+          className="sec sec--graphite"
+          data-section="sistemas-catalogo"
+        >
+          <div className="shell">
+            <div className="sec-head">
+              <div className="marker">
+                <span className="num">02</span>
+                <span className="name">Sistemas disponíveis</span>
+              </div>
+              <h2 className="h-section">
+                Escolha o que <em>serve para você.</em>
+              </h2>
+              <p className="anno">
+                Cada sistema é entregue configurado e pronto para usar. Nada de
+                tutorial do YouTube para colocar no ar.
+              </p>
+            </div>
 
-              <div className="relative z-10 space-y-8 text-center">
-                <h2 className="text-4xl font-black leading-tight tracking-tight md:text-5xl">
-                  Sua operação merece uma{" "}
-                  <span className="text-[#13ecb6]">
-                    infraestrutura de elite.
-                  </span>
-                </h2>
-                <p className="mx-auto max-w-2xl text-lg text-white/45">
-                  Converse com nossos arquitetos de software para desenhar a
-                  plataforma proprietária do seu negócio.
-                </p>
-                <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-                  <WhatsAppButton
-                    href="/aplicar"
-                    label="AGENDAR DIAGNÓSTICO"
-                    trackLabel="SistemasFinal"
-                    className="w-full sm:w-auto"
-                  />
-                  <a
-                    href="#catalogo"
-                    className="inline-flex w-full items-center justify-center rounded-md border border-white/15 px-8 py-4 text-xs font-bold uppercase tracking-[0.18em] text-white transition hover:bg-white/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#13ecb6] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0A0B] sm:w-auto"
+            <div
+              className="plans-grid"
+              style={{
+                gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+              }}
+            >
+              {tipos.map((t) => (
+                <article key={t.title} className="plan-card">
+                  <span className="plan-label">{t.tag}</span>
+                  <div style={{ margin: "var(--s-2) 0 var(--s-1)" }}>
+                    <h4
+                      style={{
+                        fontSize: "20px",
+                        fontFamily: "var(--font-display)",
+                        color: "var(--t-0)",
+                        lineHeight: 1.2,
+                      }}
+                    >
+                      {t.title}
+                    </h4>
+                  </div>
+                  <p className="plan-tagline">{t.text}</p>
+                  <ul className="plan-features">
+                    {t.destaques.map((d) => (
+                      <li key={d}>{d}</li>
+                    ))}
+                  </ul>
+                  <Link
+                    href={t.href}
+                    data-cta="secondary"
+                    data-label={`sistemas-tipo-${t.title
+                      .toLowerCase()
+                      .replace(/\s+/g, "-")}`}
+                    className="btn btn-ghost"
+                    style={{ marginTop: "var(--s-2)", justifyContent: "center" }}
                   >
-                    Ver documentação
-                  </a>
-                </div>
+                    Ver solução
+                    <svg
+                      className="arr"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M2 7h10M7 2l5 5-5 5"
+                        stroke="currentColor"
+                        strokeWidth="1.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            PROCESSO — sec--dark
+            ============================================================ */}
+        <section
+          id="como-funciona"
+          className="sec sec--dark"
+          data-section="sistemas-processo"
+        >
+          <div className="shell">
+            <div className="sec-head">
+              <div className="marker">
+                <span className="num">03</span>
+                <span className="name">Processo</span>
+              </div>
+              <h2 className="h-section">
+                Do diagnóstico ao sistema <em>rodando.</em>
+              </h2>
+              <p className="anno">
+                Processo claro, com prazo definido e acompanhamento do início ao
+                go-live. Sem surpresas no meio do caminho.
+              </p>
+            </div>
+
+            <div
+              className="process-grid"
+              style={{ gridTemplateColumns: "repeat(2, 1fr)" }}
+            >
+              {steps.map((s) => (
+                <article key={s.n} className="proc-card">
+                  <div className="pc-num">
+                    <strong>{s.n}</strong>
+                    <span>{s.title}</span>
+                  </div>
+                  <h4>
+                    <em>{s.title.split(" ")[0]}</em>{" "}
+                    {s.title.split(" ").slice(1).join(" ")}
+                  </h4>
+                  <p>{s.text}</p>
+                  <div className="pc-out">
+                    <span className="k">Resultado</span>
+                    <span className="v">{s.out}</span>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div
+              style={{
+                marginTop: "var(--s-5)",
+                textAlign: "center",
+              }}
+            >
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noreferrer noopener"
+                data-cta="primary"
+                data-label="sistemas-processo-whatsapp"
+                className="btn btn-wa"
+              >
+                Começar pelo diagnóstico
+                <svg
+                  className="arr"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M2 7h10M7 2l5 5-5 5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            FAQ — sec--light
+            ============================================================ */}
+        <section
+          id="faq"
+          className="sec sec--light"
+          data-section="sistemas-faq"
+        >
+          <div className="shell">
+            <div className="sec-head">
+              <div className="marker">
+                <span className="num">04</span>
+                <span className="name">Dúvidas</span>
+              </div>
+              <h2 className="h-section">
+                Perguntas que todo cliente faz <em>antes de começar.</em>
+              </h2>
+              <p className="anno">
+                Se ficou outra dúvida, manda mensagem no WhatsApp. Em 15
+                minutos conseguimos indicar o caminho.
+              </p>
+            </div>
+
+            <div className="auth-grid">
+              <div className="auth-copy">
+                <p className="pull">
+                  Ainda com dúvida sobre <em>qual sistema</em> é o certo?
+                </p>
+                <p>
+                  Fale com a gente. Em 15 minutos conseguimos indicar o caminho
+                  mais direto para o seu caso. Diagnóstico gratuito, sem
+                  compromisso.
+                </p>
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="btn-link"
+                  data-label="sistemas-faq-whatsapp"
+                >
+                  Mandar mensagem agora <ArrowSvg />
+                </a>
+              </div>
+
+              <div className="faq-list">
+                {faqs.map((item, i) => (
+                  <details key={item.q} className="faq-item" open={i === 0}>
+                    <summary>
+                      <span>{item.q}</span>
+                      <span className="faq-icon" aria-hidden="true">
+                        <PlusSvg />
+                      </span>
+                    </summary>
+                    <p className="faq-body">{item.a}</p>
+                  </details>
+                ))}
               </div>
             </div>
-          </Container>
+          </div>
         </section>
-      </main>
 
-      <Footer />
-      <div className="border-t border-white/5 bg-[#0A0A0B] py-6 text-center text-xs text-white/45">
-        © 2026 Yamaji Studio. Todos os direitos reservados.
-      </div>
+        {/* ============================================================
+            CTA FINAL — sec--dark
+            ============================================================ */}
+        <section className="sec sec--dark" data-section="sistemas-cta">
+          <div className="shell">
+            <div className="cta-block">
+              <div className="eye">
+                <span className="pd" aria-hidden="true" />
+                Diagnóstico gratuito
+              </div>
+
+              <h2>
+                Ainda com dúvida sobre qual sistema{" "}
+                <span className="acc">é o certo para você?</span>
+              </h2>
+
+              <p>
+                Fale com a gente. Em 15 minutos conseguimos indicar o caminho
+                mais direto para o seu caso.
+              </p>
+
+              <div className="row-btns">
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  data-cta="primary"
+                  data-label="sistemas-cta-final"
+                  className="btn btn-wa"
+                >
+                  Falar com especialista
+                  <svg
+                    className="arr"
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M2 7h10M7 2l5 5-5 5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </a>
+                <Link href="#sistemas" className="btn btn-ghost">
+                  Ver os sistemas
+                </Link>
+              </div>
+
+              <div className="foot">
+                <span>Diagnóstico gratuito</span>
+                <span>Sem compromisso</span>
+                <span>4 tipos de sistema</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            FOOTER
+            ============================================================ */}
+        <footer className="footer">
+          <div className="shell">
+            <div className="footer-grid">
+              <div className="footer-brand">
+                <Link href="/">
+                  <span className="bmark" aria-hidden="true">
+                    Y
+                  </span>
+                  Yamaji Studio
+                </Link>
+                <p>
+                  Equipe de design, tecnologia e marketing para negócios que
+                  querem crescer com estrutura real e suporte humano.
+                </p>
+              </div>
+
+              <nav className="footer-col" aria-label="Serviços">
+                <h5>Serviços</h5>
+                <ul>
+                  <li>
+                    <Link href="/sites-landing-pages">Sites & Landing Pages</Link>
+                  </li>
+                  <li>
+                    <Link href="/e-commerce">E-commerce</Link>
+                  </li>
+                  <li>
+                    <Link href="/social-marketing">Social Media</Link>
+                  </li>
+                  <li>
+                    <Link href="/automacao-ia">IA & Automação</Link>
+                  </li>
+                  <li>
+                    <Link href="/crm-clinicas">CRM</Link>
+                  </li>
+                  <li>
+                    <Link href="/sistemas">Sistemas</Link>
+                  </li>
+                </ul>
+              </nav>
+
+              <nav className="footer-col" aria-label="Nossos Sistemas">
+                <h5>Nossos Sistemas</h5>
+                <ul>
+                  <li>
+                    <Link href="/e-commerce">E-commerce</Link>
+                  </li>
+                  <li>
+                    <Link href="/crm-clinicas">CRM para Clínicas</Link>
+                  </li>
+                  <li>
+                    <Link href="/plataforma-educacional">
+                      Plataforma Educacional
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/automacao-ia">Automação com IA</Link>
+                  </li>
+                </ul>
+              </nav>
+
+              <div className="footer-col">
+                <h5>Contato</h5>
+                <ul>
+                  <li>
+                    <a
+                      href={WHATSAPP}
+                      target="_blank"
+                      rel="noreferrer noopener"
+                    >
+                      WhatsApp
+                    </a>
+                  </li>
+                  <li>
+                    <a href="mailto:oi@yamajistudio.com.br">E-mail</a>
+                  </li>
+                  <li>
+                    <Link href="/">Página inicial</Link>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="footer-bottom">
+              <span>© 2025 Yamaji Studio. Todos os direitos reservados.</span>
+              <span>Salvador, Bahia · Brasil</span>
+            </div>
+          </div>
+
+          <div className="footer-mark" aria-hidden="true">
+            Yamaji
+          </div>
+        </footer>
+      </main>
     </>
   );
 }

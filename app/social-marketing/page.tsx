@@ -72,7 +72,7 @@ export default function SocialMarketingPage() {
           <div className="shell">
             <div className="hero-grid">
               <div>
-                <div className="hero-eye"><span className="pill-dot" aria-hidden="true" />Social Media e Marketing — Yamaji Studio</div>
+                <div className="hero-eye"><span className="pill-dot" aria-hidden="true" />Social Media e Marketing · Yamaji Studio</div>
                 <h1>Seu Instagram com <em>presença consistente</em> <span className="acc">e visual que vende.</span></h1>
                 <p className="hero-pitch">Criação de artes, posts, stories e criativos para anúncios. <strong>Calendário editorial, copywriting</strong> e relatório mensal. A Yamaji cuida da presença, você foca no negócio.</p>
                 <div className="hero-cta">

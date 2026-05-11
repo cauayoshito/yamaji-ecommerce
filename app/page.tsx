@@ -348,9 +348,9 @@ export default function Page() {
             </div>
 
             <div className="svc-grid">
-              {/* 01 — Sites & Landing Pages */}
+              {/* 01 · Sites & Landing Pages */}
               <article className="svc-card featured">
-                <span className="sc-num">01 — Sites & Landing Pages</span>
+                <span className="sc-num">01 · Sites & Landing Pages</span>
                 <h3>
                   Presença que o <em>Google encontra.</em>
                 </h3>
@@ -378,9 +378,9 @@ export default function Page() {
                 </Link>
               </article>
 
-              {/* 02 — E-commerce */}
+              {/* 02 · E-commerce */}
               <article className="svc-card wide">
-                <span className="sc-num">02 — E-commerce</span>
+                <span className="sc-num">02 · E-commerce</span>
                 <h3>
                   Loja própria, <em>sem comissão</em> de marketplace.
                 </h3>
@@ -408,9 +408,9 @@ export default function Page() {
                 </Link>
               </article>
 
-              {/* 03 — CRM */}
+              {/* 03 · CRM */}
               <article className="svc-card">
-                <span className="sc-num">03 — CRM</span>
+                <span className="sc-num">03 · CRM</span>
                 <h3>
                   Gestão de <em>clientes</em> sem planilha.
                 </h3>
@@ -431,9 +431,9 @@ export default function Page() {
                 </Link>
               </article>
 
-              {/* 04 — IA & Automação */}
+              {/* 04 · IA & Automação */}
               <article className="svc-card">
-                <span className="sc-num">04 — IA & Automação</span>
+                <span className="sc-num">04 · IA & Automação</span>
                 <h3>
                   Atendimento <em>automático,</em> sem perder o tom.
                 </h3>
@@ -454,9 +454,9 @@ export default function Page() {
                 </Link>
               </article>
 
-              {/* 05 — Social Media */}
+              {/* 05 · Social Media */}
               <article className="svc-card">
-                <span className="sc-num">05 — Social Media</span>
+                <span className="sc-num">05 · Social Media</span>
                 <h3>
                   Redes que <em>vendem,</em> não só postam.
                 </h3>
@@ -477,9 +477,9 @@ export default function Page() {
                 </Link>
               </article>
 
-              {/* 06 — Sistemas */}
+              {/* 06 · Sistemas */}
               <article className="svc-card">
-                <span className="sc-num">06 — Sistemas</span>
+                <span className="sc-num">06 · Sistemas</span>
                 <h3>
                   Plataforma <em>sob medida</em> para sua operação.
                 </h3>

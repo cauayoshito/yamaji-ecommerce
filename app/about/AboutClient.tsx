@@ -73,7 +73,7 @@ export default function AboutClient() {
               </p>
               <p>
                 Nosso processo combina direção de arte, copy e engenharia de
-                performance. Resultado: páginas que brilham no visual — e no
+                performance. Resultado: páginas que brilham no visual e no
                 Google.
               </p>
             </div>
@@ -193,7 +193,7 @@ export default function AboutClient() {
                 Pronto para elevar sua presença digital?
               </h2>
               <p className="text-slate-300 mb-6">
-                Vamos criar um site rápido, bonito e otimizado para SEO — do
+                Vamos criar um site rápido, bonito e otimizado para SEO, do
                 jeito que seu negócio merece.
               </p>
               <a

@@ -60,16 +60,16 @@ export default function SitesLandingPagesPage() {
           <div className="shell">
             <div className="hero-grid">
               <div>
-                <div className="hero-eye"><span className="pill-dot" aria-hidden="true" />Sites e Landing Pages — Salvador, BA</div>
+                <div className="hero-eye"><span className="pill-dot" aria-hidden="true" />Sites e Landing Pages · Salvador, BA</div>
                 <h1>Sua empresa no Google <em>em até 15 dias.</em> <span className="acc">Com visual que vende.</span></h1>
-                <p className="hero-pitch">Site institucional, landing page ou página de captação. <strong>SEO técnico, performance real</strong> e design com identidade da sua marca — do briefing ao go-live.</p>
+                <p className="hero-pitch">Site institucional, landing page ou página de captação. <strong>SEO técnico, performance real</strong> e design com identidade da sua marca, do briefing ao go-live.</p>
                 <div className="hero-cta">
                   <a href={WHATSAPP} target="_blank" rel="noreferrer noopener" data-cta="primary" data-label="sites-hero-whatsapp" className="btn btn-wa">Quero meu site <svg className="arr" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg></a>
                   <Link href="/" className="btn btn-ghost">Ver outros serviços</Link>
                 </div>
                 <div className="hero-trust">
                   <div className="avatars" aria-hidden="true"><span className="av j">Y</span><span className="av">UX</span><span className="av">DS</span></div>
-                  <p className="txt"><strong>Design + desenvolvimento</strong><br />Não é template — é o seu jeito</p>
+                  <p className="txt"><strong>Design + desenvolvimento</strong><br />Não é template. É o seu jeito</p>
                 </div>
               </div>
               <div className="hero-show" aria-hidden="true">
@@ -78,7 +78,7 @@ export default function SitesLandingPagesPage() {
                   <div className="num">100</div>
                   <div className="chart">{perfScores.map((h, i) => <div key={i} className={`bar${i === perfScores.length - 1 ? " j" : ""}`} style={{ height: `${h}%` }} />)}</div>
                   <div className="chart-x"><span>Perf</span><span>SEO</span><span>A11y</span><span>Best</span></div>
-                  <p className="desc">Score Lighthouse — projeto institucional</p>
+                  <p className="desc">Score Lighthouse, projeto institucional</p>
                 </div>
                 <div className="show accent">
                   <div className="head"><span>Indexação</span><span className="live">Ativa</span></div>
