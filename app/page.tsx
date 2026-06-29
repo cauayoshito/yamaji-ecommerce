@@ -32,8 +32,6 @@ const clientLogos: { name: string; src?: string }[] = [
   { name: "Proprium Imóveis" },
 ];
 
-const chartHeights = [35, 50, 40, 62, 45, 70, 55, 80, 65, 90, 75, 100];
-
 /* ---------- sub-components (inline, no extra files) ---------- */
 function ArrowIcon({ size = 13 }: { size?: number }) {
   return (
@@ -188,31 +186,36 @@ export default function Page() {
 
               {/* ── Painéis visuais — ilustração de automação rodando ── */}
               <div className="hero-show" aria-hidden="true">
-                {/* Painel grande — volume de mensagens automáticas */}
-                <div className="show big">
-                  <div className="head">
-                    <span>Mensagens respondidas / 24h</span>
-                    <span className="live">No ar</span>
+                {/* Painel grande — demo de atendimento automático no WhatsApp */}
+                <div className="show big wa">
+                  <div className="wa-top">
+                    <span className="wa-ava" aria-hidden="true">Y</span>
+                    <div className="wa-id">
+                      <span className="wa-name">Atendimento Yamaji</span>
+                      <span className="wa-status">online · responde na hora</span>
+                    </div>
+                    <span className="wa-badge">Bot</span>
                   </div>
-                  <div className="num">342</div>
-                  <div className="chart">
-                    {chartHeights.map((h, i) => (
-                      <div
-                        key={i}
-                        className={`bar${i === chartHeights.length - 1 ? " j" : ""}`}
-                        style={{ height: `${h}%` }}
-                      />
-                    ))}
+                  <div className="wa-thread">
+                    <div className="wa-msg in">
+                      Oi, vocês estão abertos? Queria um orçamento.
+                    </div>
+                    <div className="wa-msg out">
+                      Oi! Posso te ajudar agora 👋 Qual serviço você procura?
+                    </div>
+                    <div className="wa-msg in">Automação de atendimento</div>
+                    <div className="wa-msg out">
+                      Fechado. Já te explico como funciona e agendo uma call.
+                    </div>
+                    <div className="wa-typing" aria-hidden="true">
+                      <span />
+                      <span />
+                      <span />
+                    </div>
                   </div>
-                  <div className="chart-x">
-                    <span>00h</span>
-                    <span>08h</span>
-                    <span>16h</span>
-                    <span>24h</span>
+                  <div className="wa-foot">
+                    <span className="wa-auto">Resposta automática em 2s</span>
                   </div>
-                  <p className="desc">
-                    Atendimento respondido sem ninguém digitar
-                  </p>
                 </div>
 
                 {/* Painel — leads captados fora do horário (accent/jade) */}
@@ -956,99 +959,6 @@ export default function Page() {
                   <span className="v">Projeto publicado</span>
                 </div>
               </article>
-            </div>
-          </div>
-        </section>
-
-        {/* ============================================================
-            AUTORIDADE TÉCNICA — sec--graphite
-            ============================================================ */}
-        <section
-          id="tecnologia"
-          className="sec sec--graphite"
-          data-section="tecnologia"
-        >
-          <div className="shell">
-            <div className="sec-head">
-              <div className="marker">
-                <span className="num">07</span>
-                <span className="name">Tecnologia</span>
-              </div>
-              <h2 className="h-section">
-                Stack <em>atual,</em> não legacy.
-              </h2>
-              <p className="anno">
-                Usamos as mesmas ferramentas que grandes produtos digitais.
-                Velocidade real, SEO técnico e escala sem retrabalho.
-              </p>
-            </div>
-
-            <div className="auth-grid">
-              <div className="auth-copy">
-                <p className="pull">
-                  Tecnologia não é detalhe. É a diferença entre um site que{" "}
-                  <em>aparece no Google</em> e um que ninguém encontra.
-                </p>
-                <p>
-                  Cada ferramenta da nossa stack foi escolhida por performance,
-                  confiabilidade e capacidade de crescer com o cliente.{" "}
-                  <strong>
-                    Sem gambiarras. Sem dependência de plugins frágeis.
-                  </strong>
-                </p>
-                <p>
-                  Isso significa que seu projeto hoje vai continuar funcionando
-                  bem daqui a dois anos, sem precisar refazer tudo do zero.
-                </p>
-              </div>
-
-              <div className="auth-cap">
-                <div className="auth-cap-head">
-                  <span className="ttl">Stack principal</span>
-                  <span className="pill">Produção</span>
-                </div>
-                <div className="auth-cap-list">
-                  {[
-                    { k: "Framework web", v: "Next.js / React", acc: false },
-                    { k: "Inteligência artificial", v: "Claude API", acc: true },
-                    { k: "Automação", v: "n8n + Make", acc: true },
-                    { k: "Banco + Auth", v: "Supabase", acc: false },
-                    { k: "Pagamentos", v: "Stripe / Pix", acc: false },
-                    { k: "Infraestrutura", v: "Vercel / Cloudflare", acc: false },
-                  ].map((item) => (
-                    <div key={item.k} className="row">
-                      <span className="k">{item.k}</span>
-                      <span className={`v${item.acc ? " acc" : ""}`}>
-                        {item.v}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Stats — spans full width via grid-column: 1 / span 2 in CSS */}
-              <div className="auth-stats">
-                <div className="auth-stat">
-                  <div className="num">
-                    3<em>+</em>
-                  </div>
-                  <div className="lbl">Anos de mercado</div>
-                </div>
-                <div className="auth-stat">
-                  <div className="num">6</div>
-                  <div className="lbl">Especialidades</div>
-                </div>
-                <div className="auth-stat">
-                  <div className="num">
-                    24<em>h</em>
-                  </div>
-                  <div className="lbl">Resposta máx.</div>
-                </div>
-                <div className="auth-stat">
-                  <div className="num">SSA</div>
-                  <div className="lbl">Base em Salvador</div>
-                </div>
-              </div>
             </div>
           </div>
         </section>

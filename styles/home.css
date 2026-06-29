@@ -2346,3 +2346,87 @@
 @media (max-width: 640px) {
   .home-v5 .prob-grid { grid-template-columns: 1fr; }
 }
+
+/* ============================================================
+   HERO — demo de atendimento automático no WhatsApp
+   ============================================================ */
+.home-v5 .hero-show .show.big.wa { gap: 14px; }
+.home-v5 .wa-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--bone-line);
+}
+.home-v5 .wa-ava {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--jade-bright), var(--jade-deep));
+  color: #fff; font-weight: 700; font-size: 14px;
+}
+.home-v5 .wa-id { display: flex; flex-direction: column; line-height: 1.25; }
+.home-v5 .wa-name { font-weight: 600; font-size: 14px; color: var(--t-bone-0); }
+.home-v5 .wa-status { font-size: 11px; color: var(--jade-deep); }
+.home-v5 .wa-badge {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--jade-deep);
+  background: rgba(22,163,115,0.12);
+  border: 1px solid rgba(22,163,115,0.25);
+  border-radius: 999px; padding: 4px 9px;
+}
+.home-v5 .wa-thread { display: flex; flex-direction: column; gap: 8px; }
+.home-v5 .wa-msg {
+  max-width: 80%;
+  font-size: 13.5px;
+  line-height: 1.4;
+  padding: 9px 12px;
+  border-radius: 14px;
+}
+.home-v5 .wa-msg.in {
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid var(--bone-line);
+  color: #222;
+  border-bottom-left-radius: 4px;
+}
+.home-v5 .wa-msg.out {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #25d366, #16a373);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+.home-v5 .wa-typing {
+  align-self: flex-end;
+  display: inline-flex;
+  gap: 4px;
+  padding: 11px 14px;
+  background: linear-gradient(135deg, #25d366, #16a373);
+  border-radius: 14px;
+  border-bottom-right-radius: 4px;
+}
+.home-v5 .wa-typing span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.9);
+  animation: wa-bounce 1.2s infinite;
+}
+.home-v5 .wa-typing span:nth-child(2) { animation-delay: 0.2s; }
+.home-v5 .wa-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes wa-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+.home-v5 .wa-foot { margin-top: auto; }
+.home-v5 .wa-auto {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--t-bone-2);
+}
+.home-v5 .wa-auto::before { content: "\26A1"; }
+@media (prefers-reduced-motion: reduce) {
+  .home-v5 .wa-typing span { animation: none; }
+}
