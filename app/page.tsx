@@ -584,7 +584,7 @@ export default function Page() {
             </div>
 
             <div className="projects-grid">
-              {/* Projeto grande */}
+              {/* 01 · BM Consultoria — Landing Page Institucional */}
               <article className="project large">
                 <div className="thumb">
                   <div className="thumb-art t1" aria-hidden="true">
@@ -592,10 +592,10 @@ export default function Page() {
                     <div className="thumb-device">
                       <div className="head">
                         <div className="dot" />
-                        <span className="nm">E-commerce</span>
+                        <span className="nm">Landing Page</span>
                       </div>
                       <div className="bar s1" />
-                      <div className="bar s2" />
+                      <div className="bar s3" />
                       <div className="row">
                         <div className="blk" />
                         <div className="blk j" />
@@ -606,75 +606,68 @@ export default function Page() {
                 </div>
                 <div className="body">
                   <div className="meta">
-                    <span>Moda & Lifestyle</span>
-                    <span className="acc">E-commerce</span>
+                    <span>Consultoria Social</span>
+                    <span className="acc">Landing Page</span>
                   </div>
-                  <h4>
-                    Loja online de <em>moda feminina.</em>
-                  </h4>
+                  <h4>BM Consultoria</h4>
                   <p className="scope">
-                    Catálogo, checkout integrado e identidade visual do zero.
+                    Site institucional com duas jornadas (organizações sociais e
+                    empresas), depoimentos e logos de parceiros como Petrobras e
+                    Plan International.
                   </p>
+                  <a
+                    href="https://comunicacaobm.com.br"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="proj-link"
+                    data-label="case-bm-consultoria"
+                  >
+                    comunicacaobm.com.br
+                    <span className="ext" aria-hidden="true">↗</span>
+                  </a>
                 </div>
               </article>
 
-              {/* Projeto médio */}
+              {/* 02 · Dieisson Vasques — Plataforma de Treinos Online */}
               <article className="project med">
-                <div className="thumb">
-                  <div className="thumb-art t2" aria-hidden="true">
-                    <div className="pat" />
-                    <div className="thumb-device">
-                      <div className="head">
-                        <div className="dot" />
-                        <span className="nm">Clínica</span>
-                      </div>
-                      <div className="bar s1" />
-                      <div className="bar s3" />
-                    </div>
-                  </div>
-                </div>
-                <div className="body">
-                  <div className="meta">
-                    <span>Saúde</span>
-                    <span className="acc">CRM</span>
-                  </div>
-                  <h4>
-                    CRM para <em>clínica odontológica.</em>
-                  </h4>
-                  <p className="scope">Agenda e histórico de pacientes.</p>
-                </div>
-              </article>
-
-              {/* Projeto padrão */}
-              <article className="project std">
                 <div className="thumb">
                   <div className="thumb-art t3" aria-hidden="true">
                     <div className="pat" />
                     <div className="thumb-device">
                       <div className="head">
                         <div className="dot" />
-                        <span className="nm">Automação</span>
+                        <span className="nm">Plataforma</span>
                       </div>
-                      <div className="bar s2" />
                       <div className="bar s1" />
+                      <div className="bar s2" />
                     </div>
                   </div>
                 </div>
                 <div className="body">
                   <div className="meta">
-                    <span>Tech</span>
-                    <span className="acc">Automação</span>
+                    <span>Personal Trainer</span>
+                    <span className="acc">Plataforma</span>
                   </div>
-                  <h4>
-                    Atendimento <em>automático</em> 24h.
-                  </h4>
+                  <h4>Dieisson Vasques</h4>
                   <p className="scope">
-                    Fluxo de leads via WhatsApp e e-mail.
+                    Biblioteca de vídeos por categorias, painel de métricas do
+                    aluno, três planos de assinatura e integração com
+                    nutricionista.
                   </p>
+                  <a
+                    href="https://dieissonvasques.com.br"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="proj-link"
+                    data-label="case-dieisson-vasques"
+                  >
+                    dieissonvasques.com.br
+                    <span className="ext" aria-hidden="true">↗</span>
+                  </a>
                 </div>
               </article>
 
-              {/* Projeto padrão */}
+              {/* 03 · Plano de Saúde Bahia — Landing Page de Captação */}
               <article className="project std">
                 <div className="thumb">
                   <div className="thumb-art t4" aria-hidden="true">
@@ -682,7 +675,7 @@ export default function Page() {
                     <div className="thumb-device">
                       <div className="head">
                         <div className="dot" />
-                        <span className="nm">Landing Page</span>
+                        <span className="nm">Captação</span>
                       </div>
                       <div className="bar s3" />
                       <div className="bar s2" />
@@ -691,15 +684,170 @@ export default function Page() {
                 </div>
                 <div className="body">
                   <div className="meta">
-                    <span>Educação</span>
-                    <span className="acc">Site</span>
+                    <span>Corretora de Saúde</span>
+                    <span className="acc">Landing Page</span>
                   </div>
-                  <h4>
-                    Landing page de <em>lançamento.</em>
-                  </h4>
+                  <h4>Plano de Saúde Bahia</h4>
                   <p className="scope">
-                    Campanha de lançamento de curso online.
+                    Landing page focada em conversão para corretora de planos de
+                    saúde.
                   </p>
+                  <a
+                    href="https://planodesaudebahia.com.br"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="proj-link"
+                    data-label="case-plano-saude-bahia"
+                  >
+                    planodesaudebahia.com.br
+                    <span className="ext" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </article>
+
+              {/* 04 · Instituto D'Joana — Site Institucional + Admin Panel */}
+              <article className="project std">
+                <div className="thumb">
+                  <div className="thumb-art t2" aria-hidden="true">
+                    <div className="pat" />
+                    <div className="thumb-device">
+                      <div className="head">
+                        <div className="dot" />
+                        <span className="nm">Site + Admin</span>
+                      </div>
+                      <div className="bar s1" />
+                      <div className="bar s3" />
+                    </div>
+                  </div>
+                </div>
+                <div className="body">
+                  <div className="meta">
+                    <span>Instituto Social</span>
+                    <span className="acc">Site + Admin</span>
+                  </div>
+                  <h4>Instituto D&apos;Joana</h4>
+                  <p className="scope">
+                    CMS próprio, módulo de notícias com upload de múltiplos PDFs
+                    e painel administrativo completo.
+                  </p>
+                  <a
+                    href="https://institutodjoana.com.br"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="proj-link"
+                    data-label="case-instituto-djoana"
+                  >
+                    institutodjoana.com.br
+                    <span className="ext" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </article>
+
+              {/* 05 · ACEBA — Site Institucional + Admin Panel */}
+              <article className="project med">
+                <div className="thumb">
+                  <div className="thumb-art t6" aria-hidden="true">
+                    <div className="pat" />
+                    <div className="thumb-device">
+                      <div className="head">
+                        <div className="dot" />
+                        <span className="nm">Next.js + Supabase</span>
+                      </div>
+                      <div className="bar s2" />
+                      <div className="bar s1" />
+                    </div>
+                  </div>
+                </div>
+                <div className="body">
+                  <div className="meta">
+                    <span>Associação</span>
+                    <span className="acc">Site + Admin</span>
+                  </div>
+                  <h4>ACEBA</h4>
+                  <p className="scope">
+                    Migração de HTML estático para Next.js 15 + Supabase, admin
+                    com CRUD de parcerias, notícias e galeria, e anexos em PDF.
+                  </p>
+                  <a
+                    href="https://aceba.com.br"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="proj-link"
+                    data-label="case-aceba"
+                  >
+                    aceba.com.br
+                    <span className="ext" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </article>
+
+              {/* 06 · Bruxo Team — Landing Page Institucional */}
+              <article className="project med">
+                <div className="thumb">
+                  <div className="thumb-art t5" aria-hidden="true">
+                    <div className="pat" />
+                    <div className="thumb-device">
+                      <div className="head">
+                        <div className="dot" />
+                        <span className="nm">Landing Page</span>
+                      </div>
+                      <div className="bar s1" />
+                      <div className="bar s2" />
+                    </div>
+                  </div>
+                </div>
+                <div className="body">
+                  <div className="meta">
+                    <span>Artes Marciais</span>
+                    <span className="acc">Landing Page</span>
+                  </div>
+                  <h4>Bruxo Team</h4>
+                  <p className="scope">
+                    Site institucional para academia de jiu-jítsu.
+                  </p>
+                  <a
+                    href="https://bruxoteam-smoky.vercel.app"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="proj-link"
+                    data-label="case-bruxo-team"
+                  >
+                    bruxoteam-smoky.vercel.app
+                    <span className="ext" aria-hidden="true">↗</span>
+                  </a>
+                </div>
+              </article>
+
+              {/* 07 · OrderFlow Commerce Cloud — SaaS Demo / Portfólio Técnico */}
+              <article className="project med">
+                <div className="thumb">
+                  <div className="thumb-art t3" aria-hidden="true">
+                    <div className="pat" />
+                    <div className="thumb-device">
+                      <div className="head">
+                        <div className="dot" />
+                        <span className="nm">SaaS Demo</span>
+                      </div>
+                      <div className="bar s3" />
+                      <div className="row">
+                        <div className="blk j" />
+                        <div className="blk" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="body">
+                  <div className="meta">
+                    <span>E-commerce / Tech</span>
+                    <span className="acc">SaaS Demo</span>
+                  </div>
+                  <h4>OrderFlow Commerce Cloud</h4>
+                  <p className="scope">
+                    IA integrada (Claude API), pagamentos Stripe + webhooks,
+                    e-mails transacionais via Resend e rastreamento de pedidos em
+                    tempo real via WebSocket (STOMP/SockJS).
+                  </p>
+                  <span className="proj-badge">Demo Técnica</span>
                 </div>
               </article>
             </div>
