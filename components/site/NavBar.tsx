@@ -16,6 +16,7 @@ const navLinks = [
   { label: "Social Media", href: "/social-marketing" },
   { label: "IA e Automação", href: "/automacao-ia" },
   { label: "Sistemas", href: "/sistemas/plataforma-educacional" },
+  { label: "Tráfego Pago", href: "/#trafego" },
   { label: "CRM", href: "/crm-clinicas" },
 ];
 

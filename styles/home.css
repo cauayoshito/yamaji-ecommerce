@@ -740,6 +740,8 @@
 }
 .home-v5 .svc-card.featured { grid-column: span 3; min-height: 420px; }
 .home-v5 .svc-card.wide     { grid-column: span 3; min-height: 420px; }
+.home-v5 .svc-card.cta      { grid-column: span 4; min-height: 420px; }
+.home-v5 #trafego { scroll-margin-top: 90px; }
 .home-v5 .svc-card:hover {
   transform: translateY(-4px);
   border-color: rgba(45,196,136,0.4);
@@ -760,7 +762,8 @@
   color: var(--t-0);
 }
 .home-v5 .svc-card.featured h3,
-.home-v5 .svc-card.wide h3 { font-size: clamp(26px, 2.2vw, 36px); }
+.home-v5 .svc-card.wide h3,
+.home-v5 .svc-card.cta h3 { font-size: clamp(26px, 2.2vw, 36px); }
 .home-v5 .svc-card h3 em { font-style: italic; color: var(--acc); }
 .home-v5 .svc-card .sc-desc { font-size: 14.5px; color: var(--t-1); line-height: 1.55; }
 
@@ -2094,7 +2097,8 @@
   .home-v5 .svc-grid { grid-template-columns: repeat(2, 1fr); }
   .home-v5 .svc-card,
   .home-v5 .svc-card.featured,
-  .home-v5 .svc-card.wide { grid-column: span 1; min-height: auto; padding: 24px; }
+  .home-v5 .svc-card.wide,
+  .home-v5 .svc-card.cta { grid-column: span 1; min-height: auto; padding: 24px; }
 
   .home-v5 .value-grid { grid-template-columns: 1fr; }
   .home-v5 .value-card { min-height: auto; }

@@ -12,6 +12,9 @@ const whatsMessage = encodeURIComponent(
   "Olá, vim pelo site da Yamaji Studio. Quero começar minha presença digital."
 );
 const WHATSAPP_LINK = `https://wa.me/5571992258349?text=${whatsMessage}`;
+const WHATSAPP_TRAFEGO = `https://wa.me/5571992258349?text=${encodeURIComponent(
+  "Quero gestão de tráfego"
+)}`;
 
 const chartHeights = [35, 50, 40, 62, 45, 70, 55, 80, 65, 90, 75, 100];
 
@@ -498,6 +501,36 @@ export default function Page() {
                 <Link href="/sistemas/plataforma-educacional" className="sc-link">
                   Saiba mais <ArrowIcon />
                 </Link>
+              </article>
+
+              {/* 07 · Tráfego Pago & Performance */}
+              <article id="trafego" className="svc-card cta">
+                <span className="sc-num">07 · Tráfego Pago &amp; Performance</span>
+                <h3>
+                  Anúncios que <em>geram</em> clientes, não só cliques.
+                </h3>
+                <p className="sc-desc">
+                  Para negócios que querem crescer com previsibilidade. Gestão
+                  completa de Meta Ads e Google Ads — criativo, segmentação,
+                  otimização e relatório de resultados toda semana.
+                </p>
+                <div className="sc-mock">
+                  <div className="chips">
+                    <span>Meta Ads</span>
+                    <span>Google Ads</span>
+                    <span>Relatório semanal</span>
+                  </div>
+                </div>
+                <a
+                  href={WHATSAPP_TRAFEGO}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="sc-link"
+                  data-cta="primary"
+                  data-label="servico-trafego-whatsapp"
+                >
+                  Quero gestão de tráfego <ArrowIcon />
+                </a>
               </article>
             </div>
           </div>
@@ -1144,6 +1177,9 @@ export default function Page() {
                   </li>
                   <li>
                     <Link href="/sistemas/plataforma-educacional">Sistemas</Link>
+                  </li>
+                  <li>
+                    <Link href="/#trafego">Tráfego Pago</Link>
                   </li>
                 </ul>
               </nav>
