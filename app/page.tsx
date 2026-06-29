@@ -26,6 +26,7 @@ const clientLogos: { name: string; src?: string }[] = [
   { name: "Dieisson Vasques", src: "/logos/dieisson-vasques.png" },
   { name: "Plano de Saúde Bahia" },
   { name: "Bruxo Team", src: "/logos/bruxo-team.png" },
+  { name: "Proprium Imóveis" },
 ];
 
 const chartHeights = [35, 50, 40, 62, 45, 70, 55, 80, 65, 90, 75, 100];
@@ -121,15 +122,15 @@ export default function Page() {
                 </div>
 
                 <h1>
-                  Presença digital{" "}
-                  <em>construída</em>{" "}
-                  <span className="acc">para vender.</span>
+                  Infraestrutura digital para negócios que{" "}
+                  <em>operam</em>{" "}
+                  <span className="acc">de verdade.</span>
                 </h1>
 
                 <p className="hero-pitch">
-                  Design, tecnologia e marketing em uma só equipe.{" "}
-                  <strong>Para negócios que querem crescer</strong> sem montar
-                  um departamento digital.
+                  Sites, sistemas, automação e tráfego pago em uma equipe só.{" "}
+                  <strong>Para empresas que precisam de resultado,</strong> não
+                  de template.
                 </p>
 
                 <div className="hero-cta">
@@ -837,7 +838,7 @@ export default function Page() {
               </article>
 
               {/* 05 · ACEBA — Site Institucional + Admin Panel */}
-              <article className="project med">
+              <article className="project std">
                 <div className="thumb">
                   <div className="thumb-art t6" aria-hidden="true">
                     <div className="pat" />
@@ -875,7 +876,7 @@ export default function Page() {
               </article>
 
               {/* 06 · Bruxo Team — Landing Page Institucional */}
-              <article className="project med">
+              <article className="project std">
                 <div className="thumb">
                   <div className="thumb-art t5" aria-hidden="true">
                     <div className="pat" />
@@ -912,7 +913,7 @@ export default function Page() {
               </article>
 
               {/* 07 · OrderFlow Commerce Cloud — SaaS Demo / Portfólio Técnico */}
-              <article className="project med">
+              <article className="project std">
                 <div className="thumb">
                   <div className="thumb-art t3" aria-hidden="true">
                     <div className="pat" />
@@ -941,6 +942,44 @@ export default function Page() {
                     tempo real via WebSocket (STOMP/SockJS).
                   </p>
                   <span className="proj-badge">Demo Técnica</span>
+                </div>
+              </article>
+
+              {/* 08 · Proprium Imóveis — Plataforma de Leilão */}
+              <article className="project std">
+                <div className="thumb">
+                  <div className="thumb-art t4" aria-hidden="true">
+                    <div className="pat" />
+                    <div className="thumb-device">
+                      <div className="head">
+                        <div className="dot" />
+                        <span className="nm">Imóveis de Leilão</span>
+                      </div>
+                      <div className="bar s3" />
+                      <div className="bar s1" />
+                    </div>
+                  </div>
+                </div>
+                <div className="body">
+                  <div className="meta">
+                    <span>Imobiliário / Leilão</span>
+                    <span className="acc">Plataforma</span>
+                  </div>
+                  <h4>Proprium Imóveis</h4>
+                  <p className="scope">
+                    Plataforma de imóveis de leilão com busca, filtros, planos de
+                    assinatura e alertas por WhatsApp.
+                  </p>
+                  <a
+                    href="https://proprium-imoveis.vercel.app"
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="proj-link"
+                    data-label="case-proprium-imoveis"
+                  >
+                    proprium-imoveis.vercel.app
+                    <span className="ext" aria-hidden="true">↗</span>
+                  </a>
                 </div>
               </article>
             </div>
