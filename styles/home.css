@@ -2253,3 +2253,96 @@
 @media (prefers-reduced-motion: reduce) {
   .home-v5 .logos-track { animation: none; justify-content: center; flex-wrap: wrap; gap: 36px 48px; }
 }
+
+/* ============================================================
+   PROBLEMAS QUE RESOLVEMOS — dor → solução
+   ============================================================ */
+.home-v5 .prob-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.home-v5 .prob-card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  padding: var(--s-4);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 230px;
+  position: relative;
+  overflow: hidden;
+  transition: transform .35s ease, border-color .35s ease;
+}
+.home-v5 .prob-card::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, var(--jade-bright), transparent);
+  opacity: 0.5;
+  transition: opacity .35s ease;
+}
+.home-v5 .prob-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(45,196,136,0.4);
+}
+.home-v5 .prob-card:hover::before { opacity: 1; }
+.home-v5 .prob-card .prob-pain {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: var(--t-2);
+}
+.home-v5 .prob-card .prob-sol {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.7vw, 26px);
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  font-weight: 400;
+  color: var(--t-0);
+}
+.home-v5 .prob-card .prob-sol em { font-style: italic; color: var(--acc); }
+.home-v5 .prob-card .prob-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--t-1);
+}
+.home-v5 .prob-card .prob-tag {
+  margin-top: auto;
+  width: fit-content;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--acc);
+  background: var(--jade-tint);
+  border: 1px solid rgba(45,196,136,0.25);
+  border-radius: 999px;
+  padding: 5px 11px;
+}
+.home-v5 .prob-foot {
+  margin-top: var(--s-5);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+.home-v5 .prob-foot .note {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--t-1);
+}
+
+@media (max-width: 900px) {
+  .home-v5 .prob-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .home-v5 .prob-grid { grid-template-columns: 1fr; }
+}

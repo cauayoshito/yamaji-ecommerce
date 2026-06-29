@@ -3,17 +3,20 @@ import Link from "next/link";
 import NavBar from "@/components/site/NavBar";
 
 export const metadata: Metadata = {
-  title: "Yamaji Studio — Sites, E-commerce, Social Media e Automação",
+  title: "Yamaji Studio · Automação, IA e Engenharia para Negócios",
   description:
-    "Equipe de design, tecnologia e marketing para pequenos negócios. Sites, lojas online, social media, IA e sistemas em Salvador, BA.",
+    "A Yamaji automatiza atendimento, mensagens e processos com IA e engenharia. Sua operação respondendo e vendendo sozinha, dia e noite. Salvador, BA.",
 };
 
 const whatsMessage = encodeURIComponent(
-  "Olá, vim pelo site da Yamaji Studio. Quero começar minha presença digital."
+  "Olá, vim pelo site da Yamaji. Quero automatizar minha operação."
 );
 const WHATSAPP_LINK = `https://wa.me/5571992258349?text=${whatsMessage}`;
 const WHATSAPP_TRAFEGO = `https://wa.me/5571992258349?text=${encodeURIComponent(
   "Quero gestão de tráfego"
+)}`;
+const WHATSAPP_AUTO = `https://wa.me/5571992258349?text=${encodeURIComponent(
+  "Quero automatizar meu atendimento"
 )}`;
 
 /* Logos de clientes — src ausente = fallback em texto estilizado.
@@ -118,31 +121,34 @@ export default function Page() {
               <div>
                 <div className="hero-eye">
                   <span className="pill-dot" aria-hidden="true" />
-                  Studio disponível
+                  Automação · IA · Engenharia
                 </div>
 
                 <h1>
-                  Infraestrutura digital para negócios que{" "}
-                  <em>operam</em>{" "}
-                  <span className="acc">de verdade.</span>
+                  Sua empresa ainda{" "}
+                  <em>responde tudo</em>{" "}
+                  <span className="acc">na mão?</span>
                 </h1>
 
                 <p className="hero-pitch">
-                  Sites, sistemas, automação e tráfego pago em uma equipe só.{" "}
-                  <strong>Para empresas que precisam de resultado,</strong> não
-                  de template.
+                  A Yamaji conecta sistemas, mensagens e inteligência artificial
+                  para resolver os gargalos do seu negócio.{" "}
+                  <strong>
+                    Atendimento, vendas e processos rodando sozinhos,
+                  </strong>{" "}
+                  dia e noite.
                 </p>
 
                 <div className="hero-cta">
                   <a
-                    href={WHATSAPP_LINK}
+                    href={WHATSAPP_AUTO}
                     target="_blank"
                     rel="noreferrer noopener"
                     data-cta="primary"
                     data-label="hero-whatsapp"
                     className="btn btn-wa"
                   >
-                    Falar com a equipe
+                    Quero automatizar minha operação
                     <svg
                       className="arr"
                       width="14"
@@ -160,35 +166,35 @@ export default function Page() {
                       />
                     </svg>
                   </a>
-                  <Link href="#servicos" className="btn btn-ghost">
-                    Ver serviços
+                  <Link href="#problemas" className="btn btn-ghost">
+                    Ver o que resolvemos
                   </Link>
                 </div>
 
                 <div className="hero-trust">
                   <div className="avatars" aria-hidden="true">
                     <span className="av j">Y</span>
-                    <span className="av">UX</span>
-                    <span className="av">DS</span>
-                    <span className="av">TK</span>
+                    <span className="av">IA</span>
+                    <span className="av">DEV</span>
+                    <span className="av">OPS</span>
                   </div>
                   <p className="txt">
-                    <strong>Equipe completa</strong>
+                    <strong>Engenharia de verdade</strong>
                     <br />
-                    Design · Dev · Marketing · Automação
+                    Sistemas · IA · Automação · Dados
                   </p>
                 </div>
               </div>
 
-              {/* ── Painéis visuais ── */}
+              {/* ── Painéis visuais — ilustração de automação rodando ── */}
               <div className="hero-show" aria-hidden="true">
-                {/* Painel grande — crescimento orgânico (light) */}
+                {/* Painel grande — volume de mensagens automáticas */}
                 <div className="show big">
                   <div className="head">
-                    <span>Visitantes / 30 dias</span>
-                    <span className="live">Ao vivo</span>
+                    <span>Mensagens respondidas / 24h</span>
+                    <span className="live">No ar</span>
                   </div>
-                  <div className="num">2.840</div>
+                  <div className="num">342</div>
                   <div className="chart">
                     {chartHeights.map((h, i) => (
                       <div
@@ -199,17 +205,17 @@ export default function Page() {
                     ))}
                   </div>
                   <div className="chart-x">
-                    <span>Jan</span>
-                    <span>Mar</span>
-                    <span>Mai</span>
-                    <span>Jul</span>
+                    <span>00h</span>
+                    <span>08h</span>
+                    <span>16h</span>
+                    <span>24h</span>
                   </div>
                   <p className="desc">
-                    Crescimento orgânico de um site institucional
+                    Atendimento respondido sem ninguém digitar
                   </p>
                 </div>
 
-                {/* Painel — leads via automação (accent/jade) */}
+                {/* Painel — leads captados fora do horário (accent/jade) */}
                 <div className="show accent">
                   <div className="head">
                     <span>WhatsApp</span>
@@ -219,25 +225,25 @@ export default function Page() {
                     48<em>leads</em>
                   </div>
                   <p className="desc">
-                    Conversas geradas pela automação esta semana
+                    Capturados e respondidos fora do horário comercial
                   </p>
                 </div>
 
-                {/* Painel — equipe (dark) */}
+                {/* Painel — fluxos de automação ativos (dark) */}
                 <div className="show team">
                   <div className="head">
-                    <span>Equipe Yamaji</span>
+                    <span>Fluxos ativos</span>
                   </div>
                   <div className="roles">
-                    <span>Design</span>
-                    <span>Dev</span>
-                    <span>SEO</span>
-                    <span>Social</span>
-                    <span>IA</span>
+                    <span>WhatsApp</span>
+                    <span>E-mail</span>
                     <span>CRM</span>
+                    <span>Relatórios</span>
+                    <span>IA</span>
+                    <span>Pagamentos</span>
                   </div>
                   <p className="desc" style={{ marginTop: "auto" }}>
-                    Especialistas sob demanda, sem CLT
+                    Processos rodando sozinhos, 24/7
                   </p>
                 </div>
               </div>
@@ -245,29 +251,27 @@ export default function Page() {
 
             {/* Stats bar */}
             <div className="hero-creds">
-              <span className="lbl">Capacidade</span>
+              <span className="lbl">Operação</span>
               <div className="stats">
                 <div className="stat">
                   <span className="v">
-                    6<em>serv</em>
+                    24<em>/7</em>
                   </span>
-                  <span className="l">Serviços</span>
+                  <span className="l">No ar</span>
+                </div>
+                <div className="stat">
+                  <span className="v">IA</span>
+                  <span className="l">Integrada</span>
+                </div>
+                <div className="stat">
+                  <span className="v">
+                    &lt;24<em>h</em>
+                  </span>
+                  <span className="l">Resposta humana</span>
                 </div>
                 <div className="stat">
                   <span className="v">SSA</span>
                   <span className="l">Salvador, BA</span>
-                </div>
-                <div className="stat">
-                  <span className="v">
-                    24<em>h</em>
-                  </span>
-                  <span className="l">Resposta</span>
-                </div>
-                <div className="stat">
-                  <span className="v">
-                    100<em>%</em>
-                  </span>
-                  <span className="l">Humano</span>
                 </div>
               </div>
             </div>
@@ -307,68 +311,182 @@ export default function Page() {
         </section>
 
         {/* ============================================================
+            PROBLEMAS QUE RESOLVEMOS — dor → solução
+            ============================================================ */}
+        <section
+          id="problemas"
+          className="sec sec--graphite"
+          data-section="problemas"
+        >
+          <div className="shell">
+            <div className="sec-head">
+              <div className="marker">
+                <span className="num">01</span>
+                <span className="name">Problemas</span>
+              </div>
+              <h2 className="h-section">
+                Onde o seu negócio <em>trava</em> todo dia.
+              </h2>
+              <p className="anno">
+                Se você reconhece um destes gargalos, a Yamaji resolve com
+                sistema e automação. Você não compra um serviço, você tira um
+                problema das suas costas.
+              </p>
+            </div>
+
+            <div className="prob-grid">
+              <article className="prob-card">
+                <span className="prob-pain">
+                  Você demora horas para responder cada cliente?
+                </span>
+                <h3 className="prob-sol">Atendimento que responde na hora.</h3>
+                <p className="prob-desc">
+                  Automação de WhatsApp que tira dúvida, qualifica e agenda
+                  sozinha, 24 horas por dia, sem ninguém digitar.
+                </p>
+                <span className="prob-tag">Automação · WhatsApp</span>
+              </article>
+
+              <article className="prob-card">
+                <span className="prob-pain">
+                  Lead chega e esfria porque ninguém deu retorno?
+                </span>
+                <h3 className="prob-sol">Follow-up que não esquece ninguém.</h3>
+                <p className="prob-desc">
+                  Sequências automáticas que mantêm o contato vivo até o cliente
+                  responder. Nenhuma venda fica para trás.
+                </p>
+                <span className="prob-tag">IA · CRM</span>
+              </article>
+
+              <article className="prob-card">
+                <span className="prob-pain">
+                  Sua equipe presa em tarefa repetitiva o dia todo?
+                </span>
+                <h3 className="prob-sol">Robôs cuidam do trabalho chato.</h3>
+                <p className="prob-desc">
+                  Cadastro, cobrança, planilha e relatório acontecem sozinhos.
+                  Sua equipe foca no que dá dinheiro.
+                </p>
+                <span className="prob-tag">Automação · Integrações</span>
+              </article>
+
+              <article className="prob-card">
+                <span className="prob-pain">
+                  Não sabe de onde vem cada venda?
+                </span>
+                <h3 className="prob-sol">Relatório no seu WhatsApp.</h3>
+                <p className="prob-desc">
+                  Dashboards e resumos automáticos chegam prontos para você, sem
+                  abrir planilha nem montar relatório na mão.
+                </p>
+                <span className="prob-tag">Dados · IA</span>
+              </article>
+
+              <article className="prob-card">
+                <span className="prob-pain">
+                  Tem site, mas ele não aparece e não vende?
+                </span>
+                <h3 className="prob-sol">Site ligado ao seu funil.</h3>
+                <p className="prob-desc">
+                  Site rápido e indexável que captura o lead e já joga dentro da
+                  sua automação de atendimento.
+                </p>
+                <span className="prob-tag">Engenharia · SEO</span>
+              </article>
+
+              <article className="prob-card">
+                <span className="prob-pain">
+                  Anúncio gasta dinheiro e não converte?
+                </span>
+                <h3 className="prob-sol">Tráfego que vira conversa.</h3>
+                <p className="prob-desc">
+                  Meta e Google Ads conectados à automação: o anúncio atrai e o
+                  robô responde e qualifica na hora.
+                </p>
+                <span className="prob-tag">Tráfego · Automação</span>
+              </article>
+            </div>
+
+            <div className="prob-foot">
+              <span className="note">Reconheceu o seu problema aí em cima?</span>
+              <a
+                href={WHATSAPP_AUTO}
+                target="_blank"
+                rel="noreferrer noopener"
+                className="btn-link"
+                data-label="problemas-whatsapp"
+              >
+                Quero resolver isso
+                <ArrowIcon />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
             SOBRE — sec--light
             ============================================================ */}
         <section id="sobre" className="sec sec--light" data-section="sobre">
           <div className="shell">
             <div className="sec-head">
               <div className="marker">
-                <span className="num">01</span>
-                <span className="name">Sobre</span>
+                <span className="num">02</span>
+                <span className="name">Como pensamos</span>
               </div>
               <h2 className="h-section">
-                Não somos uma <em>agência genérica.</em>
+                A Yamaji é o seu <em>time de engenharia</em> sob demanda.
               </h2>
               <p className="anno">
-                Yamaji Studio é uma estrutura ágil de design, tecnologia e
-                marketing. Trabalhamos como extensão da sua equipe, sem o custo
-                fixo de um departamento interno.
+                Você não contrata uma agência para postar bonito. Contrata quem
+                liga as peças do seu negócio e faz a operação rodar sozinha.
               </p>
             </div>
 
             <div className="position-grid">
               <div className="position-copy">
                 <p className="pull">
-                  Você não precisa de uma{" "}
-                  <em>plataforma template.</em> Precisa de uma equipe que{" "}
-                  <span className="mark">entende o seu negócio.</span>
+                  Ferramenta pronta não resolve.{" "}
+                  <span className="mark">
+                    Quem resolve é quem conecta tudo.
+                  </span>
                 </p>
                 <p>
-                  Wix, Shopify e NuvemShop são ferramentas. Mas ferramentas não
-                  criam estratégia. Não pensam no seu cliente. Não atendem você
-                  quando algo dá errado.
+                  Wix, planilha e robôs de prateleira são peças soltas. Sozinhos
+                  eles não conversam, não pensam no seu cliente e quebram quando
+                  o negócio cresce.
                 </p>
                 <p>
-                  A Yamaji pensa o visual, constrói a tecnologia, configura a
-                  automação e acompanha os resultados.{" "}
+                  A Yamaji entra como engenharia de verdade: desenha o fluxo,
+                  constrói o sistema, pluga a IA e mantém tudo no ar.{" "}
                   <strong>
-                    Tudo sob o mesmo teto, com a mesma interlocução.
+                    Uma camada de tecnologia que trabalha por você.
                   </strong>
                 </p>
                 <a
-                  href={WHATSAPP_LINK}
+                  href={WHATSAPP_AUTO}
                   target="_blank"
                   rel="noreferrer noopener"
                   className="btn-link"
                   data-label="sobre-whatsapp"
                 >
-                  Conversar com a equipe
+                  Quero entender como aplicar
                   <ArrowIcon />
                 </a>
               </div>
 
-              {/* Card de projetos recentes */}
+              {/* Card — automações no ar */}
               <div className="position-card">
                 <div className="pc-head">
-                  <span className="ttl">Projetos recentes</span>
-                  <span className="live">Em andamento</span>
+                  <span className="ttl">Automações no ar</span>
+                  <span className="live">Rodando</span>
                 </div>
                 <div className="pc-list">
                   {[
-                    { n: "01", nm: "Loja de moda online", meta: "E-commerce", hot: true },
-                    { n: "02", nm: "Site clínica odontológica", meta: "Site", hot: false },
-                    { n: "03", nm: "Automação de atendimento", meta: "IA", hot: true },
-                    { n: "04", nm: "Social media restaurante", meta: "Marketing", hot: false },
+                    { n: "01", nm: "Resposta automática no WhatsApp", meta: "Auto", hot: true },
+                    { n: "02", nm: "Follow-up de leads", meta: "IA", hot: true },
+                    { n: "03", nm: "Relatório diário por e-mail", meta: "Dados", hot: false },
+                    { n: "04", nm: "Cobrança e lembrete de pagamento", meta: "Fluxo", hot: false },
                   ].map((item) => (
                     <div key={item.n} className="row">
                       <span className="n">{item.n}</span>
@@ -381,7 +499,7 @@ export default function Page() {
                 </div>
                 <div className="pc-foot">
                   <span>Salvador, BA</span>
-                  <span>Yamaji Studio</span>
+                  <span>Yamaji</span>
                 </div>
               </div>
             </div>
@@ -399,42 +517,94 @@ export default function Page() {
           <div className="shell">
             <div className="sec-head">
               <div className="marker">
-                <span className="num">02</span>
+                <span className="num">03</span>
                 <span className="name">Serviços</span>
               </div>
               <h2 className="h-section">
-                Soluções <em>para cada fase</em> do negócio.
+                O que a Yamaji <em>automatiza</em> e constrói.
               </h2>
               <p className="anno">
-                Cada serviço foi desenhado para resolver um problema real.
-                Comece pelo que faz sentido agora e evolua conforme crescer.
+                Tudo gira em torno de tirar trabalho manual da sua rotina. A
+                automação é o motor; os outros serviços plugam nela.
               </p>
             </div>
 
             <div className="svc-grid">
-              {/* 01 · Sites & Landing Pages */}
+              {/* 01 · Automação & IA (carro-chefe) */}
               <article className="svc-card featured">
-                <span className="sc-num">01 · Sites & Landing Pages</span>
+                <span className="sc-num">01 · Automação &amp; IA</span>
                 <h3>
-                  Presença que o <em>Google encontra.</em>
+                  Sua operação <em>trabalhando sozinha.</em>
                 </h3>
                 <p className="sc-desc">
-                  Para negócios que precisam aparecer nas buscas e passar
-                  credibilidade ao cliente. Um site Yamaji é rápido, indexável
-                  e alinhado com o que você vende.
+                  Atendimento, follow-up, cobrança e relatório no piloto
+                  automático. A Yamaji desenha o fluxo, pluga a inteligência
+                  artificial e deixa rodando dia e noite.
                 </p>
                 <div className="sc-mock">
                   <div className="row">
-                    <span className="k">Performance</span>
-                    <span className="v acc">95 / 100</span>
+                    <span className="k">WhatsApp automático</span>
+                    <span className="v acc">Sim</span>
                   </div>
                   <div className="row">
-                    <span className="k">Mobile First</span>
-                    <span className="v tag">Sim</span>
+                    <span className="k">IA de atendimento</span>
+                    <span className="v tag">Incluso</span>
                   </div>
                   <div className="row">
-                    <span className="k">SEO técnico</span>
-                    <span className="v">Incluso</span>
+                    <span className="k">Integrações</span>
+                    <span className="v">CRM, e-mail, Pix</span>
+                  </div>
+                </div>
+                <Link href="/automacao-ia" className="sc-link">
+                  Ver mais <ArrowIcon />
+                </Link>
+              </article>
+
+              {/* 02 · Sistemas sob medida */}
+              <article className="svc-card wide">
+                <span className="sc-num">02 · Sistemas sob medida</span>
+                <h3>
+                  Plataforma <em>feita do jeito</em> que você opera.
+                </h3>
+                <p className="sc-desc">
+                  Quando planilha e ferramenta pronta não dão mais conta.
+                  Portais, painéis e sistemas internos construídos do zero, no
+                  seu processo.
+                </p>
+                <div className="sc-mock">
+                  <div className="row">
+                    <span className="k">Banco de dados</span>
+                    <span className="v acc">Supabase</span>
+                  </div>
+                  <div className="row">
+                    <span className="k">Painel administrativo</span>
+                    <span className="v tag">Incluso</span>
+                  </div>
+                  <div className="row">
+                    <span className="k">Escala</span>
+                    <span className="v">Sem retrabalho</span>
+                  </div>
+                </div>
+                <Link href="/sistemas/plataforma-educacional" className="sc-link">
+                  Saiba mais <ArrowIcon />
+                </Link>
+              </article>
+
+              {/* 03 · Sites & Landing Pages */}
+              <article className="svc-card">
+                <span className="sc-num">03 · Sites &amp; Landing Pages</span>
+                <h3>
+                  Site que <em>aparece</em> e captura lead.
+                </h3>
+                <p className="sc-desc">
+                  Rápido, indexável no Google e ligado direto à sua automação de
+                  atendimento. O visitante vira conversa.
+                </p>
+                <div className="sc-mock">
+                  <div className="chips">
+                    <span>Performance</span>
+                    <span>SEO</span>
+                    <span>Captura</span>
                   </div>
                 </div>
                 <Link href="/sites-landing-pages" className="sc-link">
@@ -442,29 +612,21 @@ export default function Page() {
                 </Link>
               </article>
 
-              {/* 02 · E-commerce */}
-              <article className="svc-card wide">
-                <span className="sc-num">02 · E-commerce</span>
+              {/* 04 · E-commerce */}
+              <article className="svc-card">
+                <span className="sc-num">04 · E-commerce</span>
                 <h3>
-                  Loja própria, <em>sem comissão</em> de marketplace.
+                  Loja própria, <em>sem comissão.</em>
                 </h3>
                 <p className="sc-desc">
-                  Para quem quer vender online com controle total: catálogo,
-                  checkout, pagamento e entrega. Tudo da sua marca, com seus
-                  clientes.
+                  Catálogo, checkout e pagamento com a sua marca, integrados ao
+                  estoque e ao seu WhatsApp.
                 </p>
                 <div className="sc-mock">
-                  <div className="row">
-                    <span className="k">Checkout integrado</span>
-                    <span className="v acc">Sim</span>
-                  </div>
-                  <div className="row">
-                    <span className="k">Pagamento</span>
-                    <span className="v">Pix, cartão, boleto</span>
-                  </div>
-                  <div className="row">
-                    <span className="k">A partir de</span>
-                    <span className="v">R$37/mês</span>
+                  <div className="chips">
+                    <span>Pix</span>
+                    <span>Cartão</span>
+                    <span>Checkout</span>
                   </div>
                 </div>
                 <Link href="/e-commerce" className="sc-link">
@@ -472,16 +634,15 @@ export default function Page() {
                 </Link>
               </article>
 
-              {/* 03 · CRM */}
+              {/* 05 · CRM */}
               <article className="svc-card">
-                <span className="sc-num">03 · CRM</span>
+                <span className="sc-num">05 · CRM</span>
                 <h3>
-                  Gestão de <em>clientes</em> sem planilha.
+                  Cliente <em>organizado,</em> retorno garantido.
                 </h3>
                 <p className="sc-desc">
-                  Para clínicas, consultórios e negócios de serviço que perdem
-                  clientes por falta de follow-up. Agenda, histórico e
-                  comunicação em um só lugar.
+                  Agenda, histórico e disparo de mensagem num lugar só. Ninguém
+                  esquece de dar retorno.
                 </p>
                 <div className="sc-mock">
                   <div className="chips">
@@ -495,72 +656,25 @@ export default function Page() {
                 </Link>
               </article>
 
-              {/* 04 · IA & Automação */}
+              {/* 06 · Social Media */}
               <article className="svc-card">
-                <span className="sc-num">04 · IA & Automação</span>
+                <span className="sc-num">06 · Social Media</span>
                 <h3>
-                  Atendimento <em>automático,</em> sem perder o tom.
+                  Conteúdo que <em>alimenta</em> o funil.
                 </h3>
                 <p className="sc-desc">
-                  Para negócios que não conseguem responder tudo a tempo. Fluxos
-                  de WhatsApp, e-mail e notificações que funcionam mesmo fora do
-                  horário.
-                </p>
-                <div className="sc-mock">
-                  <div className="chips">
-                    <span>WhatsApp</span>
-                    <span>Leads</span>
-                    <span>n8n</span>
-                  </div>
-                </div>
-                <Link href="/automacao-ia" className="sc-link">
-                  Saiba mais <ArrowIcon />
-                </Link>
-              </article>
-
-              {/* 05 · Social Media */}
-              <article className="svc-card">
-                <span className="sc-num">05 · Social Media</span>
-                <h3>
-                  Redes que <em>vendem,</em> não só postam.
-                </h3>
-                <p className="sc-desc">
-                  Para negócios que precisam de presença consistente no
-                  Instagram e LinkedIn. Artes, conteúdo e estratégia alinhados
-                  com o que você vende.
+                  Presença no Instagram e LinkedIn conectada à captação, não
+                  post solto só por postar.
                 </p>
                 <div className="sc-mock">
                   <div className="chips">
                     <span>Instagram</span>
                     <span>LinkedIn</span>
-                    <span>Design</span>
+                    <span>Conteúdo</span>
                   </div>
                 </div>
                 <Link href="/social-marketing" className="sc-link">
                   Ver planos <ArrowIcon />
-                </Link>
-              </article>
-
-              {/* 06 · Sistemas */}
-              <article className="svc-card">
-                <span className="sc-num">06 · Sistemas</span>
-                <h3>
-                  Plataforma <em>sob medida</em> para sua operação.
-                </h3>
-                <p className="sc-desc">
-                  Para negócios que cresceram e precisam de mais que um site.
-                  Portais, plataformas educacionais e sistemas internos
-                  desenvolvidos do zero.
-                </p>
-                <div className="sc-mock">
-                  <div className="chips">
-                    <span>Portal</span>
-                    <span>EAD</span>
-                    <span>Custom</span>
-                  </div>
-                </div>
-                <Link href="/sistemas/plataforma-educacional" className="sc-link">
-                  Saiba mais <ArrowIcon />
                 </Link>
               </article>
 
@@ -571,9 +685,9 @@ export default function Page() {
                   Anúncios que <em>geram</em> clientes, não só cliques.
                 </h3>
                 <p className="sc-desc">
-                  Para negócios que querem crescer com previsibilidade. Gestão
-                  completa de Meta Ads e Google Ads — criativo, segmentação,
-                  otimização e relatório de resultados toda semana.
+                  Para crescer com previsibilidade. Gestão completa de Meta Ads
+                  e Google Ads: criativo, segmentação, otimização e relatório de
+                  resultados toda semana, com o anúncio ligado à automação.
                 </p>
                 <div className="sc-mock">
                   <div className="chips">
@@ -604,7 +718,7 @@ export default function Page() {
           <div className="shell">
             <div className="sec-head">
               <div className="marker">
-                <span className="num">03</span>
+                <span className="num">04</span>
                 <span className="name">Diferenciais</span>
               </div>
               <h2 className="h-section">
@@ -665,254 +779,20 @@ export default function Page() {
           <div className="shell">
             <div className="sec-head">
               <div className="marker">
-                <span className="num">04</span>
-                <span className="name">Projetos</span>
+                <span className="num">05</span>
+                <span className="name">Prova</span>
               </div>
               <h2 className="h-section">
-                Trabalhos <em>que saíram</em> do papel.
+                Quem já <em>opera</em> com a Yamaji.
               </h2>
               <p className="anno">
-                Projetos reais entregues para negócios reais. Design, tecnologia
-                e marketing aplicados com propósito comercial.
+                Sistemas, automações e plataformas no ar para negócios reais.
+                Estes são dois exemplos; o portfólio completo fica nos cases.
               </p>
             </div>
 
-            <div className="projects-grid">
-              {/* 01 · BM Consultoria — Landing Page Institucional */}
-              <article className="project large">
-                <div className="thumb">
-                  <div className="thumb-art t1" aria-hidden="true">
-                    <div className="pat" />
-                    <div className="thumb-device">
-                      <div className="head">
-                        <div className="dot" />
-                        <span className="nm">Landing Page</span>
-                      </div>
-                      <div className="bar s1" />
-                      <div className="bar s3" />
-                      <div className="row">
-                        <div className="blk" />
-                        <div className="blk j" />
-                        <div className="blk" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="body">
-                  <div className="meta">
-                    <span>Consultoria Social</span>
-                    <span className="acc">Landing Page</span>
-                  </div>
-                  <h4>BM Consultoria</h4>
-                  <p className="scope">
-                    Site institucional com duas jornadas (organizações sociais e
-                    empresas), depoimentos e logos de parceiros como Petrobras e
-                    Plan International.
-                  </p>
-                  <a
-                    href="https://comunicacaobm.com.br"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="proj-link"
-                    data-label="case-bm-consultoria"
-                  >
-                    comunicacaobm.com.br
-                    <span className="ext" aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              </article>
-
-              {/* 02 · Dieisson Vasques — Plataforma de Treinos Online */}
-              <article className="project med">
-                <div className="thumb">
-                  <div className="thumb-art t3" aria-hidden="true">
-                    <div className="pat" />
-                    <div className="thumb-device">
-                      <div className="head">
-                        <div className="dot" />
-                        <span className="nm">Plataforma</span>
-                      </div>
-                      <div className="bar s1" />
-                      <div className="bar s2" />
-                    </div>
-                  </div>
-                </div>
-                <div className="body">
-                  <div className="meta">
-                    <span>Personal Trainer</span>
-                    <span className="acc">Plataforma</span>
-                  </div>
-                  <h4>Dieisson Vasques</h4>
-                  <p className="scope">
-                    Biblioteca de vídeos por categorias, painel de métricas do
-                    aluno, três planos de assinatura e integração com
-                    nutricionista.
-                  </p>
-                  <a
-                    href="https://dieissonvasques.com.br"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="proj-link"
-                    data-label="case-dieisson-vasques"
-                  >
-                    dieissonvasques.com.br
-                    <span className="ext" aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              </article>
-
-              {/* 03 · Plano de Saúde Bahia — Landing Page de Captação */}
-              <article className="project std">
-                <div className="thumb">
-                  <div className="thumb-art t4" aria-hidden="true">
-                    <div className="pat" />
-                    <div className="thumb-device">
-                      <div className="head">
-                        <div className="dot" />
-                        <span className="nm">Captação</span>
-                      </div>
-                      <div className="bar s3" />
-                      <div className="bar s2" />
-                    </div>
-                  </div>
-                </div>
-                <div className="body">
-                  <div className="meta">
-                    <span>Corretora de Saúde</span>
-                    <span className="acc">Landing Page</span>
-                  </div>
-                  <h4>Plano de Saúde Bahia</h4>
-                  <p className="scope">
-                    Landing page focada em conversão para corretora de planos de
-                    saúde.
-                  </p>
-                  <a
-                    href="https://planodesaudebahia.com.br"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="proj-link"
-                    data-label="case-plano-saude-bahia"
-                  >
-                    planodesaudebahia.com.br
-                    <span className="ext" aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              </article>
-
-              {/* 04 · Instituto D'Joana — Site Institucional + Admin Panel */}
-              <article className="project std">
-                <div className="thumb">
-                  <div className="thumb-art t2" aria-hidden="true">
-                    <div className="pat" />
-                    <div className="thumb-device">
-                      <div className="head">
-                        <div className="dot" />
-                        <span className="nm">Site + Admin</span>
-                      </div>
-                      <div className="bar s1" />
-                      <div className="bar s3" />
-                    </div>
-                  </div>
-                </div>
-                <div className="body">
-                  <div className="meta">
-                    <span>Instituto Social</span>
-                    <span className="acc">Site + Admin</span>
-                  </div>
-                  <h4>Instituto D&apos;Joana</h4>
-                  <p className="scope">
-                    CMS próprio, módulo de notícias com upload de múltiplos PDFs
-                    e painel administrativo completo.
-                  </p>
-                  <a
-                    href="https://institutodjoana.com.br"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="proj-link"
-                    data-label="case-instituto-djoana"
-                  >
-                    institutodjoana.com.br
-                    <span className="ext" aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              </article>
-
-              {/* 05 · ACEBA — Site Institucional + Admin Panel */}
-              <article className="project std">
-                <div className="thumb">
-                  <div className="thumb-art t6" aria-hidden="true">
-                    <div className="pat" />
-                    <div className="thumb-device">
-                      <div className="head">
-                        <div className="dot" />
-                        <span className="nm">Next.js + Supabase</span>
-                      </div>
-                      <div className="bar s2" />
-                      <div className="bar s1" />
-                    </div>
-                  </div>
-                </div>
-                <div className="body">
-                  <div className="meta">
-                    <span>Associação</span>
-                    <span className="acc">Site + Admin</span>
-                  </div>
-                  <h4>ACEBA</h4>
-                  <p className="scope">
-                    Migração de HTML estático para Next.js 15 + Supabase, admin
-                    com CRUD de parcerias, notícias e galeria, e anexos em PDF.
-                  </p>
-                  <a
-                    href="https://aceba.com.br"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="proj-link"
-                    data-label="case-aceba"
-                  >
-                    aceba.com.br
-                    <span className="ext" aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              </article>
-
-              {/* 06 · Bruxo Team — Landing Page Institucional */}
-              <article className="project std">
-                <div className="thumb">
-                  <div className="thumb-art t5" aria-hidden="true">
-                    <div className="pat" />
-                    <div className="thumb-device">
-                      <div className="head">
-                        <div className="dot" />
-                        <span className="nm">Landing Page</span>
-                      </div>
-                      <div className="bar s1" />
-                      <div className="bar s2" />
-                    </div>
-                  </div>
-                </div>
-                <div className="body">
-                  <div className="meta">
-                    <span>Artes Marciais</span>
-                    <span className="acc">Landing Page</span>
-                  </div>
-                  <h4>Bruxo Team</h4>
-                  <p className="scope">
-                    Site institucional para academia de jiu-jítsu.
-                  </p>
-                  <a
-                    href="https://bruxoteam-smoky.vercel.app"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    className="proj-link"
-                    data-label="case-bruxo-team"
-                  >
-                    bruxoteam-smoky.vercel.app
-                    <span className="ext" aria-hidden="true">↗</span>
-                  </a>
-                </div>
-              </article>
-
-              {/* 07 · OrderFlow Commerce Cloud — SaaS Demo / Portfólio Técnico */}
+            <div className="projects-grid proof">
+              {/* OrderFlow — SaaS técnico */}
               <article className="project std">
                 <div className="thumb">
                   <div className="thumb-art t3" aria-hidden="true">
@@ -937,15 +817,14 @@ export default function Page() {
                   </div>
                   <h4>OrderFlow Commerce Cloud</h4>
                   <p className="scope">
-                    IA integrada (Claude API), pagamentos Stripe + webhooks,
-                    e-mails transacionais via Resend e rastreamento de pedidos em
-                    tempo real via WebSocket (STOMP/SockJS).
+                    IA integrada, pagamentos Stripe com webhooks e rastreamento
+                    de pedidos em tempo real. Engenharia de produto de verdade.
                   </p>
                   <span className="proj-badge">Demo Técnica</span>
                 </div>
               </article>
 
-              {/* 08 · Proprium Imóveis — Plataforma de Leilão */}
+              {/* Proprium — plataforma de leilão */}
               <article className="project std">
                 <div className="thumb">
                   <div className="thumb-art t4" aria-hidden="true">
@@ -953,7 +832,7 @@ export default function Page() {
                     <div className="thumb-device">
                       <div className="head">
                         <div className="dot" />
-                        <span className="nm">Imóveis de Leilão</span>
+                        <span className="nm">Plataforma</span>
                       </div>
                       <div className="bar s3" />
                       <div className="bar s1" />
@@ -986,18 +865,16 @@ export default function Page() {
 
             <div className="projects-foot">
               <span className="note">
-                Projetos entregues em Salvador, BA e todo o Brasil
+                8 projetos no ar para negócios reais
               </span>
-              <a
-                href={WHATSAPP_LINK}
-                target="_blank"
-                rel="noreferrer noopener"
+              <Link
+                href="/cases"
                 className="btn-link"
-                data-label="projetos-iniciar"
+                data-label="projetos-ver-todos"
               >
-                Iniciar um projeto
+                Ver todos os cases
                 <ArrowIcon />
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -1013,7 +890,7 @@ export default function Page() {
           <div className="shell">
             <div className="sec-head">
               <div className="marker">
-                <span className="num">05</span>
+                <span className="num">06</span>
                 <span className="name">Processo</span>
               </div>
               <h2 className="h-section">
@@ -1094,7 +971,7 @@ export default function Page() {
           <div className="shell">
             <div className="sec-head">
               <div className="marker">
-                <span className="num">06</span>
+                <span className="num">07</span>
                 <span className="name">Tecnologia</span>
               </div>
               <h2 className="h-section">
@@ -1132,10 +1009,11 @@ export default function Page() {
                 </div>
                 <div className="auth-cap-list">
                   {[
-                    { k: "Framework web", v: "Next.js / React", acc: true },
-                    { k: "E-commerce", v: "Shopify / Custom", acc: false },
+                    { k: "Framework web", v: "Next.js / React", acc: false },
+                    { k: "Inteligência artificial", v: "Claude API", acc: true },
                     { k: "Automação", v: "n8n + Make", acc: true },
-                    { k: "CRM", v: "Supabase + Custom", acc: false },
+                    { k: "Banco + Auth", v: "Supabase", acc: false },
+                    { k: "Pagamentos", v: "Stripe / Pix", acc: false },
                     { k: "Infraestrutura", v: "Vercel / Cloudflare", acc: false },
                   ].map((item) => (
                     <div key={item.k} className="row">
@@ -1187,25 +1065,25 @@ export default function Page() {
               </div>
 
               <h2>
-                Pronto para colocar <em>sua empresa</em>{" "}
-                <span className="acc">no digital?</span>
+                Pronto para sua operação <em>rodar</em>{" "}
+                <span className="acc">sozinha?</span>
               </h2>
 
               <p>
-                Escolha por onde começar. A Yamaji cuida da estrutura, do
-                visual e da tecnologia para você crescer sem improviso.
+                Comece pela automação que mais dói hoje. A Yamaji liga as peças
+                do seu negócio e deixa o resto no piloto automático.
               </p>
 
               <div className="row-btns">
                 <a
-                  href={WHATSAPP_LINK}
+                  href={WHATSAPP_AUTO}
                   target="_blank"
                   rel="noreferrer noopener"
                   data-cta="primary"
                   data-label="cta-final-whatsapp"
                   className="btn btn-wa"
                 >
-                  Falar no WhatsApp
+                  Quero automatizar minha operação
                   <svg
                     className="arr"
                     width="14"
@@ -1251,8 +1129,8 @@ export default function Page() {
                   Yamaji Studio
                 </Link>
                 <p>
-                  Equipe de design, tecnologia e marketing para negócios que
-                  querem crescer com estrutura real e suporte humano.
+                  Automação, IA e engenharia para a sua operação responder,
+                  vender e rodar sozinha. Com gente de verdade no suporte.
                 </p>
               </div>
 
@@ -1322,7 +1200,7 @@ export default function Page() {
 
             <div className="footer-bottom">
               <span>© 2025 Yamaji Studio. Todos os direitos reservados.</span>
-              <span>Salvador, Bahia — Brasil</span>
+              <span>Salvador, Bahia, Brasil</span>
             </div>
           </div>
 
