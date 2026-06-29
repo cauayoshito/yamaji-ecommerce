@@ -16,6 +16,18 @@ const WHATSAPP_TRAFEGO = `https://wa.me/5571992258349?text=${encodeURIComponent(
   "Quero gestão de tráfego"
 )}`;
 
+/* Logos de clientes — src ausente = fallback em texto estilizado.
+   Plano de Saúde Bahia não possui logo de marca própria (o site usa a marca
+   "Noely Teixeira"), então entra como texto para não inventar associação. */
+const clientLogos: { name: string; src?: string }[] = [
+  { name: "BM Consultoria", src: "/logos/bm-consultoria.png" },
+  { name: "Instituto D'Joana", src: "/logos/instituto-djoana.png" },
+  { name: "ACEBA", src: "/logos/aceba.png" },
+  { name: "Dieisson Vasques", src: "/logos/dieisson-vasques.png" },
+  { name: "Plano de Saúde Bahia" },
+  { name: "Bruxo Team", src: "/logos/bruxo-team.png" },
+];
+
 const chartHeights = [35, 50, 40, 62, 45, 70, 55, 80, 65, 90, 75, 100];
 
 /* ---------- sub-components (inline, no extra files) ---------- */
@@ -45,6 +57,22 @@ function WhatsAppIcon() {
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
     </svg>
   );
+}
+
+function LogoNode({ name, src }: { name: string; src?: string }) {
+  if (src) {
+    // eslint-disable-next-line @next/next/no-img-element
+    return (
+      <img
+        className="logo-img"
+        src={src}
+        alt={name}
+        loading="lazy"
+        decoding="async"
+      />
+    );
+  }
+  return <span className="logo-text">{name}</span>;
 }
 
 /* ============================================================
@@ -240,6 +268,38 @@ export default function Page() {
                   </span>
                   <span className="l">Humano</span>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================================
+            LOGOS — faixa de confiança (abaixo do hero)
+            ============================================================ */}
+        <section
+          className="logos-strip"
+          data-section="logos"
+          aria-label="Negócios que confiam na Yamaji"
+        >
+          <div className="shell">
+            <p className="logos-kicker">Negócios que confiam na Yamaji</p>
+            <div className="logos-viewport">
+              <div className="logos-track">
+                {clientLogos.map((logo, i) => (
+                  <div className="logo-item" key={`logo-a-${i}`}>
+                    <LogoNode name={logo.name} src={logo.src} />
+                  </div>
+                ))}
+                {/* duplicata para loop contínuo do marquee */}
+                {clientLogos.map((logo, i) => (
+                  <div
+                    className="logo-item"
+                    aria-hidden="true"
+                    key={`logo-b-${i}`}
+                  >
+                    <LogoNode name={logo.name} src={logo.src} />
+                  </div>
+                ))}
               </div>
             </div>
           </div>
