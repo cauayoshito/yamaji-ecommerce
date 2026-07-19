@@ -9,7 +9,7 @@ const SITE = {
   domain: "yamajistudio.com.br",
   url: "https://www.yamajistudio.com.br",
   description:
-    "Sites, sistemas, automação e IA para empresas, restaurantes, academias e escritórios.",
+    "Criação de sites responsivos, lojas virtuais, sistemas, automação e IA para empresas em Salvador e todo o Brasil.",
   logo: "/images/logo-yamaji-aqua.png",
   tel: WHATSAPP_DISPLAY_NUMBER,
   email: "yamaji.studio@gmail.com",
@@ -35,6 +35,21 @@ export const metadata: Metadata = {
     template: "%s • Yamaji Studio",
   },
   description: SITE.description,
+  applicationName: SITE.name,
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
+  publisher: SITE.name,
+  category: "Tecnologia e desenvolvimento de software",
+  keywords: [
+    "criação de sites em Salvador",
+    "agência de desenvolvimento web",
+    "loja virtual",
+    "e-commerce responsivo",
+    "sistemas personalizados",
+    "automação empresarial",
+    "inteligência artificial para empresas",
+    "SEO técnico",
+  ],
   metadataBase: new URL(SITE.url),
   alternates: {
     canonical: SITE.url,
@@ -55,6 +70,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   icons: {
     icon: "/images/logo-yamaji-aqua.png",
@@ -78,8 +100,6 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         {/* Preconnects para performance */}
         <link rel="preconnect" href="https://plausible.io" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://connect.facebook.net" />
 
         {/* JSON-LD LocalBusiness */}
         <Script
@@ -88,7 +108,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "LocalBusiness",
+              "@type": ["LocalBusiness", "ProfessionalService"],
               name: SITE.name,
               url: SITE.url,
               telephone: SITE.tel,
@@ -106,6 +126,29 @@ export default function RootLayout({
               sameAs: SITE.sameAs,
               openingHours: "Mo-Sa 08:00-20:00",
               priceRange: "$$",
+              description: SITE.description,
+              knowsAbout: [
+                "Desenvolvimento de sites",
+                "E-commerce",
+                "Sistemas personalizados",
+                "Automação empresarial",
+                "Inteligência artificial",
+                "SEO técnico",
+              ],
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Serviços digitais Yamaji Studio",
+                itemListElement: [
+                  "Criação de sites responsivos",
+                  "Desenvolvimento de lojas virtuais",
+                  "Sistemas personalizados",
+                  "Automação e inteligência artificial",
+                  "SEO e performance web",
+                ].map((name) => ({
+                  "@type": "Offer",
+                  itemOffered: { "@type": "Service", name },
+                })),
+              },
             }),
           }}
         />

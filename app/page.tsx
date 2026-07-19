@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowDown,
@@ -18,27 +17,36 @@ import SegmentCard from "@/components/ecosystem/SegmentCard";
 import SegmentExplorer from "@/components/ecosystem/SegmentExplorer";
 import DeliveryTimeline from "@/components/ecosystem/DeliveryTimeline";
 import SegmentMark from "@/components/ecosystem/SegmentMark";
+import VerifiedProjects from "@/components/site/VerifiedProjects";
 import { ecosystemSolutions } from "@/data/ecosystem";
-import { cases } from "@/data/cases";
 import { GENERAL_WHATSAPP_LINK } from "@/lib/contact";
 
 export const metadata: Metadata = {
-  title: { absolute: "Ecossistema Yamaji — Tecnologia que entende o seu negócio" },
+  title: { absolute: "Criação de Sites, Sistemas e E-commerce em Salvador | Yamaji Studio" },
   description:
-    "Sites, sistemas, automação e IA para empresas, restaurantes, academias e escritórios. Conheça Yamaji Studio, Eats, Fit e Legal.",
+    "Agência de tecnologia em Salvador especializada em sites responsivos, lojas virtuais, sistemas, automação e IA. Conheça projetos reais da Yamaji Studio.",
+  keywords: [
+    "criação de sites em Salvador",
+    "desenvolvimento de sites",
+    "loja virtual",
+    "e-commerce",
+    "sistemas personalizados",
+    "automação com inteligência artificial",
+    "agência digital Salvador",
+  ],
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Ecossistema Yamaji — Uma Yamaji para cada tipo de negócio",
+    title: "Yamaji Studio — Sites, sistemas e e-commerce que geram negócios",
     description:
-      "Sites, sistemas, automação e IA para empresas, restaurantes, academias e escritórios.",
+      "Sites responsivos, lojas virtuais, sistemas e automações para empresas que querem crescer.",
     url: "/",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ecossistema Yamaji — Uma Yamaji para cada tipo de negócio",
+    title: "Yamaji Studio — Sites, sistemas e e-commerce",
     description:
-      "Sites, sistemas, automação e IA para empresas, restaurantes, academias e escritórios.",
+      "Tecnologia, design e estratégia para transformar visitas em oportunidades.",
   },
 };
 
@@ -71,8 +79,6 @@ const foundations = [
 ];
 
 export default function Page() {
-  const featuredCases = cases.slice(0, 4);
-
   return (
     <div className="ecosystem-site min-h-screen bg-bg text-fg">
       <a
@@ -107,7 +113,7 @@ export default function Page() {
                 Ecossistema Yamaji
               </div>
 
-              <h1 className="mt-7 max-w-[850px] text-[clamp(3.1rem,7vw,6.6rem)] font-semibold leading-[0.92] tracking-[-0.065em] text-white">
+              <h1 className="mt-7 max-w-[850px] text-[clamp(2.65rem,12vw,6.6rem)] font-semibold leading-[0.94] tracking-[-0.055em] text-white sm:tracking-[-0.065em]">
                 Uma Yamaji para cada tipo de negócio.
               </h1>
               <p className="mt-7 max-w-xl text-base leading-relaxed text-white/55 sm:text-lg">
@@ -236,57 +242,7 @@ export default function Page() {
           </Container>
         </section>
 
-        <section id="cases" className="py-20 sm:py-28" data-section="cases">
-          <Container>
-            <div className="flex flex-col gap-6 border-b border-white/[0.08] pb-9 md:flex-row md:items-end md:justify-between">
-              <div>
-                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
-                  Cases verificados
-                </span>
-                <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
-                  Projetos para negócios reais.
-                </h2>
-              </div>
-              <Link href="/cases" className="inline-flex items-center gap-2 text-sm font-semibold text-accent">
-                Explorar todos os cases
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-
-            <div className="mt-8 grid gap-5 md:grid-cols-2">
-              {featuredCases.map((item, index) => (
-                <Link
-                  key={item.slug}
-                  href={`/cases/${item.slug}`}
-                  className="group grid min-h-[290px] overflow-hidden rounded-[1.6rem] border border-white/[0.08] bg-white/[0.025] transition hover:-translate-y-1 hover:border-white/15 sm:grid-cols-[0.44fr_0.56fr]"
-                >
-                  <div className="relative min-h-48 overflow-hidden bg-white/[0.03]">
-                    <Image
-                      src={item.cover}
-                      alt={`Projeto ${item.title}`}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 300px"
-                      className="object-cover opacity-70 transition duration-500 group-hover:scale-105 group-hover:opacity-90"
-                    />
-                    <span className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/55 px-2.5 py-1 text-[8px] uppercase tracking-[0.15em] text-white/60 backdrop-blur">
-                      Projeto 0{index + 1}
-                    </span>
-                  </div>
-                  <div className="flex flex-col p-6">
-                    <span className="text-[9px] uppercase tracking-[0.17em] text-accent">
-                      {item.type} · {item.segment}
-                    </span>
-                    <h3 className="mt-3 text-xl font-semibold text-white">{item.title}</h3>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-white/45">{item.summary}</p>
-                    <span className="mt-6 inline-flex items-center gap-1.5 text-xs font-semibold text-white/70">
-                      Conhecer projeto <ArrowRight className="h-3.5 w-3.5" />
-                    </span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </Container>
-        </section>
+        <VerifiedProjects />
 
         <section id="cta" className="pb-20 sm:pb-28" data-section="cta-final">
           <Container>

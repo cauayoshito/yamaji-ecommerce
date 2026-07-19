@@ -52,14 +52,15 @@ function walk(dir) {
 
     const ext = path.extname(entry.name).toLowerCase();
     if (!TEXT_EXTENSIONS.has(ext)) continue;
-    if (path.relative(ROOT, fullPath) === "scripts/check-encoding.js") continue;
+    const relativePath = path.relative(ROOT, fullPath).replace(/\\/g, "/");
+    if (relativePath === "scripts/check-encoding.js") continue;
 
     const content = fs.readFileSync(fullPath, "utf8");
     const lines = content.split(/\r?\n/);
     lines.forEach((line, index) => {
       if (PATTERNS.some((pattern) => line.includes(pattern))) {
         matches.push({
-          file: path.relative(ROOT, fullPath),
+          file: relativePath,
           line: index + 1,
           text: line.trim(),
         });

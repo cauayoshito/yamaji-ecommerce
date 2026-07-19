@@ -45,6 +45,45 @@ function ArrowIcon({ size = 13 }: { size?: number }) {
 const projects: PortfolioProject[] = [
   {
     span: "large",
+    art: "t5",
+    device: "E-commerce",
+    niche: "Moda e varejo",
+    tag: "E-commerce",
+    name: "Trevo Modas",
+    ecosystem: "studio",
+    scope:
+      "Loja virtual responsiva com catálogo organizado e experiência de compra otimizada para clientes no celular.",
+    url: "https://www.lojatrevomodas.com.br/",
+    badge: "No ar",
+  },
+  {
+    span: "med",
+    art: "t3",
+    device: "Landing Page",
+    niche: "Personal Trainer",
+    tag: "Landing Page",
+    name: "Glúteo Fit Pro",
+    ecosystem: "fit",
+    scope:
+      "Presença digital do personal James com posicionamento claro, navegação mobile e jornada direcionada para novos contatos.",
+    url: "https://gluteofitpro.vercel.app/",
+    badge: "No ar",
+  },
+  {
+    span: "med",
+    art: "t6",
+    device: "Site institucional",
+    niche: "Engenharia Civil",
+    tag: "Site institucional",
+    name: "Queiroz Engenharia Civil",
+    ecosystem: "studio",
+    scope:
+      "Site profissional para Carlos Queiroz apresentar serviços, construir autoridade técnica e receber pedidos de orçamento.",
+    url: "https://www.queirozengcivil.com.br/",
+    badge: "No ar",
+  },
+  {
+    span: "large",
     art: "t1",
     device: "Landing Page",
     niche: "Consultoria Social",
