@@ -70,7 +70,7 @@ function useDemoSimulation() {
     {
       id: "t1",
       title: "Lead captado via campanha",
-      subtitle: "Agora • Campanha: Black Friday B2B",
+      subtitle: "Agora • Campanha: Lançamento B2B",
       icon: "search",
     },
   ]);

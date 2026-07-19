@@ -286,7 +286,7 @@ export default function SocialMarketingPage() {
               </div>
             </div>
             <div className="footer-bottom">
-              <span>© 2025 Yamaji Studio. Todos os direitos reservados.</span>
+              <span>© 2026 Yamaji Studio. Todos os direitos reservados.</span>
               <span>Salvador, Bahia — Brasil</span>
             </div>
           </div>

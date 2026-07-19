@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
-  const site = "https://yamajistudio.com.br"; // troque para o domínio real
+  const site = "https://www.yamajistudio.com.br";
 
   return {
     rules: [

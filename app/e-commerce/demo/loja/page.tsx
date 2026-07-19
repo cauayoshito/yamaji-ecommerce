@@ -199,10 +199,9 @@ export default function CommerceDemoStorefront() {
           </div>
         </div>
         <div className="mx-auto mt-10 max-w-6xl border-t border-white/10 pt-6 text-center text-xs text-muted">
-          © 2024 Yamaji E-commerce. Todos os direitos reservados.
+          © 2026 Yamaji E-commerce. Todos os direitos reservados.
         </div>
       </footer>
     </main>
   );
 }
-

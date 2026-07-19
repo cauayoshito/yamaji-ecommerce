@@ -19,7 +19,24 @@ const TEXT_EXTENSIONS = new Set([
   ".yaml",
   ".svg",
 ]);
-const PATTERNS = ["Ã", "Â", "â€™", "â€œ", "â€"];
+// Sequências típicas de UTF-8 interpretado como Latin-1. Evite caracteres
+// isolados como "Ã" e "Â", que também existem legitimamente em português.
+const PATTERNS = [
+  "Ã¡",
+  "Ã©",
+  "Ã­",
+  "Ã³",
+  "Ãº",
+  "Ã£",
+  "Ãµ",
+  "Ã§",
+  "Ãª",
+  "Ã´",
+  "Â ",
+  "â€™",
+  "â€œ",
+  "â€",
+];
 
 const matches = [];
 

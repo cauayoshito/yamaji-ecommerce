@@ -515,7 +515,7 @@ export default function CommerceDemoDashboard() {
 
         <footer className="border-t border-white/10 py-8 text-center">
           <p className="text-xs text-muted">
-            © 2024 Yamaji E-commerce. Versão 2.4.0-premium. Desenvolvido para
+            © 2026 Yamaji E-commerce. Versão 2.4.0-premium. Desenvolvido para
             alta performance.
           </p>
         </footer>

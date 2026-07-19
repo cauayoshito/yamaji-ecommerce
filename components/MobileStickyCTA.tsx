@@ -1,8 +1,9 @@
 // components/MobileStickyCTA.tsx
-// Barra colada no rodapé (mobile), com "3 vagas" forte e respeito à safe-area.
+// Barra colada no rodapé (mobile), com acesso rápido e respeito à safe-area.
 "use client";
 
 import { useEffect, useState } from "react";
+import { GENERAL_WHATSAPP_LINK } from "@/lib/contact";
 
 export default function MobileStickyCTA() {
   const [visible, setVisible] = useState(false);
@@ -31,12 +32,12 @@ export default function MobileStickyCTA() {
               aria-hidden
             />
             <span className="text-[12.5px] text-teal-200 font-medium">
-              3 vagas para Black Friday
+              Encontre sua solução Yamaji
             </span>
           </div>
 
           <a
-            href="https://wa.me/5571992358249"
+            href={GENERAL_WHATSAPP_LINK}
             className="rounded-lg bg-teal-400/95 hover:bg-teal-400 text-[#0B0F14] px-3 py-2 text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-300"
           >
             Falar no WhatsApp

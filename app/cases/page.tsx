@@ -1,15 +1,32 @@
 import type { Metadata } from "next";
 import NavBar from "@/components/site/NavBar";
+import Footer from "@/components/site/Footer";
+import CasesFilterGrid, {
+  type PortfolioProject,
+} from "@/components/ecosystem/CasesFilterGrid";
+import { createWhatsAppLink } from "@/lib/contact";
 
 export const metadata: Metadata = {
-  title: "Cases · Yamaji Studio",
+  title: { absolute: "Cases — Ecossistema Yamaji" },
   description:
     "Projetos no ar: sites, plataformas, automações e sistemas entregues pela Yamaji para negócios reais.",
+  alternates: { canonical: "/cases" },
+  openGraph: {
+    title: "Cases — Ecossistema Yamaji",
+    description:
+      "Projetos no ar: sites, plataformas, automações e sistemas entregues pela Yamaji para negócios reais.",
+    url: "/cases",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cases — Ecossistema Yamaji",
+    description:
+      "Projetos no ar: sites, plataformas, automações e sistemas entregues pela Yamaji para negócios reais.",
+  },
 };
 
-const WHATSAPP_AUTO = `https://wa.me/5571992258349?text=${encodeURIComponent(
-  "Quero automatizar meu atendimento"
-)}`;
+const WHATSAPP_AUTO = createWhatsAppLink("Quero automatizar meu atendimento");
 
 function ArrowIcon({ size = 13 }: { size?: number }) {
   return (
@@ -25,19 +42,7 @@ function ArrowIcon({ size = 13 }: { size?: number }) {
   );
 }
 
-type Project = {
-  span: "large" | "med" | "std";
-  art: string;
-  device: string;
-  niche: string;
-  tag: string;
-  name: string;
-  scope: string;
-  url?: string;
-  badge?: string;
-};
-
-const projects: Project[] = [
+const projects: PortfolioProject[] = [
   {
     span: "large",
     art: "t1",
@@ -45,6 +50,7 @@ const projects: Project[] = [
     niche: "Consultoria Social",
     tag: "Landing Page",
     name: "BM Consultoria",
+    ecosystem: "studio",
     scope:
       "Site institucional com duas jornadas (organizações sociais e empresas), depoimentos e logos de parceiros como Petrobras e Plan International.",
     url: "https://comunicacaobm.com.br",
@@ -56,6 +62,7 @@ const projects: Project[] = [
     niche: "Personal Trainer",
     tag: "Plataforma",
     name: "Dieisson Vasques",
+    ecosystem: "fit",
     scope:
       "Biblioteca de vídeos por categorias, painel de métricas do aluno, três planos de assinatura e integração com nutricionista.",
     url: "https://dieissonvasques.com.br",
@@ -67,6 +74,7 @@ const projects: Project[] = [
     niche: "Corretora de Saúde",
     tag: "Landing Page",
     name: "Plano de Saúde Bahia",
+    ecosystem: "studio",
     scope:
       "Landing page focada em conversão para corretora de planos de saúde.",
     url: "https://planodesaudebahia.com.br",
@@ -78,6 +86,7 @@ const projects: Project[] = [
     niche: "Instituto Social",
     tag: "Site + Admin",
     name: "Instituto D'Joana",
+    ecosystem: "studio",
     scope:
       "CMS próprio, módulo de notícias com upload de múltiplos PDFs e painel administrativo completo.",
     url: "https://institutodjoana.com.br",
@@ -89,6 +98,7 @@ const projects: Project[] = [
     niche: "Associação",
     tag: "Site + Admin",
     name: "ACEBA",
+    ecosystem: "studio",
     scope:
       "Migração de HTML estático para Next.js 15 + Supabase, admin com CRUD de parcerias, notícias e galeria, e anexos em PDF.",
     url: "https://aceba.com.br",
@@ -100,6 +110,7 @@ const projects: Project[] = [
     niche: "Artes Marciais",
     tag: "Landing Page",
     name: "Bruxo Team",
+    ecosystem: "fit",
     scope: "Site institucional para academia de jiu-jítsu.",
     url: "https://bruxoteam-smoky.vercel.app",
   },
@@ -110,6 +121,7 @@ const projects: Project[] = [
     niche: "E-commerce / Tech",
     tag: "SaaS Demo",
     name: "OrderFlow Commerce Cloud",
+    ecosystem: "studio",
     scope:
       "IA integrada (Claude API), pagamentos Stripe + webhooks, e-mails transacionais via Resend e rastreamento de pedidos em tempo real via WebSocket (STOMP/SockJS).",
     badge: "Demo Técnica",
@@ -121,6 +133,7 @@ const projects: Project[] = [
     niche: "Imobiliário / Leilão",
     tag: "Plataforma",
     name: "Proprium Imóveis",
+    ecosystem: "studio",
     scope:
       "Plataforma de imóveis de leilão com busca, filtros, planos de assinatura e alertas por WhatsApp.",
     url: "https://proprium-imoveis.vercel.app",
@@ -148,47 +161,7 @@ export default function CasesPage() {
               </p>
             </div>
 
-            <div className="projects-grid">
-              {projects.map((p) => (
-                <article key={p.name} className={`project ${p.span}`}>
-                  <div className="thumb">
-                    <div className={`thumb-art ${p.art}`} aria-hidden="true">
-                      <div className="pat" />
-                      <div className="thumb-device">
-                        <div className="head">
-                          <div className="dot" />
-                          <span className="nm">{p.device}</span>
-                        </div>
-                        <div className="bar s1" />
-                        <div className="bar s2" />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="body">
-                    <div className="meta">
-                      <span>{p.niche}</span>
-                      <span className="acc">{p.tag}</span>
-                    </div>
-                    <h4>{p.name}</h4>
-                    <p className="scope">{p.scope}</p>
-                    {p.url ? (
-                      <a
-                        href={p.url}
-                        target="_blank"
-                        rel="noreferrer noopener"
-                        className="proj-link"
-                        data-label={`case-${p.name}`}
-                      >
-                        {p.url.replace(/^https?:\/\//, "")}
-                        <span className="ext" aria-hidden="true">↗</span>
-                      </a>
-                    ) : (
-                      <span className="proj-badge">{p.badge}</span>
-                    )}
-                  </div>
-                </article>
-              ))}
-            </div>
+            <CasesFilterGrid projects={projects} />
 
             <div className="projects-foot">
               <span className="note">
@@ -208,6 +181,7 @@ export default function CasesPage() {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }
