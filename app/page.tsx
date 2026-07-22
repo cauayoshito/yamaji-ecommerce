@@ -13,6 +13,7 @@ import {
 import Container from "@/components/ui/Container";
 import NavBar from "@/components/site/NavBar";
 import Footer from "@/components/site/Footer";
+import MobileStickyCTA from "@/components/MobileStickyCTA";
 import SegmentCard from "@/components/ecosystem/SegmentCard";
 import SegmentExplorer from "@/components/ecosystem/SegmentExplorer";
 import DeliveryTimeline from "@/components/ecosystem/DeliveryTimeline";
@@ -22,7 +23,9 @@ import { ecosystemSolutions } from "@/data/ecosystem";
 import { GENERAL_WHATSAPP_LINK } from "@/lib/contact";
 
 export const metadata: Metadata = {
-  title: { absolute: "Criação de Sites, Sistemas e E-commerce em Salvador | Yamaji Studio" },
+  title: {
+    absolute: "Criação de Sites, Sistemas e E-commerce em Salvador | Yamaji Studio",
+  },
   description:
     "Agência de tecnologia em Salvador especializada em sites responsivos, lojas virtuais, sistemas, automação e IA. Conheça projetos reais da Yamaji Studio.",
   keywords: [
@@ -64,17 +67,20 @@ const foundations = [
   {
     icon: Blocks,
     title: "Sistemas & integrações",
-    description: "As partes do negócio conversam em uma estrutura preparada para evoluir.",
+    description:
+      "As partes do negócio conversam em uma estrutura preparada para evoluir.",
   },
   {
     icon: Bot,
     title: "Automação & IA",
-    description: "Tecnologia aplicada onde ela reduz espera e trabalho repetitivo.",
+    description:
+      "Tecnologia aplicada onde ela reduz espera e trabalho repetitivo.",
   },
   {
     icon: Headphones,
     title: "Acompanhamento humano",
-    description: "O projeto continua sendo acompanhado depois da ativação.",
+    description:
+      "O projeto continua sendo acompanhado depois da ativação.",
   },
 ];
 
@@ -87,84 +93,91 @@ export default function Page() {
       >
         Ir para o conteúdo
       </a>
-      <NavBar />
 
-      <a
-        href={GENERAL_WHATSAPP_LINK}
-        target="_blank"
-        rel="noreferrer noopener"
-        aria-label="Falar com a Yamaji no WhatsApp"
-        data-cta="whatsapp"
-        data-label="mobile-floating-whatsapp"
-        className="fixed bottom-5 right-5 z-40 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_16px_40px_-14px_rgba(37,211,102,.7)] transition hover:scale-105 lg:hidden"
-      >
-        <MessageCircle className="h-6 w-6" fill="currentColor" />
-      </a>
+      <NavBar />
+      <MobileStickyCTA />
 
       <main id="conteudo" className="overflow-hidden pt-16 md:pt-[68px]">
-        <section className="relative min-h-[calc(100svh-4rem)] border-b border-white/[0.06] py-16 sm:py-20 lg:grid lg:place-items-center lg:py-24" data-section="hero">
+        <section
+          className="relative min-h-[calc(100svh-4rem)] border-b border-white/[0.06] py-12 sm:py-20 lg:grid lg:place-items-center lg:py-24"
+          data-section="hero"
+        >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_70%_22%,rgba(94,234,212,.12),transparent_30%),radial-gradient(circle_at_20%_82%,rgba(129,140,248,.08),transparent_30%)]" />
           <div className="pointer-events-none absolute inset-0 bg-grid-pattern bg-[size:42px_42px] opacity-[0.16] [mask-image:linear-gradient(to_bottom,black,transparent_88%)]" />
 
-          <Container className="relative grid gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/[0.06] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-accent">
-                <span className="h-1.5 w-1.5 rounded-full bg-accent motion-safe:animate-pulse" />
+          <Container className="relative grid min-w-0 gap-10 sm:gap-14 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <div className="min-w-0">
+              <div className="inline-flex max-w-full items-center gap-2 rounded-full border border-accent/20 bg-accent/[0.06] px-3 py-1.5 text-[10px] font-medium uppercase tracking-[0.18em] text-accent">
+                <span
+                  className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent motion-safe:animate-pulse"
+                  aria-hidden="true"
+                />
                 Ecossistema Yamaji
               </div>
 
-              <h1 className="mt-7 max-w-[850px] text-[clamp(2.65rem,12vw,6.6rem)] font-semibold leading-[0.94] tracking-[-0.055em] text-white sm:tracking-[-0.065em]">
+              <h1 className="mt-6 max-w-[850px] text-[clamp(2.35rem,11vw,6.6rem)] font-semibold leading-[0.96] tracking-[-0.05em] text-white sm:mt-7 sm:tracking-[-0.065em]">
                 Uma Yamaji para cada tipo de negócio.
               </h1>
-              <p className="mt-7 max-w-xl text-base leading-relaxed text-white/55 sm:text-lg">
-                Sites, sistemas, automação e IA criados para a realidade de empresas, restaurantes, academias e escritórios.
+              <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-white/58 sm:mt-7 sm:text-lg">
+                Sites, sistemas, automação e IA para empresas, restaurantes,
+                academias e escritórios.
               </p>
 
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+              <div className="mt-8 flex flex-col gap-3 sm:mt-9 sm:flex-row">
                 <a
                   href="#solucoes"
                   data-cta="primary"
                   data-label="hero-find-solution"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-[#08090B] transition hover:-translate-y-0.5 hover:bg-[#7bf0dc]"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-[#08090B] transition hover:-translate-y-0.5 hover:bg-[#7bf0dc]"
                 >
                   Encontrar minha solução
                   <ArrowDown className="h-4 w-4" />
                 </a>
                 <a
                   href="#experiencia"
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 bg-white/[0.025] px-6 py-3.5 text-sm font-semibold text-white/80 transition hover:border-white/20 hover:bg-white/[0.05]"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/12 bg-white/[0.025] px-6 text-sm font-semibold text-white/80 transition hover:border-white/20 hover:bg-white/[0.05]"
                 >
                   Conhecer o ecossistema
                 </a>
               </div>
 
-              <div className="mt-10 flex items-center gap-3 text-xs text-white/35">
-                <span className="h-px w-10 bg-white/15" />
+              <div className="mt-8 flex min-w-0 items-center gap-3 text-[11px] leading-relaxed text-white/35 sm:mt-10 sm:text-xs">
+                <span className="h-px w-8 shrink-0 bg-white/15 sm:w-10" />
                 <span>Estratégia · Produto · Tecnologia · Acompanhamento</span>
               </div>
             </div>
 
-            <EcosystemConstellation />
+            <div className="sm:hidden">
+              <MobileSegmentChooser />
+            </div>
+            <div className="hidden min-w-0 sm:block">
+              <EcosystemConstellation />
+            </div>
           </Container>
         </section>
 
-        <section id="solucoes" className="py-20 sm:py-28" data-section="solucoes">
+        <section
+          id="solucoes"
+          className="py-16 sm:py-28"
+          data-section="solucoes"
+        >
           <Container>
-            <div className="grid gap-8 border-b border-white/[0.08] pb-10 lg:grid-cols-[0.65fr_1.35fr] lg:items-end">
+            <div className="grid gap-7 border-b border-white/[0.08] pb-9 sm:gap-8 sm:pb-10 lg:grid-cols-[0.65fr_1.35fr] lg:items-end">
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
                 Quatro frentes especializadas
               </p>
-              <div>
+              <div className="min-w-0">
                 <h2 className="max-w-4xl text-3xl font-semibold leading-[1.04] tracking-[-0.045em] text-white sm:text-5xl lg:text-6xl">
                   Qual é a realidade do seu negócio?
                 </h2>
-                <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/50">
-                  Escolha o cenário que mais se aproxima da sua operação. Cada frente fala a linguagem daquele mercado.
+                <p className="mt-5 max-w-2xl text-[15px] leading-relaxed text-white/50 sm:text-base">
+                  Escolha o cenário mais próximo da sua operação. Cada frente
+                  abre uma conversa já contextualizada para o seu mercado.
                 </p>
               </div>
             </div>
 
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-7 grid min-w-0 gap-4 sm:mt-8 sm:grid-cols-2 xl:grid-cols-4">
               {ecosystemSolutions.map((solution) => (
                 <SegmentCard key={solution.slug} solution={solution} />
               ))}
@@ -172,51 +185,67 @@ export default function Page() {
           </Container>
         </section>
 
-        <section id="experiencia" className="border-y border-white/[0.06] bg-[#0A0C10] py-20 sm:py-28" data-section="experiencia">
+        <section
+          id="experiencia"
+          className="border-y border-white/[0.06] bg-[#0A0C10] py-16 sm:py-28"
+          data-section="experiencia"
+        >
           <Container>
-            <div className="mx-auto mb-14 max-w-3xl text-center">
+            <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
               <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
                 Veja antes de imaginar
               </p>
               <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
                 Tecnologia apresentada dentro da rotina.
               </h2>
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/50">
-                Não é um painel decorativo. É uma demonstração visual do caminho que cliente e equipe percorrem.
+              <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-white/50 sm:text-base">
+                Não é um painel decorativo. É uma demonstração visual do caminho
+                que cliente e equipe percorrem.
               </p>
             </div>
             <SegmentExplorer />
           </Container>
         </section>
 
-        <section className="py-20 sm:py-28" data-section="base-compartilhada">
+        <section
+          className="py-16 sm:py-28"
+          data-section="base-compartilhada"
+        >
           <Container>
-            <div className="grid gap-14 lg:grid-cols-[0.72fr_1.28fr]">
-              <div className="lg:sticky lg:top-28 lg:self-start">
+            <div className="grid gap-12 sm:gap-14 lg:grid-cols-[0.72fr_1.28fr]">
+              <div className="min-w-0 lg:sticky lg:top-28 lg:self-start">
                 <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
                   Base compartilhada
                 </span>
                 <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
                   Mercados diferentes. A mesma inteligência de construção.
                 </h2>
-                <p className="mt-5 max-w-xl text-base leading-relaxed text-white/50">
-                  A especialização muda a experiência. A qualidade técnica, o processo e o acompanhamento continuam conectados pela Yamaji.
+                <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/50 sm:text-base">
+                  A especialização muda a experiência. A qualidade técnica, o
+                  processo e o acompanhamento continuam conectados pela Yamaji.
                 </p>
               </div>
 
-              <div className="border-t border-white/[0.08]">
+              <div className="min-w-0 border-t border-white/[0.08]">
                 {foundations.map((item, index) => {
                   const Icon = item.icon;
                   return (
-                    <article key={item.title} className="grid gap-4 border-b border-white/[0.08] py-6 sm:grid-cols-[48px_0.6fr_1fr] sm:items-center">
+                    <article
+                      key={item.title}
+                      className="grid min-w-0 gap-4 border-b border-white/[0.08] py-6 sm:grid-cols-[48px_0.6fr_1fr] sm:items-center"
+                    >
                       <span className="grid h-10 w-10 place-items-center rounded-xl border border-white/[0.08] bg-white/[0.025] text-accent">
                         <Icon className="h-4 w-4" />
                       </span>
                       <h3 className="text-base font-semibold text-white">
-                        <span className="mr-2 font-mono text-[9px] text-white/20">0{index + 1}</span>
+                        <span className="mr-2 font-mono text-[9px] text-white/20">
+                          0{index + 1}
+                        </span>
                         {item.title}
                       </h3>
-                      <p className="text-sm leading-relaxed text-white/45">{item.description}</p>
+                      <p className="text-sm leading-relaxed text-white/45">
+                        {item.description}
+                      </p>
                     </article>
                   );
                 })}
@@ -225,17 +254,22 @@ export default function Page() {
           </Container>
         </section>
 
-        <section id="como-funciona" className="border-y border-white/[0.06] bg-[#0A0C10] py-20 sm:py-28" data-section="processo">
+        <section
+          id="como-funciona"
+          className="border-y border-white/[0.06] bg-[#0A0C10] py-16 sm:py-28"
+          data-section="processo"
+        >
           <Container>
-            <div className="mx-auto mb-14 max-w-3xl text-center">
+            <div className="mx-auto mb-10 max-w-3xl text-center sm:mb-14">
               <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
                 Como a Yamaji trabalha
               </span>
               <h2 className="mt-4 text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">
                 Da realidade do negócio à solução funcionando.
               </h2>
-              <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-white/50">
-                O projeto começa pelo que precisa mudar, não por uma lista pronta de funcionalidades.
+              <p className="mx-auto mt-5 max-w-2xl text-[15px] leading-relaxed text-white/50 sm:text-base">
+                O projeto começa pelo que precisa mudar, não por uma lista pronta
+                de funcionalidades.
               </p>
             </div>
             <DeliveryTimeline />
@@ -244,24 +278,43 @@ export default function Page() {
 
         <VerifiedProjects />
 
-        <section id="cta" className="pb-20 sm:pb-28" data-section="cta-final">
+        <section
+          id="cta"
+          className="pb-16 sm:pb-28"
+          data-section="cta-final"
+        >
           <Container>
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/[0.09] bg-[#0B1113] px-6 py-16 text-center sm:px-12 sm:py-24">
+            <div className="relative overflow-hidden rounded-[1.6rem] border border-white/[0.09] bg-[#0B1113] px-5 py-14 text-center sm:rounded-[2rem] sm:px-12 sm:py-24">
               <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_110%,rgba(94,234,212,.18),transparent_46%)]" />
               <div className="relative mx-auto max-w-4xl">
-                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">Encontre seu ponto de partida</span>
+                <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-accent">
+                  Encontre seu ponto de partida
+                </span>
                 <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-[-0.045em] text-white sm:text-6xl">
                   Seu negócio não precisa se adaptar a um sistema genérico.
                 </h2>
-                <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-white/50">
-                  A Yamaji encontra a solução certa para sua realidade e mostra por onde começar.
+                <p className="mx-auto mt-6 max-w-2xl text-[15px] leading-relaxed text-white/50 sm:text-base">
+                  A Yamaji encontra a solução certa para sua realidade e mostra
+                  por onde começar.
                 </p>
-                <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <a href="#solucoes" className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3.5 text-sm font-semibold text-[#08090B] transition hover:-translate-y-0.5">
-                    Encontrar minha solução <ArrowRight className="h-4 w-4" />
+                <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:mt-9 sm:flex-row sm:items-center">
+                  <a
+                    href="#solucoes"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-accent px-6 text-sm font-semibold text-[#08090B] transition hover:-translate-y-0.5"
+                  >
+                    Encontrar minha solução
+                    <ArrowRight className="h-4 w-4" />
                   </a>
-                  <a href={GENERAL_WHATSAPP_LINK} target="_blank" rel="noreferrer noopener" data-cta="whatsapp" data-label="home-final-whatsapp" className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.025] px-6 py-3.5 text-sm font-semibold text-white/80 transition hover:border-white/20 hover:bg-white/[0.05]">
-                    <MessageCircle className="h-4 w-4" /> Falar no WhatsApp
+                  <a
+                    href={GENERAL_WHATSAPP_LINK}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    data-cta="whatsapp"
+                    data-label="home-final-whatsapp"
+                    className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/12 bg-white/[0.025] px-6 text-sm font-semibold text-white/80 transition hover:border-white/20 hover:bg-white/[0.05]"
+                  >
+                    <MessageCircle className="h-4 w-4" />
+                    Falar no WhatsApp
                   </a>
                 </div>
               </div>
@@ -275,18 +328,75 @@ export default function Page() {
   );
 }
 
+function MobileSegmentChooser() {
+  return (
+    <div className="rounded-[1.5rem] border border-white/[0.08] bg-white/[0.025] p-3">
+      <div className="mb-3 flex items-center justify-between gap-3 px-1">
+        <div>
+          <p className="text-[9px] font-medium uppercase tracking-[0.17em] text-accent">
+            Escolha rápido
+          </p>
+          <p className="mt-1 text-xs text-white/45">Qual cenário parece com o seu?</p>
+        </div>
+        <ArrowDown className="h-4 w-4 shrink-0 text-white/25" />
+      </div>
+
+      <div className="grid grid-cols-2 gap-2">
+        {ecosystemSolutions.map((solution) => (
+          <Link
+            key={solution.slug}
+            href={`/${solution.slug}`}
+            className="min-w-0 rounded-xl border border-white/[0.08] bg-[#0B0E12] p-3 transition active:scale-[0.98]"
+            style={{
+              "--segment-accent": solution.accent,
+              "--segment-soft": solution.accentSoft,
+            } as React.CSSProperties}
+          >
+            <div className="flex min-w-0 items-center gap-2.5">
+              <SegmentMark
+                segment={solution.slug}
+                className="h-8 w-8 shrink-0 rounded-lg"
+              />
+              <div className="min-w-0">
+                <span className="block truncate text-[9px] uppercase tracking-[0.13em] text-white/28">
+                  Yamaji
+                </span>
+                <span className="block truncate text-xs font-semibold text-white">
+                  {solution.shortName}
+                </span>
+              </div>
+            </div>
+            <p className="mt-3 line-clamp-2 text-[10px] leading-relaxed text-white/38">
+              {solution.audience}
+            </p>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function EcosystemConstellation() {
   return (
-    <div className="relative mx-auto aspect-square w-full max-w-[620px]" aria-label="Quatro soluções conectadas pelo Ecossistema Yamaji">
+    <div
+      className="relative mx-auto aspect-square w-full max-w-[620px]"
+      aria-label="Quatro soluções conectadas pelo Ecossistema Yamaji"
+    >
       <div className="absolute inset-[12%] rounded-full border border-white/[0.06]" />
       <div className="absolute inset-[28%] rounded-full border border-dashed border-accent/15 motion-safe:animate-[spin_38s_linear_infinite]" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(94,234,212,.13),transparent_45%)]" />
 
       <div className="absolute left-1/2 top-1/2 z-20 grid h-28 w-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-accent/25 bg-[#0B1113]/95 text-center shadow-[0_0_80px_-24px_rgba(94,234,212,.7)] backdrop-blur sm:h-36 sm:w-36">
         <div>
-          <span className="block text-[9px] uppercase tracking-[0.2em] text-accent">Ecossistema</span>
-          <span className="mt-1 block text-lg font-semibold text-white sm:text-2xl">Yamaji</span>
-          <span className="mt-2 block text-[8px] text-white/30">uma base conectada</span>
+          <span className="block text-[9px] uppercase tracking-[0.2em] text-accent">
+            Ecossistema
+          </span>
+          <span className="mt-1 block text-lg font-semibold text-white sm:text-2xl">
+            Yamaji
+          </span>
+          <span className="mt-2 block text-[8px] text-white/30">
+            uma base conectada
+          </span>
         </div>
       </div>
 
@@ -306,25 +416,38 @@ function EcosystemConstellation() {
   );
 }
 
-function ConstellationCard({ solution }: { solution: (typeof ecosystemSolutions)[number] }) {
+function ConstellationCard({
+  solution,
+}: {
+  solution: (typeof ecosystemSolutions)[number];
+}) {
   return (
     <Link
       href={`/${solution.slug}`}
-      className="group block rounded-2xl border border-white/[0.09] bg-[#0C0F14]/90 p-3 shadow-[0_20px_55px_-32px_rgba(0,0,0,.95)] backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20 sm:p-4"
+      className="group block min-w-0 rounded-2xl border border-white/[0.09] bg-[#0C0F14]/90 p-3 shadow-[0_20px_55px_-32px_rgba(0,0,0,.95)] backdrop-blur-xl transition hover:-translate-y-1 hover:border-white/20 sm:p-4"
       style={{
         "--segment-accent": solution.accent,
         "--segment-soft": solution.accentSoft,
       } as React.CSSProperties}
     >
-      <div className="flex items-center gap-2.5">
-        <SegmentMark segment={solution.slug} className="h-8 w-8 rounded-lg" />
+      <div className="flex min-w-0 items-center gap-2.5">
+        <SegmentMark
+          segment={solution.slug}
+          className="h-8 w-8 shrink-0 rounded-lg"
+        />
         <div className="min-w-0">
-          <p className="truncate text-[9px] uppercase tracking-[0.14em] text-white/30">Yamaji</p>
-          <p className="truncate text-xs font-semibold text-white sm:text-sm">{solution.shortName}</p>
+          <p className="truncate text-[9px] uppercase tracking-[0.14em] text-white/30">
+            Yamaji
+          </p>
+          <p className="truncate text-xs font-semibold text-white sm:text-sm">
+            {solution.shortName}
+          </p>
         </div>
       </div>
       <div className="mt-3 hidden h-px bg-gradient-to-r from-[var(--segment-accent)]/30 to-transparent sm:block" />
-      <p className="mt-3 hidden text-[10px] leading-relaxed text-white/35 sm:block">{solution.tags.join(" · ")}</p>
+      <p className="mt-3 hidden text-[10px] leading-relaxed text-white/35 sm:block">
+        {solution.tags.join(" · ")}
+      </p>
     </Link>
   );
 }
