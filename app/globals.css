@@ -13,26 +13,64 @@
 
 /* ============ Typography refinements ============ */
 html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
   font-feature-settings: "cv11", "ss01", "ss03";
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
+  min-width: 320px;
+  overflow-x: clip;
   font-size: 15px;
   line-height: 1.55;
-  min-width: 320px;
 }
 
 img,
 svg,
-video {
+video,
+canvas {
   max-width: 100%;
 }
 
 button,
 a {
   -webkit-tap-highlight-color: transparent;
+}
+
+.ecosystem-site {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.ecosystem-site h1,
+.ecosystem-site h2,
+.ecosystem-site h3 {
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.ecosystem-site p {
+  overflow-wrap: break-word;
+}
+
+.ecosystem-mockup,
+.ecosystem-mockup > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+@supports not (overflow: clip) {
+  html,
+  body,
+  .ecosystem-site {
+    overflow-x: hidden;
+  }
 }
 
 @media (max-width: 767px) {
@@ -46,6 +84,42 @@ a {
   select,
   textarea {
     touch-action: manipulation;
+  }
+
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+
+  .site-container {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  .mobile-lead-bar {
+    padding-left: max(0.75rem, env(safe-area-inset-left));
+    padding-right: max(0.75rem, env(safe-area-inset-right));
+    padding-bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .mobile-nav-panel {
+    padding-top: max(1.25rem, env(safe-area-inset-top));
+    padding-right: max(1.25rem, env(safe-area-inset-right));
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 374px) {
+  .mobile-lead-bar > div {
+    gap: 0.35rem;
+    padding: 0.4rem;
+  }
+
+  .mobile-lead-bar [data-cta="mobile-sticky-primary"] {
+    padding-left: 0.65rem;
+    padding-right: 0.65rem;
+    font-size: 11px;
   }
 }
 
@@ -96,7 +170,8 @@ h3 {
 /* ============ Buttons ============ */
 .btn-primary {
   @apply inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 text-[13px] font-semibold text-black transition duration-200;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset, 0 8px 24px -12px rgba(94, 234, 212, 0.45);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    0 8px 24px -12px rgba(94, 234, 212, 0.45);
 }
 .btn-primary:hover {
   background-color: #7bf0dc;
@@ -120,7 +195,11 @@ h3 {
 }
 
 .surface-raised {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.02) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.04) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
   border: 1px solid var(--border-default);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
@@ -152,7 +231,11 @@ h3 {
 }
 
 .text-gradient-light {
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.78) 100%);
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0.78) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -185,7 +268,8 @@ h3 {
     rgba(129, 140, 248, 0.22),
     transparent
   );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
