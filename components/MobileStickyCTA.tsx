@@ -17,7 +17,7 @@ export default function MobileStickyCTA({
   actionLabel = "Escolher solução",
   actionHref = "#solucoes",
   whatsappHref = GENERAL_WHATSAPP_LINK,
-  revealAfter = 260,
+  revealAfter = 360,
 }: MobileStickyCTAProps) {
   const [visible, setVisible] = useState(false);
   const actionIsExternal = /^https?:\/\//.test(actionHref);
@@ -28,7 +28,7 @@ export default function MobileStickyCTA({
         document.documentElement.scrollHeight -
         (window.scrollY + window.innerHeight);
 
-      setVisible(window.scrollY > revealAfter && distanceFromBottom > 180);
+      setVisible(window.scrollY > revealAfter && distanceFromBottom > 160);
     };
 
     onScroll();
@@ -43,7 +43,7 @@ export default function MobileStickyCTA({
 
   return (
     <div
-      className={`mobile-lead-bar fixed inset-x-0 bottom-0 z-40 px-3 transition duration-300 lg:hidden ${
+      className={`mobile-lead-bar fixed inset-x-0 bottom-0 z-40 px-2 transition duration-300 lg:hidden ${
         visible
           ? "pointer-events-auto translate-y-0 opacity-100"
           : "pointer-events-none translate-y-5 opacity-0"
@@ -52,8 +52,8 @@ export default function MobileStickyCTA({
       aria-label="Acesso rápido às soluções Yamaji"
       aria-hidden={!visible}
     >
-      <div className="mx-auto flex w-full max-w-md items-center gap-2 rounded-2xl border border-white/[0.1] bg-[#090D11]/95 p-2 shadow-[0_18px_55px_-18px_rgba(0,0,0,.95)] backdrop-blur-xl">
-        <div className="min-w-0 flex-1 px-2">
+      <div className="mx-auto flex w-full max-w-md items-center gap-1.5 rounded-2xl border border-white/[0.1] bg-[#090D11]/96 p-1.5 shadow-[0_18px_55px_-18px_rgba(0,0,0,.95)] backdrop-blur-xl">
+        <div className="hidden min-w-0 flex-1 px-2 sm:block">
           <span className="block text-[9px] font-medium uppercase tracking-[0.16em] text-accent">
             Ecossistema Yamaji
           </span>
@@ -68,10 +68,10 @@ export default function MobileStickyCTA({
           rel={actionIsExternal ? "noreferrer noopener" : undefined}
           data-cta="mobile-sticky-primary"
           data-label={actionLabel}
-          className="inline-flex min-h-11 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-accent px-3 text-[12px] font-semibold text-[#08090B]"
+          className="inline-flex min-h-11 min-w-0 flex-1 items-center justify-center gap-1.5 rounded-xl bg-accent px-3 text-center text-[12px] font-semibold text-[#08090B] sm:flex-none sm:shrink-0"
         >
-          {actionLabel}
-          <ArrowRight className="h-3.5 w-3.5" />
+          <span className="truncate">{actionLabel}</span>
+          <ArrowRight className="h-3.5 w-3.5 shrink-0" />
         </a>
 
         <a
