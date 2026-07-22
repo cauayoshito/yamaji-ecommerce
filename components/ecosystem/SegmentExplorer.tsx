@@ -25,15 +25,15 @@ export default function SegmentExplorer() {
 
   return (
     <div
-      className="grid gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center"
+      className="grid min-w-0 gap-8 lg:grid-cols-[0.78fr_1.22fr] lg:items-center"
       style={{
         "--segment-accent": active.accent,
         "--segment-soft": active.accentSoft,
       } as React.CSSProperties}
     >
-      <div>
+      <div className="min-w-0">
         <div
-          className="flex gap-2 overflow-x-auto pb-2 lg:grid lg:grid-cols-2 lg:overflow-visible"
+          className="grid min-w-0 grid-cols-2 gap-2 lg:grid-cols-2"
           role="tablist"
           aria-label="Escolha uma solução Yamaji"
         >
@@ -71,16 +71,16 @@ export default function SegmentExplorer() {
                   }
                 }}
                 className={cn(
-                  "min-w-[145px] rounded-xl border px-4 py-3 text-left transition duration-200 focus-visible:ring-2 focus-visible:ring-accent/60",
+                  "w-full min-w-0 rounded-xl border px-3 py-3 text-left transition duration-200 focus-visible:ring-2 focus-visible:ring-accent/60 sm:px-4",
                   selected
                     ? "border-white/20 bg-white/[0.07] text-white"
                     : "border-white/[0.07] bg-white/[0.02] text-white/45 hover:border-white/15 hover:text-white/75"
                 )}
               >
-                <span className="block text-[10px] uppercase tracking-[0.15em]">
+                <span className="block truncate text-[9px] uppercase tracking-[0.13em] sm:text-[10px] sm:tracking-[0.15em]">
                   Yamaji
                 </span>
-                <span className="mt-0.5 block text-sm font-semibold">
+                <span className="mt-0.5 block truncate text-sm font-semibold">
                   {solution.shortName}
                 </span>
               </button>
@@ -92,44 +92,59 @@ export default function SegmentExplorer() {
           id="segment-panel"
           role="tabpanel"
           aria-labelledby={`segment-tab-${active.slug}`}
-          className="mt-8"
+          className="mt-7 min-w-0 sm:mt-8"
         >
-          <div className="flex items-center gap-3">
+          <div className="flex min-w-0 items-center gap-3">
             <SegmentMark segment={active.slug} />
-            <div>
-              <p className="text-[10px] uppercase tracking-[0.18em] text-white/35">
+            <div className="min-w-0">
+              <p className="truncate text-[9px] uppercase tracking-[0.15em] text-white/35 sm:text-[10px] sm:tracking-[0.18em]">
                 {active.eyebrow}
               </p>
-              <h3 className="text-2xl font-semibold text-white">{active.name}</h3>
+              <h3 className="truncate text-2xl font-semibold text-white">
+                {active.name}
+              </h3>
             </div>
           </div>
 
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-white/58">
+          <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/58 sm:text-base">
             {active.scenario}
           </p>
 
-          <ol className="mt-6 grid gap-2 sm:grid-cols-2">
+          <ol className="mt-6 grid min-w-0 gap-2 sm:grid-cols-2">
             {active.flow.map((step) => (
-              <li key={step} className="flex items-center gap-2 text-sm text-white/60">
+              <li key={step} className="flex min-w-0 items-center gap-2 text-sm text-white/60">
                 <span className="grid h-5 w-5 shrink-0 place-items-center rounded-full bg-[var(--segment-soft)] text-[var(--segment-accent)]">
                   <Check className="h-3 w-3" />
                 </span>
-                {step}
+                <span className="min-w-0 break-words">{step}</span>
               </li>
             ))}
           </ol>
 
           <Link
             href={`/${active.slug}`}
-            className="mt-8 inline-flex items-center gap-2 rounded-full bg-[var(--segment-accent)] px-5 py-3 text-sm font-semibold text-[#08090B] transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[var(--segment-accent)]"
+            className="mt-7 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-[var(--segment-accent)] px-5 py-3 text-center text-sm font-semibold text-[#08090B] transition hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-[var(--segment-accent)] sm:mt-8 sm:w-auto"
           >
             Ver a experiência completa
-            <ArrowRight className="h-4 w-4" />
+            <ArrowRight className="h-4 w-4 shrink-0" />
           </Link>
         </div>
       </div>
 
-      <SolutionMockup solution={active} />
+      <div className="min-w-0 lg:hidden">
+        <SolutionMockup
+          solution={active}
+          compact
+          className="w-full min-w-0 max-w-full"
+        />
+      </div>
+
+      <div className="hidden min-w-0 lg:block">
+        <SolutionMockup
+          solution={active}
+          className="w-full min-w-0 max-w-full"
+        />
+      </div>
     </div>
   );
 }
