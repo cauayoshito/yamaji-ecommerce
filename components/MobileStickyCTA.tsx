@@ -15,11 +15,12 @@ type MobileStickyCTAProps = {
 export default function MobileStickyCTA({
   label = "Studio · Eats · Fit · Legal",
   actionLabel = "Escolher solução",
-  actionHref = "/#solucoes",
+  actionHref = "#solucoes",
   whatsappHref = GENERAL_WHATSAPP_LINK,
   revealAfter = 260,
 }: MobileStickyCTAProps) {
   const [visible, setVisible] = useState(false);
+  const actionIsExternal = /^https?:\/\//.test(actionHref);
 
   useEffect(() => {
     const onScroll = () => {
@@ -63,6 +64,8 @@ export default function MobileStickyCTA({
 
         <a
           href={actionHref}
+          target={actionIsExternal ? "_blank" : undefined}
+          rel={actionIsExternal ? "noreferrer noopener" : undefined}
           data-cta="mobile-sticky-primary"
           data-label={actionLabel}
           className="inline-flex min-h-11 shrink-0 items-center justify-center gap-1.5 rounded-xl bg-accent px-3 text-[12px] font-semibold text-[#08090B]"
