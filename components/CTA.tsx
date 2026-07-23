@@ -37,7 +37,7 @@ export default function CTASection() {
           simples, passo a passo.
         </p>
 
-        {/* Badge de vagas */}
+        {/* Direcionamento por segmento */}
         <div
           className={cn(
             "mt-4 mx-auto inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm",
@@ -51,7 +51,7 @@ export default function CTASection() {
             className="inline-flex h-2.5 w-2.5 rounded-full bg-teal-400 animate-pulse"
             aria-hidden
           />
-          <strong>3 vagas estratégicas</strong> para o plano Black Friday
+          <strong>Diagnóstico por segmento</strong> para encontrar o melhor ponto de partida
         </div>
 
         {/* Micro-benefícios */}

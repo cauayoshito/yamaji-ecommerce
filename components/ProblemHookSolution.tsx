@@ -48,11 +48,11 @@ export default function ProblemHookSolutionCompact() {
           line="Você posta, investe e mesmo assim quase ninguém chama no WhatsApp ou entra na loja. O site até existe, mas não vende."
         />
 
-        {/* Gancho sazonal */}
+        {/* Gancho de oportunidade */}
         <Card
           Icon={Sparkles}
           title="O momento é agora"
-          line="Black Friday e Natal são a época em que as pessoas mais compram. Se o seu site e anúncios não estiverem prontos, você perde o fluxo inteiro."
+          line="Quando atendimento, site e operação não conversam, oportunidades se perdem todos os dias. Organizar a base é o primeiro passo para crescer."
         />
 
         {/* Solução Yamaji */}

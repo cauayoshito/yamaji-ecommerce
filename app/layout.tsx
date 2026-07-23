@@ -1,47 +1,20 @@
 // app/layout.tsx
 import type { Metadata } from "next";
 import Script from "next/script";
-import { Inter, Montserrat, Fraunces, JetBrains_Mono } from "next/font/google";
 import "@/app/globals.css";
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: "swap",
-});
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  variable: "--font-montserrat",
-  display: "swap",
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-fraunces",
-  display: "swap",
-  style: ["normal", "italic"],
-  weight: ["300", "400"],
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-jb-mono",
-  display: "swap",
-  weight: ["400", "500"],
-});
+import { WHATSAPP_DISPLAY_NUMBER } from "@/lib/contact";
 
 const SITE = {
   name: "Yamaji Studio",
   domain: "yamajistudio.com.br",
-  url: "https://yamajistudio.com.br",
+  url: "https://www.yamajistudio.com.br",
   description:
-    "Sistemas, automações e experiências digitais premium para negócios que querem operar como empresa tech.",
-  logo: "/logo.png",
-  tel: "+55 71 99235-8249",
+    "Criação de sites responsivos, lojas virtuais, sistemas, automação e IA para empresas em Salvador e todo o Brasil.",
+  logo: "/images/logo-yamaji-aqua.png",
+  tel: WHATSAPP_DISPLAY_NUMBER,
   email: "yamaji.studio@gmail.com",
   sameAs: [
-    "https://www.instagram.com/yamaji.studio",
+    "https://www.instagram.com/yamajistudio",
     "https://www.linkedin.com/company/yamaji-studio",
   ],
   address: {
@@ -58,44 +31,58 @@ const SITE = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Yamaji Studio — Sistemas, Automação e Presença Digital Premium",
+    default: "Ecossistema Yamaji — Tecnologia que entende o seu negócio",
     template: "%s • Yamaji Studio",
   },
   description: SITE.description,
+  applicationName: SITE.name,
+  authors: [{ name: SITE.name, url: SITE.url }],
+  creator: SITE.name,
+  publisher: SITE.name,
+  category: "Tecnologia e desenvolvimento de software",
+  keywords: [
+    "criação de sites em Salvador",
+    "agência de desenvolvimento web",
+    "loja virtual",
+    "e-commerce responsivo",
+    "sistemas personalizados",
+    "automação empresarial",
+    "inteligência artificial para empresas",
+    "SEO técnico",
+  ],
   metadataBase: new URL(SITE.url),
   alternates: {
     canonical: SITE.url,
   },
   openGraph: {
-    title: "Yamaji Studio — Estrutura digital para empresas tech",
+    title: "Ecossistema Yamaji — Uma Yamaji para cada tipo de negócio",
     description: SITE.description,
     url: SITE.url,
     siteName: SITE.name,
-    images: [
-      {
-        url: "/og.jpg", // crie uma imagem 1200x630
-        width: 1200,
-        height: 630,
-        alt: "Yamaji Studio — Sistemas, automações e presença digital premium",
-      },
-    ],
     locale: "pt_BR",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Yamaji Studio — Estrutura digital para empresas tech",
+    title: "Ecossistema Yamaji — Uma Yamaji para cada tipo de negócio",
     description: SITE.description,
-    images: ["/og.jpg"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/images/logo-yamaji-aqua.png",
+    apple: "/images/logo-yamaji-aqua.png",
   },
+  manifest: "/site.webmanifest",
 };
 
 export const viewport = {
@@ -108,16 +95,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      lang="pt-BR"
-      className={`${inter.variable} ${montserrat.variable} ${fraunces.variable} ${jetbrainsMono.variable}`}
-    >
+    <html lang="pt-BR">
       <head>
         <meta charSet="utf-8" />
         {/* Preconnects para performance */}
         <link rel="preconnect" href="https://plausible.io" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://connect.facebook.net" />
 
         {/* JSON-LD LocalBusiness */}
         <Script
@@ -126,7 +108,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "LocalBusiness",
+              "@type": ["LocalBusiness", "ProfessionalService"],
               name: SITE.name,
               url: SITE.url,
               telephone: SITE.tel,
@@ -144,10 +126,28 @@ export default function RootLayout({
               sameAs: SITE.sameAs,
               openingHours: "Mo-Sa 08:00-20:00",
               priceRange: "$$",
-              aggregateRating: {
-                "@type": "AggregateRating",
-                ratingValue: "5.0",
-                reviewCount: "30",
+              description: SITE.description,
+              knowsAbout: [
+                "Desenvolvimento de sites",
+                "E-commerce",
+                "Sistemas personalizados",
+                "Automação empresarial",
+                "Inteligência artificial",
+                "SEO técnico",
+              ],
+              hasOfferCatalog: {
+                "@type": "OfferCatalog",
+                name: "Serviços digitais Yamaji Studio",
+                itemListElement: [
+                  "Criação de sites responsivos",
+                  "Desenvolvimento de lojas virtuais",
+                  "Sistemas personalizados",
+                  "Automação e inteligência artificial",
+                  "SEO e performance web",
+                ].map((name) => ({
+                  "@type": "Offer",
+                  itemOffered: { "@type": "Service", name },
+                })),
               },
             }),
           }}

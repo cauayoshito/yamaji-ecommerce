@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { APPLY_ROUTE } from "@/lib/routes";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const site = "https://yamajistudio.com.br";
+  const site = "https://www.yamajistudio.com.br";
   const now = new Date().toISOString();
 
   return [
@@ -11,6 +11,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "weekly",
       priority: 1.0,
+    },
+    {
+      url: `${site}/studio`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${site}/eats`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${site}/fit`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${site}/legal`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
     },
     {
       url: `${site}/sistemas`,
@@ -31,7 +55,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
-      url: `${site}/sistema/captacao`,
+      url: `${site}/sistemas/captacao`,
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,

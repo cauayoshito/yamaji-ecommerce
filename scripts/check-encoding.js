@@ -19,7 +19,24 @@ const TEXT_EXTENSIONS = new Set([
   ".yaml",
   ".svg",
 ]);
-const PATTERNS = ["Ã", "Â", "â€™", "â€œ", "â€"];
+// Sequências típicas de UTF-8 interpretado como Latin-1. Evite caracteres
+// isolados como "Ã" e "Â", que também existem legitimamente em português.
+const PATTERNS = [
+  "Ã¡",
+  "Ã©",
+  "Ã­",
+  "Ã³",
+  "Ãº",
+  "Ã£",
+  "Ãµ",
+  "Ã§",
+  "Ãª",
+  "Ã´",
+  "Â ",
+  "â€™",
+  "â€œ",
+  "â€",
+];
 
 const matches = [];
 
@@ -35,14 +52,15 @@ function walk(dir) {
 
     const ext = path.extname(entry.name).toLowerCase();
     if (!TEXT_EXTENSIONS.has(ext)) continue;
-    if (path.relative(ROOT, fullPath) === "scripts/check-encoding.js") continue;
+    const relativePath = path.relative(ROOT, fullPath).replace(/\\/g, "/");
+    if (relativePath === "scripts/check-encoding.js") continue;
 
     const content = fs.readFileSync(fullPath, "utf8");
     const lines = content.split(/\r?\n/);
     lines.forEach((line, index) => {
       if (PATTERNS.some((pattern) => line.includes(pattern))) {
         matches.push({
-          file: path.relative(ROOT, fullPath),
+          file: relativePath,
           line: index + 1,
           text: line.trim(),
         });
