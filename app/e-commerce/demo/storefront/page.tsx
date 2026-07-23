@@ -1,1 +1,5 @@
-export { default, metadata } from "../yamaji/page";
+import { redirect } from "next/navigation";
+
+export default function StorefrontDemoRedirect() {
+  redirect("/e-commerce/experiencia");
+}
