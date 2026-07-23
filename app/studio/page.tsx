@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import VerticalLanding from "@/components/ecosystem/VerticalLanding";
+import StudioExperienceRoute from "@/components/ecosystem/StudioExperienceRoute";
 import { getEcosystemSolution } from "@/data/ecosystem";
 
 const solution = getEcosystemSolution("studio");
@@ -23,5 +24,10 @@ export const metadata: Metadata = {
 };
 
 export default function StudioPage() {
-  return <VerticalLanding solution={solution} />;
+  return (
+    <>
+      <VerticalLanding solution={solution} />
+      <StudioExperienceRoute />
+    </>
+  );
 }
