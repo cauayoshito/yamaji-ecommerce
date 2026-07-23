@@ -26,7 +26,10 @@ export default function YamajiEcommerceExperiencePage() {
         actionHref={whatsappLink}
         whatsappHref={whatsappLink}
       />
-      <main className="overflow-x-hidden pt-16 md:pt-[68px]">
+      <main
+        className="overflow-x-hidden pt-16 md:pt-[68px]"
+        data-page="yamaji-ecommerce-experience"
+      >
         <YamajiEcommerceShowcase />
       </main>
       <Footer />
