@@ -4,12 +4,35 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, ChevronDown, Menu, X } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronDown,
+  LayoutDashboard,
+  Menu,
+  ShoppingBag,
+  Sparkles,
+  X,
+} from "lucide-react";
 import Container from "@/components/ui/Container";
 import SegmentMark from "@/components/ecosystem/SegmentMark";
 import { ecosystemSolutions } from "@/data/ecosystem";
 import { GENERAL_WHATSAPP_LINK } from "@/lib/contact";
 import { cn } from "@/lib/utils";
+
+const ecommerceLinks = [
+  {
+    href: "/e-commerce",
+    label: "Yamaji E-commerce",
+    description: "Lojas online, checkout e operação integrada.",
+    icon: ShoppingBag,
+  },
+  {
+    href: "/e-commerce/demo/yamaji",
+    label: "Demonstração completa",
+    description: "Veja o fluxo do cliente e o painel de gestão.",
+    icon: LayoutDashboard,
+  },
+];
 
 export default function NavBar() {
   const pathname = usePathname();
@@ -35,6 +58,7 @@ export default function NavBar() {
         setMobileOpen(false);
       }
     }
+
     function onPointerDown(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setSolutionsOpen(false);
@@ -50,17 +74,24 @@ export default function NavBar() {
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = mobileOpen ? "hidden" : previousOverflow;
+
     if (mobileOpen) {
       requestAnimationFrame(() => closeButtonRef.current?.focus());
     } else if (mobileTriggerRef.current) {
       mobileTriggerRef.current.focus();
       mobileTriggerRef.current = null;
     }
+
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
     };
   }, [mobileOpen]);
+
+  function closeMobileMenu() {
+    setMobileOpen(false);
+  }
 
   function handleMobileMenuKeyDown(event: React.KeyboardEvent<HTMLElement>) {
     if (event.key !== "Tab") return;
@@ -82,7 +113,8 @@ export default function NavBar() {
     }
   }
 
-  const isActive = (href: string) => pathname === href;
+  const isActive = (href: string) =>
+    href === "/" ? pathname === "/" : pathname === href || pathname.startsWith(`${href}/`);
   const processHref = pathname === "/" ? "#como-funciona" : "/#como-funciona";
 
   return (
@@ -90,15 +122,15 @@ export default function NavBar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 border-b transition duration-300",
         scrolled
-          ? "border-white/[0.07] bg-[#08090B]/88 backdrop-blur-xl"
-          : "border-transparent bg-[#08090B]/45 backdrop-blur-md"
+          ? "border-white/[0.07] bg-[#08090B]/90 backdrop-blur-xl"
+          : "border-transparent bg-[#08090B]/60 backdrop-blur-md"
       )}
     >
       <Container className="flex h-16 items-center justify-between md:h-[68px]">
         <Link
           href="/"
-          className="flex items-center gap-2.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent/60"
-          aria-label="Ecossistema Yamaji — página inicial"
+          className="flex min-w-0 items-center gap-2.5 rounded-md focus-visible:ring-2 focus-visible:ring-accent/60"
+          aria-label="Ecossistema Yamaji, página inicial"
         >
           <Image
             src="/images/logo-yamaji-aqua.png"
@@ -106,9 +138,9 @@ export default function NavBar() {
             width={30}
             height={30}
             priority
-            className="h-7 w-7 object-contain"
+            className="h-7 w-7 shrink-0 object-contain"
           />
-          <span className="text-sm font-semibold tracking-tight text-white sm:text-[15px]">
+          <span className="truncate text-sm font-semibold tracking-tight text-white sm:text-[15px]">
             Yamaji Studio
           </span>
           <span className="hidden rounded-full border border-accent/15 bg-accent/[0.06] px-2 py-1 text-[8px] font-medium uppercase tracking-[0.14em] text-accent sm:inline-flex">
@@ -116,14 +148,14 @@ export default function NavBar() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-6 text-[13px] text-white/58 lg:flex" aria-label="Navegação principal">
+        <nav className="hidden items-center gap-5 text-[13px] text-white/58 lg:flex" aria-label="Navegação principal">
           <div className="relative" ref={dropdownRef}>
             <button
               type="button"
               onClick={() => setSolutionsOpen((open) => !open)}
               className={cn(
                 "inline-flex items-center gap-1.5 rounded-md py-2 transition hover:text-white focus-visible:ring-2 focus-visible:ring-accent/60",
-                ecosystemSolutions.some((item) => isActive(`/${item.slug}`)) && "text-white"
+                (pathname.startsWith("/e-commerce") || ecosystemSolutions.some((item) => isActive(`/${item.slug}`))) && "text-white"
               )}
               aria-haspopup="menu"
               aria-expanded={solutionsOpen}
@@ -137,8 +169,37 @@ export default function NavBar() {
               <div
                 id="solutions-menu"
                 role="menu"
-                className="absolute left-1/2 mt-3 w-[540px] -translate-x-1/2 rounded-2xl border border-white/[0.09] bg-[#0A0D12]/98 p-3 shadow-[0_24px_80px_-28px_rgba(0,0,0,.95)] backdrop-blur-xl"
+                className="absolute left-1/2 mt-3 w-[620px] -translate-x-1/2 rounded-2xl border border-white/[0.09] bg-[#0A0D12]/98 p-3 shadow-[0_24px_80px_-28px_rgba(0,0,0,.95)] backdrop-blur-xl"
               >
+                <div className="mb-3 grid grid-cols-2 gap-2">
+                  {ecommerceLinks.map(({ href, label, description, icon: Icon }, index) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      role="menuitem"
+                      onClick={() => setSolutionsOpen(false)}
+                      className={cn(
+                        "group flex gap-3 rounded-xl border p-3 transition",
+                        index === 0
+                          ? "border-accent/18 bg-accent/[0.06] hover:border-accent/35"
+                          : "border-[#818CF8]/18 bg-[#818CF8]/[0.06] hover:border-[#818CF8]/35",
+                        isActive(href) && "ring-1 ring-white/20"
+                      )}
+                    >
+                      <span className={cn("grid h-10 w-10 shrink-0 place-items-center rounded-xl", index === 0 ? "bg-accent/12 text-accent" : "bg-[#818CF8]/12 text-[#A5B4FC]")}>
+                        <Icon className="h-5 w-5" />
+                      </span>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-white">{label}</p>
+                        <p className="mt-1 text-[10px] leading-relaxed text-white/38">{description}</p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
+                <p className="mb-2 px-1 text-[9px] font-medium uppercase tracking-[0.18em] text-white/25">
+                  Soluções por mercado
+                </p>
                 <div className="grid grid-cols-2 gap-2">
                   {ecosystemSolutions.map((solution) => (
                     <Link
@@ -156,7 +217,7 @@ export default function NavBar() {
                       } as React.CSSProperties}
                     >
                       <SegmentMark segment={solution.slug} className="h-9 w-9 shrink-0 rounded-lg" />
-                      <div>
+                      <div className="min-w-0">
                         <p className="text-xs font-semibold text-white">{solution.name}</p>
                         <p className="mt-1 text-[10px] leading-relaxed text-white/35">{solution.audience}</p>
                       </div>
@@ -167,6 +228,7 @@ export default function NavBar() {
             )}
           </div>
 
+          <Link href="/e-commerce/demo/yamaji" className={cn("transition hover:text-white", isActive("/e-commerce/demo/yamaji") && "text-white")}>Demonstração</Link>
           <Link href="/cases" className={cn("transition hover:text-white", isActive("/cases") && "text-white")}>Cases</Link>
           <Link href={processHref} className="transition hover:text-white">Como funciona</Link>
           <Link href="/sobre" className={cn("transition hover:text-white", isActive("/sobre") && "text-white")}>Sobre</Link>
@@ -180,8 +242,7 @@ export default function NavBar() {
           data-label="navbar"
           className="hidden items-center gap-2 rounded-full bg-accent px-4 py-2.5 text-[12px] font-semibold text-[#08090B] transition hover:-translate-y-0.5 hover:bg-[#7bf0dc] lg:inline-flex"
         >
-          Falar com a Yamaji
-          <ArrowRight className="h-3.5 w-3.5" />
+          Falar com a Yamaji <ArrowRight className="h-3.5 w-3.5" />
         </a>
 
         <button
@@ -190,7 +251,7 @@ export default function NavBar() {
             mobileTriggerRef.current = event.currentTarget;
             setMobileOpen(true);
           }}
-          className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.03] text-white/75 lg:hidden"
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.03] text-white/75 lg:hidden"
           aria-label="Abrir menu"
           aria-expanded={mobileOpen}
           aria-controls="mobile-navigation"
@@ -201,10 +262,10 @@ export default function NavBar() {
 
       <div
         className={cn(
-          "fixed inset-0 z-40 bg-black/75 backdrop-blur-sm transition-opacity lg:hidden",
+          "fixed inset-0 z-40 bg-black/80 backdrop-blur-sm transition-opacity lg:hidden",
           mobileOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         )}
-        onClick={() => setMobileOpen(false)}
+        onClick={closeMobileMenu}
         aria-hidden="true"
       />
 
@@ -212,7 +273,7 @@ export default function NavBar() {
         ref={mobilePanelRef}
         id="mobile-navigation"
         className={cn(
-          "fixed inset-y-0 right-0 z-50 w-[90%] max-w-sm overflow-y-auto border-l border-white/[0.08] bg-[#090C10] p-5 shadow-2xl transition-transform duration-300 lg:hidden",
+          "mobile-nav-panel fixed inset-0 z-50 flex h-[100dvh] w-full flex-col overflow-hidden bg-[#080B0F] shadow-2xl transition-transform duration-300 lg:hidden",
           mobileOpen ? "translate-x-0" : "translate-x-full"
         )}
         role="dialog"
@@ -222,52 +283,100 @@ export default function NavBar() {
         inert={!mobileOpen}
         onKeyDown={handleMobileMenuKeyDown}
       >
-        <div className="flex items-center justify-between border-b border-white/[0.08] pb-5">
-          <div className="flex items-center gap-2.5">
-            <Image src="/images/logo-yamaji-aqua.png" alt="" width={28} height={28} />
-            <div>
-              <p className="text-sm font-semibold text-white">Yamaji Studio</p>
-              <p className="text-[9px] uppercase tracking-[0.14em] text-accent">Ecossistema Yamaji</p>
+        <div className="flex shrink-0 items-center justify-between border-b border-white/[0.08] bg-[#080B0F]/96 px-5 py-4 backdrop-blur-xl">
+          <Link href="/" onClick={closeMobileMenu} className="flex min-w-0 items-center gap-2.5">
+            <Image src="/images/logo-yamaji-aqua.png" alt="" width={28} height={28} className="h-7 w-7 shrink-0" />
+            <div className="min-w-0">
+              <p className="truncate text-sm font-semibold text-white">Yamaji Studio</p>
+              <p className="truncate text-[9px] uppercase tracking-[0.14em] text-accent">Ecossistema Yamaji</p>
             </div>
-          </div>
-          <button ref={closeButtonRef} type="button" onClick={() => setMobileOpen(false)} className="grid h-10 w-10 place-items-center rounded-xl border border-white/10 bg-white/[0.03] text-white/70" aria-label="Fechar menu">
+          </Link>
+          <button
+            ref={closeButtonRef}
+            type="button"
+            onClick={closeMobileMenu}
+            className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-white/10 bg-white/[0.03] text-white/70"
+            aria-label="Fechar menu"
+          >
             <X className="h-5 w-5" />
           </button>
         </div>
 
-        <div className="py-6">
-          <p className="mb-3 text-[9px] font-medium uppercase tracking-[0.18em] text-white/30">Soluções por mercado</p>
-          <nav className="space-y-2" aria-label="Soluções Yamaji">
+        <div className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-4 pb-[calc(1.25rem+env(safe-area-inset-bottom))] pt-5">
+          <p className="mb-3 px-1 text-[9px] font-medium uppercase tracking-[0.18em] text-white/30">E-commerce</p>
+          <div className="grid gap-2">
+            {ecommerceLinks.map(({ href, label, description, icon: Icon }, index) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={closeMobileMenu}
+                className={cn(
+                  "flex min-w-0 items-center gap-3 rounded-2xl border p-4",
+                  index === 0
+                    ? "border-accent/20 bg-accent/[0.07]"
+                    : "border-[#818CF8]/20 bg-[#818CF8]/[0.07]"
+                )}
+              >
+                <span className={cn("grid h-11 w-11 shrink-0 place-items-center rounded-xl", index === 0 ? "bg-accent/12 text-accent" : "bg-[#818CF8]/12 text-[#A5B4FC]")}>
+                  <Icon className="h-5 w-5" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="text-sm font-semibold text-white">{label}</p>
+                  <p className="mt-1 text-[11px] leading-relaxed text-white/42">{description}</p>
+                </div>
+                <ArrowRight className="h-4 w-4 shrink-0 text-white/30" />
+              </Link>
+            ))}
+          </div>
+
+          <div className="my-5 h-px bg-white/[0.08]" />
+
+          <p className="mb-3 px-1 text-[9px] font-medium uppercase tracking-[0.18em] text-white/30">Soluções por mercado</p>
+          <nav className="grid grid-cols-2 gap-2" aria-label="Soluções Yamaji">
             {ecosystemSolutions.map((solution) => (
               <Link
                 key={solution.slug}
                 href={`/${solution.slug}`}
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center gap-3 rounded-xl border border-white/[0.07] bg-white/[0.025] p-3"
+                onClick={closeMobileMenu}
+                className="min-w-0 rounded-2xl border border-white/[0.07] bg-white/[0.025] p-3"
                 style={{
                   "--segment-accent": solution.accent,
                   "--segment-soft": solution.accentSoft,
                 } as React.CSSProperties}
               >
-                <SegmentMark segment={solution.slug} className="h-9 w-9 shrink-0 rounded-lg" />
-                <div>
-                  <p className="text-sm font-semibold text-white">{solution.name}</p>
-                  <p className="text-[10px] text-white/35">{solution.audience}</p>
-                </div>
+                <SegmentMark segment={solution.slug} className="h-9 w-9 rounded-lg" />
+                <p className="mt-3 truncate text-sm font-semibold text-white">{solution.name}</p>
+                <p className="mt-1 line-clamp-2 text-[10px] leading-relaxed text-white/35">{solution.audience}</p>
               </Link>
             ))}
           </nav>
+
+          <div className="my-5 h-px bg-white/[0.08]" />
+
+          <nav className="grid gap-1 text-sm text-white/65" aria-label="Outras páginas">
+            <Link href="/" onClick={closeMobileMenu} className="rounded-xl px-3 py-3 hover:bg-white/[0.04] hover:text-white">Início</Link>
+            <Link href="/cases" onClick={closeMobileMenu} className="rounded-xl px-3 py-3 hover:bg-white/[0.04] hover:text-white">Cases</Link>
+            <Link href={processHref} onClick={closeMobileMenu} className="rounded-xl px-3 py-3 hover:bg-white/[0.04] hover:text-white">Como funciona</Link>
+            <Link href="/sobre" onClick={closeMobileMenu} className="rounded-xl px-3 py-3 hover:bg-white/[0.04] hover:text-white">Sobre</Link>
+            <Link href="/aplicar" onClick={closeMobileMenu} className="rounded-xl px-3 py-3 hover:bg-white/[0.04] hover:text-white">Aplicar meu projeto</Link>
+          </nav>
+
+          <a
+            href={GENERAL_WHATSAPP_LINK}
+            target="_blank"
+            rel="noreferrer noopener"
+            onClick={closeMobileMenu}
+            data-cta="whatsapp"
+            data-label="mobile-navbar"
+            className="mt-5 inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-full bg-accent px-5 text-sm font-semibold text-[#08090B]"
+          >
+            Falar com a Yamaji <ArrowRight className="h-4 w-4" />
+          </a>
+
+          <div className="mt-5 flex items-center justify-center gap-2 text-[9px] uppercase tracking-[0.16em] text-white/25">
+            <Sparkles className="h-3 w-3 text-accent" /> Studio · Eats · Fit · Legal
+          </div>
         </div>
-
-        <nav className="space-y-1 border-t border-white/[0.08] pt-5 text-sm text-white/65" aria-label="Outras páginas">
-          <Link href="/cases" onClick={() => setMobileOpen(false)} className="block rounded-lg px-3 py-3 hover:bg-white/[0.04] hover:text-white">Cases</Link>
-          <Link href={processHref} onClick={() => setMobileOpen(false)} className="block rounded-lg px-3 py-3 hover:bg-white/[0.04] hover:text-white">Como funciona</Link>
-          <Link href="/sobre" onClick={() => setMobileOpen(false)} className="block rounded-lg px-3 py-3 hover:bg-white/[0.04] hover:text-white">Sobre</Link>
-        </nav>
-
-        <a href={GENERAL_WHATSAPP_LINK} target="_blank" rel="noreferrer noopener" onClick={() => setMobileOpen(false)} data-cta="whatsapp" data-label="mobile-navbar" className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-5 py-3.5 text-sm font-semibold text-[#08090B]">
-          Falar com a Yamaji <ArrowRight className="h-4 w-4" />
-        </a>
       </aside>
     </header>
   );
