@@ -1,1 +1,1 @@
-export { default } from "../loja/page";
+export { default, metadata } from "../trevo/page";
